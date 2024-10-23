@@ -1,0 +1,151 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1,
+h2,
+h3 {
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #2c3e50;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin: 20px 0;
+    color: #34495e;
+}
+
+/* Container for centering content */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Links */
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Form Styles */
+form {
+    background-color: #fff;
+    border: 1px solid #dfe6e9;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #2d3436;
+}
+
+/* Input and Textarea Styles */
+textarea,
+select,
+input[type="text"],
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border: 1px solid #dfe6e9;
+    border-radius: 6px;
+    font-size: 1em;
+    background-color: #f9f9f9;
+}
+
+textarea {
+    resize: vertical;
+    width: calc(100% - 20px);
+    /* Allows users to resize the textarea vertically */
+    min-height: 120px;
+    /* Ensure the textarea starts at a reasonable height */
+}
+
+/* Select Styles */
+select {
+    appearance: none;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%233498db' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+    cursor: pointer;
+}
+
+select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Button Styles */
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Preformatted Text Styles */
+pre {
+    background-color: #f4f4f9;
+    border: 1px solid #dfe6e9;
+    padding: 15px;
+    overflow-x: auto;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    /* Allows long lines to break and wrap */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    textarea,
+    select,
+    input[type="text"],
+    button {
+        font-size: 0.9em;
+    }
+
+    button {
+        padding: 12px;
+    }
+}
