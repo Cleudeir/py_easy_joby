@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Results of Splitting by "{{ split_text }}"</h1>
+
+        <h2>Sections:</h2>
+        <ul>
+            {% for section in sections %}
+            <li>
+                <pre>{{ section }}</pre>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <br>
+        <a href="{{ url_for('split_file') }}">Back to Split Another File</a>
+    </div>
+</body>
+
+</html>
