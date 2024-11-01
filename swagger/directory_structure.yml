@@ -1,0 +1,22 @@
+post:
+  tags:
+    - Directory Structure
+  summary: Retrieve directory structure
+  description: "Retrieve the structure of a directory given a path."
+  parameters:
+    - name: directory_path
+      in: formData
+      type: string
+      required: true
+      description: The path of the directory to analyze
+  responses:
+    200:
+      description: Directory structure retrieved successfully
+      schema:
+        type: object
+        properties:
+          directory:
+            type: object
+            description: Nested dictionary structure of the directory
+    400:
+      description: Invalid directory path

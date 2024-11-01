@@ -1,0 +1,48 @@
+post:
+  tags:
+    - File Splitter
+  summary: Split a file into sections
+  description: "Splits an uploaded file by a specified method: by text, lines, or paragraphs."
+  parameters:
+    - name: file
+      in: formData
+      type: file
+      required: true
+      description: The file to be split
+    - name: split_method
+      in: formData
+      type: string
+      required: true
+      enum: ['text', 'lines', 'paragraphs']
+      description: The method to split the file by
+    - name: split_value
+      in: formData
+      type: string
+      required: false
+      description: "Value used for splitting (e.g., text pattern or line count). Required for text or lines."
+  responses:
+    200:
+      description: File split successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              sections:
+                type: array
+                items:
+                  type: string
+                description: Array of file sections after splitting
+              split_text:
+                type: string
+                description: Description of the split method and value used
+    400:
+      description: Invalid input data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: Error message

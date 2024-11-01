@@ -141,6 +141,51 @@ pre {
     margin-right: 10px;
 }
 
+.loading-overlay {
+    display: none;
+    /* Hidden initially */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: #333;
+}
+
+
+/* Markdown Content Styling */
+.markdown-content {
+    background-color: #f9f9f9;
+    border: 1px solid #dfe6e9;
+    padding: 20px;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+    color: #333;
+}
+
+.markdown-content pre {
+    background-color: #f4f4f9;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+.markdown-content code {
+    background-color: #e8e8e8;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
 /* Spinner animation */
 @keyframes spin {
     to {

@@ -45,8 +45,6 @@
     <div class="container">
         <h1>Interact with Ollama</h1>
 
-
-
         <form method="POST" onsubmit="showLoading(); saveInputs();">
             <label for="model">Choose Model:</label>
             <select id="model" name="model" required onchange="saveInputs()">
@@ -64,10 +62,12 @@
 
             <button type="submit">Get Response</button>
         </form>
+
         <!-- Loading indicator (initially hidden) -->
         <div id="loading" style="display:none; text-align: center; font-size: 1.5em; color: #3498db;">
             Processing... Please wait.
         </div>
+
         <!-- Response will be displayed here (hidden initially during loading) -->
         <div id="response" style="display: block;">
             {% if response %}
@@ -77,7 +77,7 @@
         </div>
 
         <br>
-        <a href="{{ url_for('index') }}">Back to Dashboard</a>
+        <a href="{{ url_for('html_routes.home') }}">Back to Dashboard</a>
     </div>
 </body>
 

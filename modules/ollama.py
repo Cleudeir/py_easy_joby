@@ -12,7 +12,6 @@ def get_available_models():
         return {"error": str(e)}
 
 def get_ollama_response(model, system_prompt, user_prompt):
-    # This is how to use the ollama.chat API with messages
     messages = [
         {
             "role": "system",
@@ -27,8 +26,8 @@ def get_ollama_response(model, system_prompt, user_prompt):
     try:
         # Call ollama.chat with the model and messages
         response = ollama.chat(model=model, messages=messages)
-        # If necessary, decode any escaped Unicode characters in the response
-        response_message = json.dumps(response['message']['content'], ensure_ascii=False)
-        return response_message  # Return the response content with special characters properly handled
+        # Return the response content directly without using json.dumps
+        response_message = response['message']['content']
+        return response_message
     except Exception as e:
         return {"error": str(e)}

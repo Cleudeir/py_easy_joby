@@ -1,0 +1,96 @@
+## Summary: directory_structure.py
+
+- **Objetivo do Código**: Gerar uma estrutura de diretórios em formato de texto, excluindo qualquer diretório que comece com um ponto.
+
+- **Lógica Central e Algoritmos**:
+  - A função utiliza `os.walk` para percorrer o diretório especificado.
+  - Evita diretórios iniciados por um ponto (`.`) ao listar suas subpastas.
+  - Cria uma estrutura de texto formatada, com indentação adequada para representar a profundidade do caminho.
+
+- **Dependências e Bibliotecas**: Só depende da biblioteca `os` para manipulação de diretórios.
+
+- **Entrada e Saída**:
+  - Entradas aceitas: `directory_path`, um caminho para um diretório existente ou não.
+  - Saídas produzidas são uma string formatada contendo a estrutura de diretórios, incluindo nomes de subdiretórios e arquivos.
+
+- **Tratamento de Erros e Exceções**: Não há tratamento específico de erros, pois verifica se o diretório existe antes de começar a percorrer. A função retornará uma mensagem de erro caso o diretório não exista.
+  
+- **Considerações de Segurança**: Nenhum aspecto de segurança é mencionado no código fornecido.
+
+- **Configuração e Ambiente**: Não há configurações ou variáveis de ambiente especificadas que o código dependa.
+
+- **Documentação e Comentários**: Há comentários simples no início da função explicando a intenção, mas não são docstrings completas.
+
+- **Testes e Validação**: Não há informações sobre testes específicos fornecidos.
+## Summary: ollama.py
+
+- **Objetivo do Código**: Este código importa o `ollama` biblioteca para interagir com um modelo de linguagem. Ele fornece duas funções principais: `get_available_models()` que retorna uma lista de nomes dos modelos disponíveis e `get_ollama_response(model, system_prompt, user_prompt)` que envia mensagens ao modelo para obter uma resposta.
+
+- **Lógica Central e Algoritmos**: A lógica central é consultar o modelo disponível usando a função `ollama.list()`. Após obter os nomes dos modelos em um dicionário, ele retorna esses nomes. Para a segunda função, as mensagens são pré-organizadas: uma mensagem como sistema e outra de usuário são enviadas ao modelo passado por parâmetro, e a resposta é retornada.
+
+- **Dependências e Bibliotecas**: A biblioteca externa `ollama` é usada para acessar o modelo de linguagem. Não há especificações de versão para essa dependência.
+
+- **Entrada e Saída**: As entradas são um nome do modelo, uma mensagem como sistema e uma mensagem do usuário. A saída é a resposta retornado pelo modelo ou em caso de erro, um dicionário contendo uma mensagem de erro.
+
+- **Tratamento de Erros e Exceções**: O código tenta chamar `ollama.list()` para obter modelos e `ollama.chat` para obter respostas. Se ocorrer qualquer exceção durante esses chamados, a função retorna um dicionário com uma mensagem de erro.
+
+- **Considerações de Segurança**: Não há informações especificamente sobre segurança ou criptografia no código fornecido.
+
+- **Configuração e Ambiente**: A documentação do `ollama` deve ser consultada para saber quaisquer arquivos de configuração ou variáveis de ambiente necessárias. As considerações específicas da plataforma não estão mencionadas.
+
+- **Documentação e Comentários**: Não há docstrings ou comentários no código fornecido, então a documentação é bastante limitada.
+
+- **Testes e Validação**: Como o código não vem com testes, não há informações sobre testes unitários ou de integração.
+## Summary: project_documentation.py
+
+- **Objetivo do Código**: Este código é responsável por gerar uma documentação resumida de todos os arquivos em um diretório específico. Ele lê cada arquivo (do tipo txt, pdf, docx e html), extrai seu conteúdo, gera uma resumo usando a biblioteca Ollama para determinado modelo, e salva o sumário no formato Markdown.
+
+- **Lógica Central e Algoritmos**: 
+    - A lógica central é dividida em quatro funções principais: `get_project_files`, `read_and_summarize_file`, `generate_documentation` e `save_documentation`.
+    - Cada arquivo de texto, PDF ou DOCX é processado. Arquivos HTML são considerados normalmente como texto.
+    - Usando a biblioteca Ollama, o sumário dos arquivos é gerado baseado em prompts personalizados definidos no início do código (na função `summarize_with_ollama`).
+    - A lógica central implementa uma abordagem recursiva para percorrer e obter todos os arquivos de um diretório.
+
+- **Dependências e Bibliotecas**: 
+    - Usa as bibliotecas internas `modules.file_processor` para processar arquivos (txt, pdf e docx) e a biblioteca Ollama (`modules.ollama`) para gerar resumos com base em prompts personalizados.
+    - Não requer requisitos de versão específicos.
+
+- **Entrada e Saída**:
+    - A função `get_project_files` retorna uma lista de arquivos dentro do diretório especificado, incluindo todas as subpastas.
+    - As funções principais chamadas pelo código (`read_and_summarize_file`, `generate_documentation`) recebem o caminho para um arquivo e um modelo da Ollama. Elas retornam uma resumo formatada em Markdown.
+    - A função `save_documentation` salva a documentação gerada no formato solicitado (um arquivo Markdown).
+
+- **Tratamento de Erros e Exceções**: 
+    - Não há detalhes específicos sobre erros ou exceções tratados. As funções podem lidar com erros relacionados ao acesso de arquivos ou a integração do Ollama.
+
+- **Considerações de Segurança**:
+    - Não há menções explícitas de segurança, mas as operações de leitura e escrita (abertura de arquivos) são feitas cuidadosamente.
+
+- **Resto da lógica**: A documentação gerada é concatenada e salva em um arquivo Markdown no caminho especificado pelo usuário, dando ao desenvolvedor uma visão resumida dos arquivos do diretório fornecido. 
+
+Esse código poderia ser usado em situações onde o projeto tem vários arquivos diferentes tipos de formatos que precisam ser facilmente documentados e gerenciados de maneira organizada.
+## Summary: file_processor.py
+
+Este código fornece funções para dividir conteúdo de arquivos, independentemente do formato. Aqui está um resumo sucinto:
+
+**Objetivo do Código**: O objetivo principal é extrair texto de vários formatos de arquivo (PDF, DOCX e TXT) e depois segmentá-lo em partes baseado na descrição fornecida.
+
+- **Lógica Central e Algoritmos**: 
+  - A lógica central envolve a leitura dos arquivos e a separação do conteúdo. Para PDFs, o texto é extraído com preservação da formatação. Para DOCX, o texto é extraploado diretamente das parágrafos. Arquivos TXT são simplesmente lidos. 
+  - As funções `split_file_by_text`, `split_file_by_lines` e `split_file_by_paragraphs` dividem o conteúdo original em partes conforme os critérios fornecidos.
+  
+- **Dependências e Bibliotecas**: Dependendo do tipo de arquivo, há importações da biblioteca `pdfplumber` para extrair texto de PDF, `docx` para DOCX e `io` (embora não explicitamente mencionado) para TXT. Não são especificadas versões necessárias.
+  
+- **Entrada e Saída**: 
+  - Entradas aceitas incluem arquivos em formatos PDF, DOCX ou TXT.
+  - A saída produzida é sempre um texto dividido em partes conforme as regras de separação. Para arquivos TXT, a saída é uma string; para outros arquivos, o código converte o conteúdo em uma string e retorna-o.
+
+- **Tratamento de Erros e Exceções**: Não há especificações sobre como lidar com erros ou exceções no código fornecido.
+  
+- **Considerações de Segurança**: Não há menção a preocupações específicas relacionadas à segurança, incluindo autenticação, autorização ou criptografia.
+  
+- **Configuração e Ambiente**: Arquivos de configuração não são mencionados. Há referências ao uso de arquivos no formato correto (`pdf`, `docx` e `txt`).
+  
+- **Documentação e Comentários**: Não há docstrings ou comentários específicos no código fornecido.
+  
+- **Testes e Validação**: Não há descrições de testes unitários ou cobertura.
