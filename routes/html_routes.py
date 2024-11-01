@@ -5,7 +5,7 @@ from modules.file_processor import (
     read_pdf, read_docx, read_txt,
     split_file_by_text, split_file_by_lines, split_file_by_paragraphs
 )
-from modules.project_documentation import generate_documentation, save_documentation
+from modules.project_documentation import generate_documentation, read_and_summarize_file, save_documentation
 import os
 import markdown
 html_routes = Blueprint('html_routes', __name__)
@@ -18,7 +18,7 @@ def home():
 @html_routes.route('/get-project-documentation', methods=['GET', 'POST'])
 def get_project_documentation_route():
     documentation_html = None
-    available_models = get_available_models()  # Fetch available models
+    available_models = get_available_models()
 
     if request.method == 'POST':
         project_path = request.form.get('project_path', '').strip()
@@ -29,20 +29,23 @@ def get_project_documentation_route():
         output_path = os.path.join(uploads_dir, 'project_documentation.txt')
 
         if not project_path:
-            documentation_html = "<p>Error: Project directory path is required.</p>"
+            documentation_html = "<p>Erro: O caminho do diretório do projeto é obrigatório.</p>"
             return render_template('project_documentation.html', documentation_html=documentation_html, models=available_models)
 
         try:
-            # Generate concatenated documentation content with selected model
+            # Gera o conteúdo da documentação com o modelo selecionado
             documentation_content = generate_documentation(project_path, selected_model)
             save_documentation(output_path, documentation_content)
-            # Parse the markdown content into HTML
             documentation_html = markdown.markdown(documentation_content)
+
+            # Utiliza read_and_summarize_file para gerar o resumo geral
+            general_summary = read_and_summarize_file(output_path, selected_model)
+            documentation_html += markdown.markdown("\n\n**Resumo Geral**\n\n" + general_summary)
         except Exception as e:
-            error_message = f"Error generating documentation: {str(e)}"
+            error_message = f"Erro ao gerar a documentação: {str(e)}"
             documentation_html = f"<p>{error_message}</p>"
     else:
-        documentation_html = None  # Ensure it's None if not a POST request
+        documentation_html = None
 
     return render_template('project_documentation.html', documentation_html=documentation_html, models=available_models)
 

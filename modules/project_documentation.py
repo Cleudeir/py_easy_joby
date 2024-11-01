@@ -13,35 +13,24 @@ def summarize_with_ollama(content, filename, model):
 
     - **Lógica Central e Algoritmos**:
     - Resumo dos principais algoritmos ou lógica implementada.
-    - Notas sobre implementações únicas ou complexas.
 
     - **Dependências e Bibliotecas**:
     - Mencionar bibliotecas ou frameworks externos usados.
-    - Informações sobre requisitos de versão, se aplicável.
 
     - **Entrada e Saída**:
     - Descrição das entradas aceitas e saídas produzidas pelo código.
-    - Notas sobre processos de validação ou transformação de dados.
 
     - **Tratamento de Erros e Exceções**:
     - Como o código lida com erros ou exceções.
-    - Mencionar classes de exceção personalizadas ou mecanismos de logging.
 
     - **Considerações de Segurança**:
-    - Pontuar características de segurança ou vulnerabilidades potenciais.
-    - Incluir informações sobre autenticação, autorização ou criptografia.
+    - Pontuar características de segurança ou vulnerabilidades potenciais, sem código.
 
     - **Configuração e Ambiente**:
     - Descrição de quaisquer arquivos de configuração ou variáveis de ambiente necessárias.
-    - Notas sobre considerações específicas da plataforma.
-
-    - **Documentação e Comentários**:
-    - Avaliação da qualidade e extensão da documentação no código.
-    - Mencionar o uso de docstrings ou comentários para clareza.
 
     - **Testes e Validação**:
     - Informações sobre testes unitários ou de integração fornecidos.
-    - Nota sobre frameworks de teste ou estatísticas de cobertura.
 
     Se o arquivo não se tratar de código, faça apenas o resumo.
     """

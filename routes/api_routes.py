@@ -14,6 +14,7 @@ api_routes = Blueprint('api_routes', __name__)
 
 @api_routes.route('/api/get-project-documentation', methods=['POST'])
 @swag_from('../swagger/get_project_documentation.yml')
+
 def api_get_project_documentation():
     """
     API endpoint to generate project documentation.
