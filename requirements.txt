@@ -3,3 +3,4 @@ flasgger
 pdfplumber
 python-docx
 ollama
+markdown

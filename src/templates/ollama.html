@@ -11,15 +11,18 @@
         function saveInputs() {
             const systemPromptInput = document.getElementById('system_prompt');
             const modelSelect = document.getElementById('model');
+            const userPromptInput = document.getElementById('user_prompt');
 
             localStorage.setItem('system_prompt', systemPromptInput.value);
             localStorage.setItem('selected_model', modelSelect.value);
+            localStorage.setItem('user_prompt', userPromptInput.value);
         }
 
         // Load the system prompt and selected model from local storage when the page loads
         function loadInputs() {
             const savedPrompt = localStorage.getItem('system_prompt');
             const savedModel = localStorage.getItem('selected_model');
+            const savedUserPrompt = localStorage.getItem('user_prompt');
 
             if (savedPrompt) {
                 document.getElementById('system_prompt').value = savedPrompt;
@@ -27,6 +30,10 @@
 
             if (savedModel) {
                 document.getElementById('model').value = savedModel;
+            }
+
+            if (savedUserPrompt) {
+                document.getElementById('user_prompt').value = savedUserPrompt;
             }
         }
 
@@ -58,7 +65,8 @@
                 oninput="saveInputs()"></textarea>
 
             <label for="user_prompt">User Prompt:</label>
-            <textarea id="user_prompt" name="user_prompt" placeholder="Enter user prompt" required rows="4"></textarea>
+            <textarea id="user_prompt" name="user_prompt" placeholder="Enter user prompt" required rows="4"
+                oninput="saveInputs()"></textarea>
 
             <button type="submit">Get Response</button>
         </form>

@@ -40,11 +40,12 @@ def summarize_with_ollama(content, filename, model):
     return formatted_summary
 
 def summarize_with_ollama_final(content, filename, model):
+    print('content: ', content)
     """
     create Readme using an Ollama model.
     """
     system_prompt = """
-    você é um engenheiro de software que esta criando README.md para GitHub. use o conhecimento que tem de outros projeto open source.
+    você é um engenheiro de software que esta criando README.md para GitHub. resume os use o conhecimento que tem de outros projeto open source.
     Seja direto em suas respostas, não crie comentários. 
     Responda em formatado em Markdown, mas não use ```Markdown``` e Responda em Português (Br).
     Siga esta estrutura:
@@ -61,17 +62,13 @@ def summarize_with_ollama_final(content, filename, model):
 
     user_prompt = f"Faça usando este conteúdo:\n\{content}"
     
-    # Use Ollama to generate the summary with the specified model
+   
     summary = get_ollama_response(model=model, system_prompt=system_prompt, user_prompt=user_prompt)
-    
-    # Check if the response is a dictionary, which indicates an error
+    print('summary: ', summary);
+
     if isinstance(summary, dict) and "error" in summary:
-        return f"**{filename} Summary**\n\n**Error**: {summary['error']}\n\n"
-    
-    # Ensure the summary is returned as a string and properly formatted
+        return f"**{filename} Summary**\n\n**Error**: {summary['error']}\n\n"   
     formatted_summary = f"## Summary: {filename}\n\n{summary}"
-    
-    # Return the formatted summary
     return formatted_summary
 
 def get_project_files(directory):
