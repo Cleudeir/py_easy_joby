@@ -1,6 +1,4 @@
 import ollama
-import json
-
 def get_available_models():
     try:
         # Use the ollama.list() function to fetch available models

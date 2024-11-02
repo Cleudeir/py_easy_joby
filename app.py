@@ -1,10 +1,10 @@
 from flask import Flask
 from flasgger import Swagger
 from config import Config
-from routes.html_routes import html_routes
-from routes.api_routes import api_routes
+from src.routes.html_routes import html_routes
+from src.routes.api_routes import api_routes
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='src/templates' , static_folder='src/static')
 app.config.from_object(Config)
 
 Swagger(app)  # Initialize Swagger UI

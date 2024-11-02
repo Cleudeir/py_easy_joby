@@ -1,13 +1,13 @@
 from flask import Blueprint, request, jsonify, current_app
-from modules.directory_structure import get_directory_structure
-from modules.ollama import get_ollama_response
-from modules.file_processor import (
+from src.modules.directory_structure import get_directory_structure
+from src.modules.ollama import get_ollama_response
+from src.modules.file_processor import (
     read_pdf, read_docx, read_txt,
     split_file_by_text, split_file_by_lines, split_file_by_paragraphs
 )
 from flasgger import swag_from
-from modules.project_documentation import generate_documentation, save_documentation
-from modules.ollama import get_available_models
+from src.modules.project_documentation import generate_documentation
+from src.modules.ollama import get_available_models
 import os
 
 api_routes = Blueprint('api_routes', __name__)
@@ -44,7 +44,6 @@ def api_get_project_documentation():
     try:
         # Generate documentation content
         documentation_content = generate_documentation(project_path, selected_model)
-        save_documentation(output_path, documentation_content)
         return jsonify({
             "message": "Documentation generated successfully.",
             "documentation_content": documentation_content

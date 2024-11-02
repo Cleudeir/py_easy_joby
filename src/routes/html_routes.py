@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template, request, current_app
-from modules.directory_structure import get_directory_structure
-from modules.ollama import get_available_models, get_ollama_response
-from modules.file_processor import (
+from src.modules.directory_structure import get_directory_structure
+from src.modules.ollama import get_available_models, get_ollama_response
+from src.modules.file_processor import (
     read_pdf, read_docx, read_txt,
     split_file_by_text, split_file_by_lines, split_file_by_paragraphs
 )
-from modules.project_documentation import generate_documentation, read_and_summarize_file, save_documentation
+from src.modules.project_documentation import generate_documentation, summarize_with_ollama_final
 import os
 import markdown
 html_routes = Blueprint('html_routes', __name__)
@@ -25,8 +25,7 @@ def get_project_documentation_route():
         selected_model = request.form.get('model', '').strip()
         uploads_dir = os.path.join(current_app.root_path, 'uploads')
         if not os.path.exists(uploads_dir):
-            os.makedirs(uploads_dir)
-        output_path = os.path.join(uploads_dir, 'project_documentation.txt')
+            os.makedirs(uploads_dir)   
 
         if not project_path:
             documentation_html = "<p>Erro: O caminho do diretório do projeto é obrigatório.</p>"
@@ -34,13 +33,12 @@ def get_project_documentation_route():
 
         try:
             # Gera o conteúdo da documentação com o modelo selecionado
-            documentation_content = generate_documentation(project_path, selected_model)
-            save_documentation(output_path, documentation_content)
+            documentation_content = generate_documentation(project_path, selected_model)          
             documentation_html = markdown.markdown(documentation_content)
 
             # Utiliza read_and_summarize_file para gerar o resumo geral
-            general_summary = read_and_summarize_file(output_path, selected_model)
-            documentation_html += markdown.markdown("\n\n**Resumo Geral**\n\n" + general_summary)
+            general_summary = summarize_with_ollama_final(documentation_content, 'README.md', selected_model)
+            documentation_html += markdown.markdown(general_summary)
         except Exception as e:
             error_message = f"Erro ao gerar a documentação: {str(e)}"
             documentation_html = f"<p>{error_message}</p>"
