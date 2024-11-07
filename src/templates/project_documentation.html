@@ -13,7 +13,6 @@
 
         {% if documentation_html %}
         <h2>Generated Documentation:</h2>
-        <!-- Display the parsed HTML content -->
         <div class="markdown-content">
             {{ documentation_html | safe }}
         </div>
@@ -22,13 +21,27 @@
             <label for="project_path">Enter Project Directory Path:</label>
             <input type="text" id="project_path" name="project_path" placeholder="e.g. /path/to/project" required>
             <br>
-            <label for="model">Select Model:</label>
-            <select id="model" name="model" required>
-                {% for model in models %}
-                <option value="{{ model }}">{{ model }}</option>
-                {% endfor %}
+
+            <!-- GPT Provider Selection Dropdown -->
+            <label for="gpt_provider">Select GPT Provider:</label>
+            <select id="gpt_provider" name="gpt_provider" required onchange="toggleModelDropdown()">
+                <option value="ollama">Ollama</option>
+                <option value="gemini">Gemini</option>
+                <!-- Add additional providers as needed -->
             </select>
             <br>
+
+            <!-- Model Selection Dropdown (Initially Hidden) -->
+            <div id="modelSelection" style="display: none;">
+                <label for="model">Select Model:</label>
+                <select id="model" name="model">
+                    {% for model in models %}
+                    <option value="{{ model }}">{{ model }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <br>
+
             <button type="submit" id="generateDocumentationButton">Generate Documentation</button>
         </form>
         {% endif %}
@@ -42,12 +55,28 @@
         <div id="loading">Loading... Please wait.</div>
     </div>
 
-    <!-- JavaScript to handle loading overlay -->
+    <!-- JavaScript to handle loading overlay and toggle model dropdown -->
     <script>
+        // Show loading overlay on form submission
         document.getElementById('documentationForm').addEventListener('submit', function (event) {
-            // Show the loading overlay only on form submission
             document.getElementById('loadingOverlay').style.display = 'flex';
         });
+
+        // Show or hide the model dropdown based on the selected provider
+        function toggleModelDropdown() {
+            const provider = document.getElementById('gpt_provider').value;
+            const modelSelection = document.getElementById('modelSelection');
+
+            // Display model dropdown only if provider is "ollama"
+            if (provider === 'ollama') {
+                modelSelection.style.display = 'block';
+            } else {
+                modelSelection.style.display = 'none';
+            }
+        }
+
+        // Run toggleModelDropdown on page load to set the initial state
+        document.addEventListener('DOMContentLoaded', toggleModelDropdown);
     </script>
 </body>
 

@@ -1,13 +1,13 @@
 from flask import Blueprint, request, jsonify, current_app
 from src.modules.directory_structure import get_directory_structure
-from src.modules.ollama import get_ollama_response
+from src.modules.gpt import get_ollama_response
 from src.modules.file_processor import (
     read_pdf, read_docx, read_txt,
     split_file_by_text, split_file_by_lines, split_file_by_paragraphs
 )
 from flasgger import swag_from
 from src.modules.project_documentation import generate_documentation
-from src.modules.ollama import get_available_models
+from src.modules.gpt import get_ollama_models
 import os
 
 api_routes = Blueprint('api_routes', __name__)
@@ -23,11 +23,15 @@ def api_get_project_documentation():
       - Documentation
     """
     # Fetch available models
-    available_models = get_available_models()
+    available_models = get_ollama_models()
     
     # Get project path and model from request form data
     project_path = request.form.get('project_path', '').strip()
     selected_model = request.form.get('model', '').strip()
+    gpt_provider = request.form.get('gpt_provider', '').strip()
+
+    if not gpt_provider:
+        gpt_provider = "ollama"
     
     # Check if required fields are provided
     if not project_path:
@@ -43,7 +47,7 @@ def api_get_project_documentation():
 
     try:
         # Generate documentation content
-        documentation_content = generate_documentation(project_path, selected_model)
+        documentation_content = generate_documentation(project_path, gpt_provider, selected_model)
         return jsonify({
             "message": "Documentation generated successfully.",
             "documentation_content": documentation_content

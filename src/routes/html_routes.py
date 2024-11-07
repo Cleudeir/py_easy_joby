@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, current_app
 from src.modules.directory_structure import get_directory_structure
-from src.modules.ollama import get_available_models, get_ollama_response
+from src.modules.gpt import get_ollama_models, get_ollama_response
 from src.modules.file_processor import (
     read_pdf, read_docx, read_txt,
     split_file_by_text, split_file_by_lines, split_file_by_paragraphs
@@ -18,11 +18,13 @@ def home():
 @html_routes.route('/get-project-documentation', methods=['GET', 'POST'])
 def get_project_documentation_route():
     documentation_html = None
-    available_models = get_available_models()
+    available_models = get_ollama_models()
 
     if request.method == 'POST':
         project_path = request.form.get('project_path', '').strip()
         selected_model = request.form.get('model', '').strip()
+        gpt_provider = request.form.get('gpt_provider', '').strip()
+
         uploads_dir = os.path.join(current_app.root_path, 'uploads')
         if not os.path.exists(uploads_dir):
             os.makedirs(uploads_dir)   
@@ -33,11 +35,11 @@ def get_project_documentation_route():
 
         try:
             # Gera o conteúdo da documentação com o modelo selecionado
-            documentation_content = generate_documentation(project_path, selected_model)          
+            documentation_content = generate_documentation(project_path, gpt_provider, selected_model)          
             documentation_html = markdown.markdown(documentation_content)
 
             # Utiliza read_and_summarize_file para gerar o resumo geral
-            general_summary = summarize_with_ollama_final(documentation_content, 'README.md', selected_model)
+            general_summary = summarize_with_ollama_final(content=documentation_content, filename='README.md', gpt_provider=gpt_provider, model=selected_model )
             documentation_html += markdown.markdown(general_summary)
         except Exception as e:
             error_message = f"Erro ao gerar a documentação: {str(e)}"
@@ -57,7 +59,7 @@ def get_directory_structure_route():
 
 @html_routes.route('/ollama-response', methods=['GET', 'POST'])
 def ollama_response():
-    models = get_available_models()
+    models = get_ollama_models()
     if request.method == 'POST':
         model = request.form['model']
         system_prompt = request.form['system_prompt']

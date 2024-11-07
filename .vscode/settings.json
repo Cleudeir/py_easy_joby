@@ -1,3 +1,11 @@
 {
-  "cSpell.words": ["flasgger", "jsonify", "ollama", "pdfplumber"]
+  "cSpell.words": [
+    "flasgger",
+    "gemini",
+    "genai",
+    "generativeai",
+    "jsonify",
+    "ollama",
+    "pdfplumber"
+  ]
 }

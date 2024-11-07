@@ -4,3 +4,5 @@ pdfplumber
 python-docx
 ollama
 markdown
+google-generativeai
+python-dotenv
