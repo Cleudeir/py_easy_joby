@@ -25,9 +25,9 @@ def get_project_documentation_route():
         selected_model = request.form.get('model', '').strip()
         gpt_provider = request.form.get('gpt_provider', '').strip()
 
-        uploads_dir = os.path.join(current_app.root_path, 'uploads')
+        uploads_dir = os.path.join(current_app.root_path, 'src/uploads')
         if not os.path.exists(uploads_dir):
-            os.makedirs(uploads_dir)   
+            os.makedirs(uploads_dir)
 
         if not project_path:
             documentation_html = "<p>Erro: O caminho do diretório do projeto é obrigatório.</p>"
@@ -37,10 +37,20 @@ def get_project_documentation_route():
             # Gera o conteúdo da documentação com o modelo selecionado
             documentation_content = generate_documentation(project_path, gpt_provider, selected_model)          
             documentation_html = markdown.markdown(documentation_content)
+            # save project_documentation.txt
+            project_path = os.path.join(uploads_dir, 'Documentation.md')
+            with open(project_path, 'w') as documentation_html_file:
+                documentation_html_file.write(documentation_content)  
 
             # Utiliza read_and_summarize_file para gerar o resumo geral
             general_summary = summarize_with_ollama_final(content=documentation_content, filename='README.md', gpt_provider=gpt_provider, model=selected_model )
-            documentation_html += markdown.markdown(general_summary)
+            general_summary_html = markdown.markdown(general_summary)
+            # save Readme.md
+            readme_path = os.path.join(uploads_dir, 'README.md')
+            with open(readme_path, 'w') as readme_file:
+                readme_file.write(general_summary)   
+
+            documentation_html += general_summary_html
         except Exception as e:
             error_message = f"Erro ao gerar a documentação: {str(e)}"
             documentation_html = f"<p>{error_message}</p>"

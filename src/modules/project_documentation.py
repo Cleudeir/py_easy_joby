@@ -1,4 +1,5 @@
 import os
+import time
 from src.modules.file_processor import read_pdf, read_docx
 from src.modules.gpt import get_ollama_response, get_genai_response
 import fnmatch
@@ -7,19 +8,16 @@ def summarize_with_ollama(content, filename, gpt_provider, model):
     system_prompt = """
     "You are a helpful assistant who summarizes files. 
     Follow this structure:
-    ## Purpose of the Code (if existe element):
+    ## Purpose of the Code\n\n
+    * Brief description of the code's purpose, no code.
+   ## Core Logic\n\n    
+    * Summary of the main logic implemented, no code.
+    ## List external libraries\n\n
+    (if existe element) 
+    * libraries named (little description).
+    (else)
+    * No libraries used.
 
-    - Brief description of the code's purpose, no code.
-
-    ## Core Logic (if existe element):
-    
-    - Summary of the main logic implemented, no code.
-
-    ## List libraries (if existe element):
-
-    - All libraries used in the code, no code.
-
-    ---
     Be direct in your responses; do not add comments. 
     """
     print("filename" , filename)
@@ -36,7 +34,7 @@ def summarize_with_ollama(content, filename, gpt_provider, model):
         return f"**{filename} Summary**\n\n**Error**: {summary['error']}\n\n"
     
     # Ensure the summary is returned as a string and properly formatted
-    formatted_summary = f"#Summary: {filename}\n\n{summary}\n---\n"
+    formatted_summary = f"# Summary: {filename}\n\n{summary}\n---\n"
     
     # Return the formatted summary
     return formatted_summary
@@ -46,24 +44,24 @@ def summarize_with_ollama_final(content, filename, gpt_provider, model):
     You are a software engineer creating a README.md for GitHub. 
     Summarize using knowledge you have from other open-source projects. 
     Be direct in your responses; do not add comments. 
-    Format the response in Markdown, response in Portuguese (Br). 
+    Format the response in Markdown, but not use ```Markdown```. 
 
     Follow this structure README.md:    
-    ## What the Project Is (if existe element)
+    ## Project Overview\n\n
 
-    - This project is a ... 
+    * This project is a ... 
 
-    ## Dependencies (if existe element)
+    ## Dependencies\n\n
 
-    - Before you can start using or working with this project, make sure to install the following dependencies:
+    * Before you can start using or working with this project, make sure to install the following dependencies:
 
-    ## How to Install (if existe element)
+    ## How to Install \n\n
 
-    - To get this project up and running, follow these steps:
+    * To get this project up and running, follow these steps:
 
-    ## How to Use (if existe element)
+    ## How to Use\n\n
 
-    - Once you have the project set up, you can start using it in the following ways:
+    * Once you have the project set up, you can start using it in the following ways:
 
     """
     print("filename final" , filename)
@@ -131,6 +129,8 @@ def generate_documentation(project_path, gpt_provider,  model):
             continue
 
         summary = read_and_summarize_file(file_path, gpt_provider , model)
+        # add delay between summaries 1 second
         documentation.append(summary)
+        time.sleep(2)
     
     return "\n".join(documentation)
