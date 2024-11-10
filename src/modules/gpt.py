@@ -29,7 +29,6 @@ def get_genai_response(system_prompt, user_prompt):
         
         # Send the user prompt and return the response
         response = chat_session.send_message(user_prompt)
-        print(response.text) 
         return response.text
     except Exception as e:
         return {"error": str(e)}
@@ -48,7 +47,6 @@ def get_ollama_models():
 # Function to get a response from an Ollama model
 def get_ollama_response(model_name, system_prompt, user_prompt):
     try:
-        print("\n\nprompt length", len(user_prompt))
         messages = [
             {
                 "role": "system",
@@ -63,7 +61,6 @@ def get_ollama_response(model_name, system_prompt, user_prompt):
         response = ollama.chat(model=model_name, messages=messages)
         # Return the response content directly
         response_message = response['message']['content']
-        print(response_message) 
         return response_message
     except Exception as e:
         return {"error": str(e)}

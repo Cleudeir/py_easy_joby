@@ -28,7 +28,7 @@ def split_file_by_paragraphs(file_content):
     :param file_content: The content of the file as a string
     :return: A list of paragraphs
     """
-    paragraphs = file_content.split('\n\n')
+    paragraphs = file_content.split('\n')
     return paragraphs
 
 def read_pdf(file):

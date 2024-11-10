@@ -1,5 +1,5 @@
 import datetime
-from flask import Blueprint, render_template, request, current_app
+from flask import Blueprint, render_template, request, current_app, Response
 from src.modules.directory_structure import get_directory_structure
 from src.modules.gpt import get_ollama_models, get_ollama_response
 from src.modules.file_processor import (
@@ -18,58 +18,43 @@ def home():
 
 @html_routes.route('/get-project-documentation', methods=['GET', 'POST'])
 def get_project_documentation_route():
-    documentation_html = None
     available_models = get_ollama_models()
+    documentation_html = None
 
     if request.method == 'POST':
         project_path = request.form.get('project_path', '').strip()
         selected_model = request.form.get('model', '').strip()
         gpt_provider = request.form.get('gpt_provider', '').strip()
-        time = datetime.datetime.now().strftime("%H:%M_%d-%m")
-        uploads_dir = os.path.join(current_app.root_path, 'src/uploads' + project_path)
+        uploads_dir = os.path.join(current_app.root_path, 'src/.uploads' + project_path)
+
         if not os.path.exists(uploads_dir):
             os.makedirs(uploads_dir)
 
         if not project_path:
-            documentation_html = "<p>Erro: O caminho do diretório do projeto é obrigatório.</p>"
+            documentation_html = "<p>Error: Project directory path is required.</p>"
             return render_template('project_documentation.html', documentation_html=documentation_html, models=available_models)
 
         try:
-            # Gera o conteúdo da documentação com o modelo selecionado
-            documentation_content = generate_documentation(project_path, gpt_provider, selected_model, uploads_dir)          
-            documentation_html = markdown.markdown(documentation_content)
-            # save project_documentation.txt
-            project_path = os.path.join(uploads_dir, 'Documentation.md')
-            with open(project_path, 'w') as documentation_html_file:
-                documentation_html_file.write(documentation_content)  
+            # Stream the response as each summary is generated
+            def generate():
+                for summary in generate_documentation(project_path, gpt_provider, selected_model, uploads_dir):
+                    yield markdown.markdown(summary)
+                
+                # Generate the README and LinkedIn posts as final steps
+                documentation_content = "\n".join(generate_documentation(project_path, gpt_provider, selected_model, uploads_dir))
+                structure = get_directory_structure(project_path)
+                mechUpText = f"{documentation_content}\n## Project structure:\n{structure}"
+                general_summary = summarize_with_ollama_final(content=mechUpText, filename='README.md', gpt_provider=gpt_provider, model=selected_model)
+                yield markdown.markdown(general_summary)
 
-            # Utiliza read_and_summarize_file para gerar o resumo geral
-            structure = get_directory_structure(project_path)
-            mechUpText = f"{documentation_content}\n\n## Project structure:\n{structure}"
-            general_summary = summarize_with_ollama_final(content=mechUpText, filename='README.md', gpt_provider=gpt_provider, model=selected_model )
-            general_summary_html = markdown.markdown(general_summary)
-            # save Readme.md
-            readme_path = os.path.join(uploads_dir, 'README.md')
-            with open(readme_path, 'w') as readme_file:
-                readme_file.write(general_summary)
-            documentation_html += general_summary_html
+            return Response(generate(), mimetype='text/html')
 
-            # Post linkedIn
-            linkedin_post = summarize_with_ollama_LinkedIn_post(content=documentation_content, filename='linkedIn.md', gpt_provider=gpt_provider, model=selected_model )
-            linkedin_post_html = markdown.markdown(linkedin_post)
-            # save linkedIn.md
-            readme_path = os.path.join(uploads_dir, 'linkedIn.md')
-            with open(readme_path, 'w') as readme_file:
-                readme_file.write(linkedin_post)
-            documentation_html += linkedin_post_html
-            
         except Exception as e:
-            error_message = f"Erro ao gerar a documentação: {str(e)}"
-            documentation_html = f"<p>{error_message}</p>"
+            error_message = f"Error generating documentation: {str(e)}"
+            return render_template('project_documentation.html', documentation_html=f"<p>{error_message}</p>", models=available_models)
     else:
-        documentation_html = None
+        return render_template('project_documentation.html', documentation_html=documentation_html, models=available_models)
 
-    return render_template('project_documentation.html', documentation_html=documentation_html, models=available_models)
 
 @html_routes.route('/get-directory-structure', methods=['GET', 'POST'])
 def get_directory_structure_route():
