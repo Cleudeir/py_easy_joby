@@ -48,7 +48,7 @@ def get_ollama_models():
 # Function to get a response from an Ollama model
 def get_ollama_response(model_name, system_prompt, user_prompt):
     try:
-        print("prompt length", len(user_prompt), "system prompt length", len(system_prompt))
+        print("\n\nprompt length", len(user_prompt))
         messages = [
             {
                 "role": "system",

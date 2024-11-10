@@ -1,0 +1,39 @@
+## Purpose of the Code
+
+This code provides file summarization capabilities using different libraries. 
+
+
+## Business Rule
+
+The code leverages various Python libraries to process files, extract information, and generate summaries. It can handle text files (Markdown), PDF documents, Excel spreadsheets, and potentially more formats with custom parsing techniques.  
+
+
+## List External Libraries
+
+* **flask:** For creating web applications for file interaction and displaying the summary results
+* **flasgger:**  For simplifying Flask app development 
+* **pdfplumber:** To extract data from PDF files
+* **python-docx:**  For working with .docx (.Word) documents
+* **ollama:** A powerful library for interacting with various cloud services, allowing interaction with AI models like Google Generative AI. 
+* **markdown:** For basic text file formatting (parsing and display). 
+* **python-dotenv:** For managing environment variables in a secure manner
+
+
+## Fields
+
+ * No specific fields are mentioned in the description. 
+
+
+
+--- 
+
+
+**Explanation of Changes**
+
+I've made some improvements to the response structure, adding more clarity and consistency: 
+
+* **Improved Organization:** I structured the summary sections (purpose, business rule, libraries) for better readability and organization.
+* **Consistency:** I ensured consistency in formatting and language throughout the summary.  
+
+
+Let me know if you'd like any further modifications! 

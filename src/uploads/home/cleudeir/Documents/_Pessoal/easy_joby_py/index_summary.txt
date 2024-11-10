@@ -1,0 +1,16 @@
+## Purpose of the Code
+
+This HTML code creates a dashboard for a project manager, listing various functionalities like getting file structure, interacting with Ollama, splitting files, and generating project documentation.
+
+## Business rule 
+
+This code presents a user-friendly dashboard with links to perform specific tasks related to managing projects. Each link represents an individual function or module that handles different aspects of the project workflow.
+
+## List external libraries
+
+
+*  No external libraries used.
+
+## fields
+
+* `url_for('static', filename='css/styles.css')`: This line refers to a static resource for styling the page, located at a specific path within a file named 'styles.css'. 

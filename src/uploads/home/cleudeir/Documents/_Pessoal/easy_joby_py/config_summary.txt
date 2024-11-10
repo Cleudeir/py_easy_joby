@@ -1,0 +1,17 @@
+## Purpose of the Code
+
+This code defines configuration settings for a Flask application.
+
+## Business rule
+
+The code sets up key parameters like upload directory, debug mode and Swagger UI details for the application.  
+
+## List external libraries
+
+* no external libraries used
+
+## fields
+
+* UPLOAD_FOLDER: Location to store uploaded files (default 'uploads')
+* DEBUG:  Set Debug mode (True indicates debugging) 
+* SWAGGER: Configuration settings for the Swagger UI documentation. 
