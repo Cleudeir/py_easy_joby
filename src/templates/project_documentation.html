@@ -98,6 +98,10 @@
                     // Function to process each chunk of streamed data
                     function readStream() {
                         return reader.read().then(({ done, value }) => {
+                            if (done) {
+                                document.getElementById('loadingOverlay').style.display = 'none';
+                                return
+                            }
 
                             document.getElementById('documentationContent').style.display = 'block';
 

@@ -1,4 +1,5 @@
-import datetime
+import fnmatch
+import time
 from flask import Blueprint, render_template, request, current_app, Response
 from src.modules.directory_structure import get_directory_structure
 from src.modules.gpt import get_ollama_models, get_ollama_response
@@ -6,7 +7,7 @@ from src.modules.file_processor import (
     read_pdf, read_docx, read_txt,
     split_file_by_text, split_file_by_lines, split_file_by_paragraphs
 )
-from src.modules.project_documentation import generate_documentation, summarize_with_ollama_final, summarize_with_ollama_LinkedIn_post
+from src.modules.project_documentation import  get_project_files, read_and_summarize_file, summarize_with_ollama_final
 import os
 import markdown
 html_routes = Blueprint('html_routes', __name__)
@@ -16,7 +17,7 @@ def home():
     """Home Page"""
     return render_template('index.html')
 
-@html_routes.route('/get-project-documentation', methods=['GET', 'POST'])
+@html_routes.route('/get_project_documentation', methods=['GET', 'POST'])
 def get_project_documentation_route():
     available_models = get_ollama_models()
     documentation_html = None
@@ -27,33 +28,46 @@ def get_project_documentation_route():
         gpt_provider = request.form.get('gpt_provider', '').strip()
         uploads_dir = os.path.join(current_app.root_path, 'src/.uploads' + project_path)
 
-        if not os.path.exists(uploads_dir):
-            os.makedirs(uploads_dir)
-
         if not project_path:
             documentation_html = "<p>Error: Project directory path is required.</p>"
             return render_template('project_documentation.html', documentation_html=documentation_html, models=available_models)
 
-        try:
-            # Stream the response as each summary is generated
-            def generate():
-                for summary in generate_documentation(project_path, gpt_provider, selected_model, uploads_dir):
-                    yield markdown.markdown(summary)
-                
-                # Generate the README and LinkedIn posts as final steps
-                documentation_content = "\n".join(generate_documentation(project_path, gpt_provider, selected_model, uploads_dir))
-                structure = get_directory_structure(project_path)
-                mechUpText = f"{documentation_content}\n## Project structure:\n{structure}"
-                general_summary = summarize_with_ollama_final(content=mechUpText, filename='README.md', gpt_provider=gpt_provider, model=selected_model)
-                yield markdown.markdown(general_summary)
+        os.makedirs(uploads_dir, exist_ok=True)
 
-            return Response(generate(), mimetype='text/html')
+        try:
+            def generate_documentation():
+                yield "<p>Starting documentation generation...</p>\n"
+                ignore_patterns = ["project_documentation.txt"]
+                combined_content = ""
+
+                for file_path in get_project_files(project_path):
+                    file_name = os.path.basename(file_path)
+                    if any(fnmatch.fnmatch(file_name, pattern) for pattern in ignore_patterns):
+                        continue
+
+                    summary = read_and_summarize_file(file_path, gpt_provider, selected_model, uploads_dir)
+                    combined_content += summary
+                    yield markdown.markdown(summary) + "\n"
+
+                # Generate README and LinkedIn post
+                structure = get_directory_structure(project_path)
+                combined_content = f"{combined_content}\n\n## Project structure:\n{structure}"
+                general_summary = summarize_with_ollama_final(content=combined_content, filename='README.md', gpt_provider=gpt_provider, model=selected_model)
+                #save Readme
+                with open(os.path.join(uploads_dir, 'README.md'), 'w') as f:
+                    f.write(general_summary)
+                yield markdown.markdown(general_summary)
+                time.sleep(0.100)
+                yield "<p>Documentation generation complete.</p>\n"
+
+            return Response(generate_documentation(), mimetype='text/html')
 
         except Exception as e:
             error_message = f"Error generating documentation: {str(e)}"
-            return render_template('project_documentation.html', documentation_html=f"<p>{error_message}</p>", models=available_models)
-    else:
-        return render_template('project_documentation.html', documentation_html=documentation_html, models=available_models)
+            documentation_html = f"<p>{error_message}</p>"
+            return render_template('project_documentation.html', documentation_html=documentation_html, models=available_models)
+    
+    return render_template('project_documentation.html', documentation_html=documentation_html, models=available_models)
 
 
 @html_routes.route('/get-directory-structure', methods=['GET', 'POST'])

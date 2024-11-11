@@ -32,15 +32,16 @@ def summarize_with_ollama_agent01(content, gpt_provider, model):
         summary = get_ollama_response(model, system_prompt, user_prompt)
     elif(gpt_provider == "gemini"):
         summary = get_genai_response(system_prompt=system_prompt, user_prompt=user_prompt)
-
+    print(summary)
     # Check if the response is a dictionary, which indicates an error
     if isinstance(summary, dict) and "error" in summary:
         return f"**Error**: {summary['error']}\n"
     # Return the formatted summary
+    print(summary, 'summarize_with_ollama_agent02')
     return summary
 
 
-def summarize_with_ollama_agent02(content,  gpt_provider, model):
+def summarize_with_ollama_agent02(content, gpt_provider, model):
  
     user_prompt = f"{content}\nAnalyze if response follow structure and fix if not. remove all comments, not add comments"
     
@@ -49,7 +50,7 @@ def summarize_with_ollama_agent02(content,  gpt_provider, model):
         summary = get_ollama_response(model, system_prompt, user_prompt)
     elif(gpt_provider == "gemini"):
         summary = get_genai_response(system_prompt=system_prompt, user_prompt=user_prompt)
-
+    print(summary, 'summarize_with_ollama_agent02')
     # Check if the response is a dictionary, which indicates an error
     if isinstance(summary, dict) and "error" in summary:
         return f"**Error**: {summary['error']}\n"
@@ -57,6 +58,7 @@ def summarize_with_ollama_agent02(content,  gpt_provider, model):
     return summary
 
 def summarize_with_ollama_final(content, filename, gpt_provider, model):
+    print("\nsummarize_with_ollama_final\n", len(content)) 
     system_prompt = """
     You are a software engineer creating a README.md for GitHub. 
     Summarize using knowledge you have from other open-source projects. 
@@ -137,6 +139,20 @@ def read_and_summarize_file(filepath, gpt_provider, model, uploads_dir):
         start_time = time.time()
         filename = os.path.basename(filepath) 
         
+        split_path = uploads_dir.split('/')[-1]
+        join_path = uploads_dir + filepath.split(split_path)[1]
+        file_name_only = (join_path.split('/')[-1]).split('.')[0]
+        join_path = '/'.join(join_path.split('/')[:-1]) + '/' + file_name_only + '.txt'
+        
+        # check if file already exists
+        if os.path.exists(join_path):
+            print('file already exists: ' + file_name_only)
+            # read file and return
+            with open(join_path, 'r') as file:
+                return file.read()
+
+        print('summary_save_path --------------\n',join_path)
+        
         # Determine the relative path within the directory structure and create it in uploads
         os.makedirs(os.path.dirname(uploads_dir), exist_ok=True)
         
@@ -154,6 +170,9 @@ def read_and_summarize_file(filepath, gpt_provider, model, uploads_dir):
         else:
             with open(filepath, 'r') as file:
                 content = file.read()
+                
+        if(gpt_provider == "gemini"):
+            time.sleep(4)
         
         # Generate the summary using the specified model
         summary = summarize_with_ollama_agent01(content, gpt_provider, model)
@@ -162,14 +181,8 @@ def read_and_summarize_file(filepath, gpt_provider, model, uploads_dir):
   
         # Save the summary to the uploads directory 
     
-        split_path = uploads_dir.split('/')[-1]
-        join_path = uploads_dir + filepath.split(split_path)[1]
-        file_name_only = (join_path.split('/')[-1]).split('.')[0]
-        join_path = '/'.join(join_path.split('/')[:-1]) + '/' + file_name_only + '.txt'
 
-        print('summary_save_path --------------\n',join_path)
         os.makedirs(os.path.dirname(join_path), exist_ok=True)
-
         with open(join_path, 'w') as summary_file:
             summary_file.write(summary)
 
@@ -182,26 +195,3 @@ def read_and_summarize_file(filepath, gpt_provider, model, uploads_dir):
     except Exception as e:
         return {"error": str(e)}
     
-
-def generate_documentation(project_path, gpt_provider, model, uploads_dir):
-    """
-    Streams documentation summaries by processing each file in the project directory 
-    with the selected model, ignoring files that match any pattern in ignore_files.
-    """
-    project_files = get_project_files(project_path)
-    ignore_patterns = ["project_documentation.txt"]
-
-    for file_path in project_files:
-        file_name = os.path.basename(file_path)        
-        # Skip files that match any pattern in ignore_patterns
-        if any(fnmatch.fnmatch(file_name, pattern) for pattern in ignore_patterns):
-            continue
-
-        summary = read_and_summarize_file(file_path, gpt_provider, model, uploads_dir)
-        
-        # Yield each summary immediately after processing the file
-        yield summary + "\n"
-        
-        # Add delay between summaries to avoid rate-limiting issues
-        if(gpt_provider == "gemini"):
-            time.sleep(4)
