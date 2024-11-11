@@ -59,6 +59,7 @@ def get_project_documentation_route():
                 yield markdown.markdown(general_summary)
                 time.sleep(0.100)
                 yield "<p>Documentation generation complete.</p>\n"
+                print("Documentation generation complete.")
 
             return Response(generate_documentation(), mimetype='text/html')
 
