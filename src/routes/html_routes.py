@@ -41,6 +41,8 @@ def agent_summary_reconstruction_code():
             def generate_documentation():
                 yield "<p>Starting documentation generation...</p>\n"
                 time.sleep(0.100)
+                yield markdown.markdown(f"<pre><code id='agent_coder'>{file_content.replace('<', '&lt;')}</code></pre>")
+                time.sleep(0.100)
                 
                 current_summary = get_agent_summary(gpt_provider, selected_model, file_content)
                 yield markdown.markdown(current_summary)
@@ -48,21 +50,27 @@ def agent_summary_reconstruction_code():
                 # Iteratively process the file content
                 agent_evaluation = { "score": 0 }
                 min_evaluation = 950
-                while agent_evaluation['score'] <= min_evaluation:
+                max_round = 10
+                round = 0
+                while agent_evaluation['score'] < min_evaluation or max_round <= round:
+                    round += 1
                     agent_coder = get_agent_coder(gpt_provider, selected_model, current_summary)
-                    yield f"<pre><code id='agent_coder'>{agent_coder}</code></pre>"
+                    yield f"<pre><code id='agent_coder'>{agent_coder.replace('<', '&lt;')}</code></pre>"
 
                     agent_evaluation = get_agent_score(gpt_provider, selected_model, current_summary, agent_coder)
-                    yield markdown.markdown(f"score: {agent_evaluation['score']}")
+                    yield f"""
+                    <ul>
+                    <li>score: {agent_evaluation['score']}</li>
+                    <li>improvement: {markdown.markdown(agent_evaluation['improvement'])}</li>
+                    </ul>
+                    """
 
-                    if(agent_evaluation['score'] > min_evaluation):
-                        return
+                    if(agent_evaluation['score'] < min_evaluation):
+                        current_summary = get_agent_improvement(gpt_provider, selected_model, file_content, current_summary, agent_evaluation)
+                        yield markdown.markdown(current_summary)                  
 
-                    current_summary = get_agent_improvement(gpt_provider, selected_model, file_content, current_summary, agent_evaluation['score'])
-                    yield markdown.markdown(current_summary)
-                           
                 time.sleep(0.100)
-                yield "<p>Summary generation complete</p>\n"
+                yield "<p>Summary generation complete</p>\n" 
                 print("Documentation generation complete.")
             
             return Response(generate_documentation(), mimetype='text/html')
