@@ -27,7 +27,7 @@ def get_agent_coder(gpt_provider, model, summary):
     summary = f"""
     create code using that summary of the code:
     {summary}
-    only create code, no comments, no explanation, only code. create with perfect indentation.
+    only create code, no comments, no explanation, only code. create with perfect indentation, create complete code.
     """
     # Use Ollama to generate the summary with the specified model
     if(gpt_provider == "ollama"):
@@ -57,9 +57,10 @@ def get_agent_score(gpt_provider, model, file_content, summary):
     Original:
     {file_content}
     
-    compare if "reconstruction" is similar "original" code, to be critical, analyze all points.
+    compare if "reconstruction" is similar "original" code, to be critical, analyze if make same propose in detail.
     
-    Provide a score between 0 and 1000, where a higher number indicates greater similarity and a lower number indicates less similarity.    
+    Provide a score between 0 and 1000, where a higher number indicates greater similarity and a lower number indicates less similarity.
+    reduce score if reconstruction have in code "Implement code here or similar"
     Respond only with a JSON object formatted as follows:
     {{
         "score": number

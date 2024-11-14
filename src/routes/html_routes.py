@@ -48,7 +48,7 @@ def agent_summary_reconstruction_code():
                 # Iteratively process the file content
                 agent_evaluation = { "score": 0 }
                 min_evaluation = 950
-                while agent_evaluation['score'] < min_evaluation:
+                while agent_evaluation['score'] <= min_evaluation:
                     agent_coder = get_agent_coder(gpt_provider, selected_model, current_summary)
                     yield f"<pre><code id='agent_coder'>{agent_coder}</code></pre>"
 
