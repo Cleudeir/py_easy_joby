@@ -65,3 +65,4 @@ def get_ollama_response(model_name, system_prompt, user_prompt):
     except Exception as e:
         return {"error": str(e)}
 
+

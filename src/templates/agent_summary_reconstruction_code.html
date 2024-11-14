@@ -30,10 +30,6 @@
                     {% endfor %}
                 </select>
             </div>
-
-            <label for="system_prompt">System Prompt:</label>
-            <textarea id="system_prompt" name="system_prompt" placeholder="Enter system prompt" required rows="4"
-                oninput="saveInputs()"></textarea>
             <button type="submit" id="generateDocumentationButton">Generate Documentation</button>
         </form>
 
@@ -58,7 +54,7 @@
             // Load the remembered values from localStorage if available
 
             const savedGptProvider = localStorage.getItem('gpt_provider');
-            const savedSystemPrompt = localStorage.getItem('system_prompt');
+
             const savedModel = localStorage.getItem('model');
 
             if (savedGptProvider) {
@@ -68,9 +64,7 @@
             if (savedModel) {
                 document.getElementById('model').value = savedModel;
             }
-            if (savedSystemPrompt) {
-                document.getElementById('system_prompt').value = savedSystemPrompt;
-            }
+
             toggleModelDropdown();
         });
 
@@ -80,7 +74,6 @@
             // Save the form values to localStorage        
             localStorage.setItem('gpt_provider', document.getElementById('gpt_provider').value);
             localStorage.setItem('model', document.getElementById('model').value);
-            localStorage.setItem('system_prompt', document.getElementById('system_prompt').value);
 
             document.getElementById('loadingOverlay').style.display = 'flex';
             document.getElementById('documentationOutput').innerHTML = '';
@@ -110,8 +103,10 @@
 
                             // Append each streamed chunk to the documentation output
                             const chunk = decoder.decode(value, { stream: true });
-                            const div = document.createElement('div');  // Create a new div for each chunk
-                            div.classList.add('markdown-content');  // Add a class for styling (optional)
+                            const div = document.createElement('div');
+                            if (!chunk.includes("id='agent_coder'")) {
+                                div.classList.add('markdown-content');  // Add a class for styling (optional)
+                            }
                             div.innerHTML = chunk;  // Set the chunk content
                             // Append the div containing the chunk to the markdown content
                             document.getElementById('documentationOutput').appendChild(div);
