@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Description Documentation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Generate Image Documentation</h1>
+        <form id="imageForm">
+            <label for="path">Image Directory Path:</label>
+            <input type="text" id="path" name="path" required>
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="response" style="margin-top: 20px;">
+            <h2>Results:</h2>
+            <div id="streamOutput"></div>
+        </div>
+        <div class="loading-overlay" id="loadingOverlay">
+            <div id="loading">Generation...</div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('imageForm').onsubmit = async (event) => {
+            event.preventDefault();
+
+            // Collect form data
+            const formData = {
+                path: document.getElementById('path').value,
+            };
+
+            // Select the response container
+            const streamOutput = document.getElementById('streamOutput');
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            streamOutput.innerHTML = ''; // Clear previous results
+
+            try {
+                const response = await fetch('/process-images', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                // Read the streaming response
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder("utf-8");
+
+                let done = false;
+                while (!done) {
+                    const { value, done: streamDone } = await reader.read();
+                    done = streamDone;
+
+                    if (value) {
+                        const chunk = decoder.decode(value, { stream: true });
+                        // Append the received chunk to the output
+                        document.getElementById('streamOutput').innerHTML += chunk;
+                    }
+                }
+
+                document.getElementById('loadingOverlay').style.display = 'none';
+            } catch (err) {
+                // Handle errors
+                console.error('Error:', err);
+                streamOutput.innerHTML = `<p style="color: red;">An unexpected error occurred: ${err.message}</p>`;
+            }
+        };
+    </script>
+</body>
+
+</html>

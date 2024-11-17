@@ -6,6 +6,7 @@ body {
     margin: 0;
     padding: 20px;
     color: #333;
+
 }
 
 h1,
@@ -69,7 +70,7 @@ textarea,
 select,
 input[type="text"],
 button {
-    width: 100%;
+    width: 99%;
     padding: 10px;
     margin-top: 8px;
     border: 1px solid #dfe6e9;
@@ -180,10 +181,55 @@ pre {
     overflow-x: auto;
 }
 
+
+
 .markdown-content code {
     background-color: #e8e8e8;
     padding: 2px 4px;
     border-radius: 4px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1em;
+    background-color: #ffffff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color: #3498db;
+    color: #ffffff;
+    text-align: left;
+}
+
+thead th {
+    padding: 12px 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tbody tr {
+    border-bottom: 1px solid #dfe6e9;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f4f4f9;
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid #3498db;
+}
+
+tbody td {
+    padding: 12px 15px;
+    color: #2c3e50;
+    vertical-align: top;
+    text-align: left;
 }
 
 /* Spinner animation */
@@ -212,5 +258,20 @@ pre {
 
     button {
         padding: 12px;
+    }
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    table {
+        font-size: 0.9em;
+    }
+
+    thead th {
+        font-size: 0.85em;
+    }
+
+    tbody td {
+        font-size: 0.85em;
     }
 }

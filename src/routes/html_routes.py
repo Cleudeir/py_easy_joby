@@ -1,9 +1,14 @@
 import fnmatch
+import shutil
 import time
-from flask import Blueprint, render_template, request, current_app, Response
-from src.modules.agent_summary_reconstruction_code import get_agent_coder, get_agent_improvement, get_agent_score, get_agent_summary
+from docx import Document
+from flask import Blueprint, render_template, request, current_app, Response, jsonify, url_for, stream_with_context
+from pypandoc import convert_file
+from src.modules.image_description import  get_images_from_path
+from src.modules.refactor import get_agent_separate
+from src.modules.agent_summary_reconstruction_code import get_agent_coder, get_agent_fix_summary, get_agent_similarity, get_agent_summary, get_agent_improvement
 from src.modules.directory_structure import get_directory_structure
-from src.modules.gpt import get_ollama_models, get_ollama_response
+from src.modules.gpt import describe_image_with_ollama, get_ollama_models, get_ollama_response
 from src.modules.file_processor import (
     read_pdf, read_docx, read_txt,
     split_file_by_text, split_file_by_lines, split_file_by_paragraphs
@@ -18,6 +23,165 @@ def home():
     """Home Page"""
     return render_template('index.html')
 
+@html_routes.route("/process-images", methods=["POST", "GET"])
+def image_description():
+    """
+    Endpoint to process images and generate documentation.
+    """
+    if request.method == "GET":
+        # Render the form template to input directory and model details
+        return render_template("image_description.html")
+
+    elif request.method == "POST":
+        """
+        Endpoint to process images and return descriptions.
+        """
+        data = request.json
+        input_path = data.get("path")
+        output_path =  os.path.join(current_app.root_path, 'src/.outputs' + input_path)
+        static_image_path =  os.path.join(current_app.root_path, 'src/static/images')
+        print(static_image_path)
+        # create path        
+        os.makedirs(output_path, exist_ok=True) 
+        os.makedirs(static_image_path, exist_ok=True)
+        user_prompt = data.get("user_prompt", """
+        Analise as Imagens e Ajude a Documentar o Software, flow structure, no comments, no explanation.
+        
+        # Nome da tela
+        
+        ## Descrição da tela
+        * breve descrição da tela
+        
+        (if exists)
+        ## Campos input busca e/ou filtro [nomear com "Filtro"]:
+        Formato de Tabela com campos com a estrutura:
+        “Nome,Tipo,Validação,Observação”
+        
+        (if exists)
+        ## Cartões com Indicadores:
+        Formato de Tabela com campos com a estrutura:
+        “Nome,Tipo,Validação,Observação”
+        
+        (if exists)
+        ## Gráficos:
+        Formato de Tabela com campos com a estrutura:
+        “Nome,Tipo,Eixo X,Eixo Y”
+        Se existir rádios no gráfico, adicionar subtítulo "variações" listando em formato de lista todas as opções e explique a função..
+        
+        (if exists)
+        ## Lista:
+        Formato de Tabela com campos com a estrutura:
+        “Nome, Tipo, Validação, Observação”
+        se a lista tiver como resultado  "Nenhum registro foi encontrado ...", adicione um texto: "O sistema não apresenta nenhum dado registrado, o que torna insuficientes as informações para a descrição deste item. Dados adicionais serão incluídos nos próximos relatórios de detalhamento."
+        
+        (if exists)
+        ## Formulário : [nome do fomulário]
+        Formato de Tabela com campos com a estrutura:
+        “Nome, Tipo, Validação, Observação”
+        if existem campos com o ícone de cadeado, adicione abaixo da tabela o subtitulo:         
+        ### Observação :
+        * Os campos com o ícone de cadeado permitem que o valor seja travado para reutilização em futuras transferências, facilitando o preenchimento para valores que são 
+        frequentemente reutilizados."
+        
+        ## Regra de Negócio:
+        * Lógica de Processamento: crie a descrição,
+        * Ações Condicionais: crie a descrição,
+        * Permissões: crie a descrição.
+        
+        Regras criação do relatório:       
+        - Verifique se exite elemento semelhante a estrutura se existir adicione no relatório.
+        - Sempre crie a regra de negócio.
+        - Não adicione comentários, apenas títulos e subtítulos quando necessário.
+        - Não use traços ou linhas como separador entre os parágrafos.
+        - se campo for vazio, adicione a informação: “-”
+        - se o tipo de item não existir, não o adicione.
+        - create using markdown format.
+        - responda em português.
+        """)
+    """
+    Generate a DOCX file containing image descriptions.
+    """
+    try:
+        # Get all images in the directory
+        images = get_images_from_path(input_path)
+        # Prepare context for the template
+        context = {"images": []}
+        def render():
+            for img in images:
+                yield "<p>Starting documentation generation...</p>\n"
+                time.sleep(0.100)
+                # copy image to output folder      
+                copy_image =  os.path.join(static_image_path, os.path.basename(img))
+                shutil.copyfile(img, copy_image)
+                static_path =  os.path.join('static/images', os.path.basename(img))
+                # Use the generated URL in the img tag
+                yield f"<img src='{static_path}' alt='{os.path.basename(static_path)}' style='max-width: 100%; height: auto;' />"
+                
+                # check if file html exists
+                file_html = os.path.join(output_path, os.path.basename(img).split('.')[0] + '.html')
+                #if os.path.exists(os.path.join(output_path, file_html)):
+                    # read file and return
+                #    with open(os.path.join(output_path, file_html), 'r') as file:
+                  #      yield file.read()
+                #    continue
+                
+                time.sleep(0.100)
+                # Generate the description using your Ollama integration
+                markdown_text = describe_image_with_ollama(img, user_prompt)
+                html_text = markdown.markdown(markdown_text, extensions=['extra', 'tables'])
+                # Save file in output folder
+                with open(os.path.join(output_path, file_html), 'w') as f:
+                    f.write(html_text)
+                yield html_text
+ 
+        return Response(stream_with_context(render()), mimetype='text/html')
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@html_routes.route('/refactor', methods=['GET', 'POST'])
+def refactor():
+    available_models = get_ollama_models()
+    documentation_html = None
+
+    if request.method == 'POST':
+        selected_model = request.form.get('model', '').strip()
+        gpt_provider = request.form.get('gpt_provider', '').strip()
+        file = request.files['file']
+        file_content = None
+        
+        try:
+            file_content = file.read().decode('utf-8')         
+        except Exception as e:
+            documentation_html = f"<p>Error: Não foi possível ler o arquivo ({str(e)})</p>"            
+            return Response(documentation_html, mimetype='text/html')
+        
+        try:
+            # Generate documentation in chunks
+            def generate_documentation():
+                yield "<p>Starting documentation generation...</p>\n"
+                time.sleep(0.100)
+                yield markdown.markdown(f"<pre><code id='agent_coder'>{file_content.replace('<', '&lt;')}</code></pre>")
+                time.sleep(0.100)
+                
+                coder = get_agent_separate(gpt_provider, selected_model, file_content)
+                yield markdown.markdown(f"<pre><code id='agent_coder'>{coder.replace('<', '&lt;')}</code></pre>")
+                
+                agent_evaluation = get_agent_similarity(file_content, coder)
+                yield markdown.markdown(f'Agent evaluation: {agent_evaluation}')
+                
+                time.sleep(0.100)
+                yield "<p>Summary generation complete</p>\n" 
+                print("Documentation generation complete.")
+            
+            return Response(generate_documentation(), mimetype='text/html')
+
+        except Exception as e:
+            error_message = f"Error generating documentation: {str(e)}"
+            documentation_html = f"<p>{error_message}</p>"
+            return render_template('agent_summary_reconstruction_code.html', documentation_html=documentation_html, models=available_models)
+    
+    return render_template('agent_summary_reconstruction_code.html', documentation_html=documentation_html, models=available_models)
+
 @html_routes.route('/agent_summary_reconstruction_code', methods=['GET', 'POST'])
 def agent_summary_reconstruction_code():
     available_models = get_ollama_models()
@@ -30,8 +194,7 @@ def agent_summary_reconstruction_code():
         file_content = None
         
         try:
-            file_content = file.read().decode('utf-8')
-            print("File content read successfully.")          
+            file_content = file.read().decode('utf-8')         
         except Exception as e:
             documentation_html = f"<p>Error: Não foi possível ler o arquivo ({str(e)})</p>"            
             return Response(documentation_html, mimetype='text/html')
@@ -47,26 +210,20 @@ def agent_summary_reconstruction_code():
                 current_summary = get_agent_summary(gpt_provider, selected_model, file_content)
                 yield markdown.markdown(current_summary)
                 
-                # Iteratively process the file content
-                agent_evaluation = { "score": 0 }
-                min_evaluation = 950
-                max_round = 10
-                round = 0
-                while agent_evaluation['score'] < min_evaluation or max_round <= round:
-                    round += 1
+                agent_evaluation = 0
+                evaluation_min = 0.65
+                while agent_evaluation < evaluation_min:              
                     agent_coder = get_agent_coder(gpt_provider, selected_model, current_summary)
                     yield f"<pre><code id='agent_coder'>{agent_coder.replace('<', '&lt;')}</code></pre>"
-
-                    agent_evaluation = get_agent_score(gpt_provider, selected_model, current_summary, agent_coder)
-                    yield f"""
-                    <ul>
-                    <li>score: {agent_evaluation['score']}</li>
-                    <li>improvement: {markdown.markdown(agent_evaluation['improvement'])}</li>
-                    </ul>
-                    """
-
-                    if(agent_evaluation['score'] < min_evaluation):
-                        current_summary = get_agent_improvement(gpt_provider, selected_model, file_content, current_summary, agent_evaluation)
+                    
+                    agent_evaluation = get_agent_similarity(file_content, agent_coder)
+                    yield markdown.markdown(f'Agent evaluation: {agent_evaluation}')
+                    
+                    if(agent_evaluation < evaluation_min):
+                        agent_improvement = get_agent_improvement(gpt_provider, selected_model, file_content, current_summary)
+                        yield markdown.markdown(agent_improvement)  
+                        
+                        current_summary = get_agent_fix_summary(gpt_provider, selected_model, file_content, current_summary, agent_improvement)
                         yield markdown.markdown(current_summary)                  
 
                 time.sleep(0.100)
@@ -91,7 +248,7 @@ def get_project_documentation_route():
         project_path = request.form.get('project_path', '').strip()
         selected_model = request.form.get('model', '').strip()
         gpt_provider = request.form.get('gpt_provider', '').strip()
-        uploads_dir = os.path.join(current_app.root_path, 'src/.uploads' + project_path)
+        uploads_dir = os.path.join(current_app.root_path, 'src/.outputs' + project_path)
 
         if not project_path:
             documentation_html = "<p>Error: Project directory path is required.</p>"

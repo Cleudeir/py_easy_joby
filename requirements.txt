@@ -6,3 +6,7 @@ ollama
 markdown
 google-generativeai
 python-dotenv
+scikit-learn
+python-docx
+jinja2 
+pypandoc

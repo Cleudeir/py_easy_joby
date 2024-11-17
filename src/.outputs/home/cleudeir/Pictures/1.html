@@ -1,0 +1,120 @@
+<h3>Nome da Tela</h3>
+<p><strong>Análise de Dados Agrícolas</strong></p>
+<h3>Descrição da Tela</h3>
+<p>A tela apresenta uma análise detalhada de dados agrícolas, fornecendo informações sobre a safra atual e o histórico de produção. Ela inclui gráficos e tabelas que permitem a visualização das tendências e padrões nos dados.</p>
+<h3>Campos Input/Busca/Filtro:</h3>
+<table>
+<thead>
+<tr>
+<th>Nome da Coluna</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Inicial</td>
+<td>Data</td>
+<td>Deve ser uma data válida</td>
+<td>Utilizada para definir a faixa de datas para análise</td>
+</tr>
+<tr>
+<td>Data Final</td>
+<td>Data</td>
+<td>Deve ser uma data posterior à inicial</td>
+<td>Utilizada para definir a faixa de datas para análise</td>
+</tr>
+<tr>
+<td>Cidade</td>
+<td>Texto</td>
+<td>Deve corresponder a uma cidade válida</td>
+<td>Utilizada para filtrar os dados por cidade</td>
+</tr>
+</tbody>
+</table>
+<h3>Cartões com Indicadores:</h3>
+<table>
+<thead>
+<tr>
+<th>Nome da Coluna</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Safra Atual</td>
+<td>Percentagem</td>
+<td>Deve ser um valor entre 0 e 100</td>
+<td>Mostra a porcentagem de safra atual em relação ao ano anterior</td>
+</tr>
+<tr>
+<td>Produção Histórica</td>
+<td>Unidades</td>
+<td>Deve ser um número válido</td>
+<td>Mostra a produção histórica de produtos agrícolas</td>
+</tr>
+</tbody>
+</table>
+<h3>Gráficos:</h3>
+<table>
+<thead>
+<tr>
+<th>Nome da Coluna</th>
+<th>Tipo</th>
+<th>Eixo X</th>
+<th>Eixo Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Safra Anual</td>
+<td>Linha</td>
+<td>Data</td>
+<td>Percentagem</td>
+</tr>
+<tr>
+<td>Produção Por Cidade</td>
+<td>Barra</td>
+<td>Cidade</td>
+<td>Unidades</td>
+</tr>
+</tbody>
+</table>
+<h3>Lista:</h3>
+<table>
+<thead>
+<tr>
+<th>Nome da Coluna</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Produtos Agrícolas</td>
+<td>Texto</td>
+<td>Deve corresponder a um produto agrícola válido</td>
+<td>Mostra uma lista de produtos agrícolas</td>
+</tr>
+</tbody>
+</table>
+<h3>Formulário :</h3>
+<p>Não existente</p>
+<p><strong>Regra de Negócio</strong></p>
+<p>Lógica de Processamento:</p>
+<ul>
+<li>Quando o usuário seleciona uma faixa de datas, o sistema atualiza automaticamente os gráficos e tabelas com os dados correspondentes.</li>
+<li>Quando o usuário seleciona um produto agrícola, o sistema apresenta apenas os dados relacionados a esse produto.</li>
+</ul>
+<p>Ações Condicionais:</p>
+<ul>
+<li>O sistema não permite que o usuário selecione uma data inicial posterior à final.</li>
+</ul>
+<p>Permissões:</p>
+<ul>
+<li>Apenas usuários autorizados podem acessar esta tela.</li>
+</ul>

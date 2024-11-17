@@ -33,6 +33,7 @@ def get_genai_response(system_prompt, user_prompt):
     except Exception as e:
         return {"error": str(e)}
 
+
 # Function to get available models from Ollama
 def get_ollama_models():
     try:
@@ -65,4 +66,41 @@ def get_ollama_response(model_name, system_prompt, user_prompt):
     except Exception as e:
         return {"error": str(e)}
 
+# Function to get embeddings from an Ollama model
+def get_ollama_embeddings(model_name, text_input):
+    try:
+        # Call ollama.embedding with the specified model and input text
+        response = ollama.embed(model=model_name, input=text_input)
+        # Extract and return the embeddings
+        embeddings = response['embeddings']
+        return embeddings
+    except Exception as e:
+        return {"error": str(e)}
 
+
+def describe_image_with_ollama(image_path, user_prompt="What is in this image?"):
+    """
+    Uses Ollama Vision to describe an image.
+    
+    Args:
+        model_name (str): The name of the Ollama model to use.
+        image_path (str): Path to the image file.
+        user_prompt (str): The user prompt for the description.
+
+    Returns:
+        str: The description provided by the Ollama model.
+    """
+    try:
+        # Send the user message and image to the Ollama Vision model
+        response = ollama.chat(
+            model='llama3.2-vision',
+            messages=[{
+                'role': 'user',
+                'content': user_prompt,
+                'images': [image_path]
+            }]
+        )
+        # Extract and return the content of the response
+        return response.get('message', {}).get('content', 'No description available')
+    except Exception as e:
+        return f"Error describing image {image_path}: {str(e)}"

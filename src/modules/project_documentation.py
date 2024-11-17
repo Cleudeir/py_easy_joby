@@ -2,7 +2,6 @@ import os
 import time
 from src.modules.file_processor import read_pdf, read_docx
 from src.modules.gpt import get_ollama_response, get_genai_response
-import fnmatch
 from flask import current_app
 
 
@@ -32,12 +31,10 @@ def summarize_with_ollama_agent01(content, gpt_provider, model):
         summary = get_ollama_response(model, system_prompt, user_prompt)
     elif(gpt_provider == "gemini"):
         summary = get_genai_response(system_prompt=system_prompt, user_prompt=user_prompt)
-    print(summary)
     # Check if the response is a dictionary, which indicates an error
     if isinstance(summary, dict) and "error" in summary:
         return f"**Error**: {summary['error']}\n"
     # Return the formatted summary
-    print(summary, 'summarize_with_ollama_agent02')
     return summary
 
 
@@ -50,7 +47,6 @@ def summarize_with_ollama_agent02(content, gpt_provider, model):
         summary = get_ollama_response(model, system_prompt, user_prompt)
     elif(gpt_provider == "gemini"):
         summary = get_genai_response(system_prompt=system_prompt, user_prompt=user_prompt)
-    print(summary, 'summarize_with_ollama_agent02')
     # Check if the response is a dictionary, which indicates an error
     if isinstance(summary, dict) and "error" in summary:
         return f"**Error**: {summary['error']}\n"
@@ -58,7 +54,6 @@ def summarize_with_ollama_agent02(content, gpt_provider, model):
     return summary
 
 def summarize_with_ollama_final(content, filename, gpt_provider, model):
-    print("\nsummarize_with_ollama_final\n", len(content)) 
     system_prompt = """
     You are a software engineer creating a README.md for GitHub. 
     Summarize using knowledge you have from other open-source projects. 
@@ -146,12 +141,9 @@ def read_and_summarize_file(filepath, gpt_provider, model, uploads_dir):
         
         # check if file already exists
         if os.path.exists(join_path):
-            print('file already exists: ' + file_name_only)
             # read file and return
             with open(join_path, 'r') as file:
                 return file.read()
-
-        print('summary_save_path --------------\n',join_path)
         
         # Determine the relative path within the directory structure and create it in uploads
         os.makedirs(os.path.dirname(uploads_dir), exist_ok=True)
