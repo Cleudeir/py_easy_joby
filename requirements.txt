@@ -10,3 +10,8 @@ scikit-learn
 python-docx
 jinja2 
 pypandoc
+pytesseract
+torch 
+torchvision 
+pillow 
+opencv-python

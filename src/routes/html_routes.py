@@ -1,14 +1,12 @@
 import fnmatch
 import shutil
 import time
-from docx import Document
-from flask import Blueprint, render_template, request, current_app, Response, jsonify, url_for, stream_with_context
-from pypandoc import convert_file
+from flask import Blueprint, render_template, request, current_app, Response, jsonify, stream_with_context
 from src.modules.image_description import  get_images_from_path
 from src.modules.refactor import get_agent_separate
 from src.modules.agent_summary_reconstruction_code import get_agent_coder, get_agent_fix_summary, get_agent_similarity, get_agent_summary, get_agent_improvement
 from src.modules.directory_structure import get_directory_structure
-from src.modules.gpt import describe_image_with_ollama, get_ollama_models, get_ollama_response
+from src.modules.gpt import describe_image_with_gemini, get_ollama_models, get_ollama_response
 from src.modules.file_processor import (
     read_pdf, read_docx, read_txt,
     split_file_by_text, split_file_by_lines, split_file_by_paragraphs
@@ -16,6 +14,7 @@ from src.modules.file_processor import (
 from src.modules.project_documentation import  get_project_files, read_and_summarize_file, summarize_with_ollama_final
 import os
 import markdown
+
 html_routes = Blueprint('html_routes', __name__)
 
 @html_routes.route('/')
@@ -28,115 +27,49 @@ def image_description():
     """
     Endpoint to process images and generate documentation.
     """
+    os.environ['TESSDATA_PREFIX'] = '/usr/share/tesseract-ocr/5/'
+
     if request.method == "GET":
-        # Render the form template to input directory and model details
         return render_template("image_description.html")
 
     elif request.method == "POST":
-        """
-        Endpoint to process images and return descriptions.
-        """
         data = request.json
         input_path = data.get("path")
-        output_path =  os.path.join(current_app.root_path, 'src/.outputs' + input_path)
-        static_image_path =  os.path.join(current_app.root_path, 'src/static/images')
-        print(static_image_path)
-        # create path        
-        os.makedirs(output_path, exist_ok=True) 
+        output_path = os.path.join(current_app.root_path, 'src/.outputs' + input_path)
+        static_image_path = os.path.join(current_app.root_path, 'src/static/images')
+        os.makedirs(output_path, exist_ok=True)
         os.makedirs(static_image_path, exist_ok=True)
-        user_prompt = data.get("user_prompt", """
-        Analise as Imagens e Ajude a Documentar o Software, flow structure, no comments, no explanation.
-        
-        # Nome da tela
-        
-        ## Descrição da tela
-        * breve descrição da tela
-        
-        (if exists)
-        ## Campos input busca e/ou filtro [nomear com "Filtro"]:
-        Formato de Tabela com campos com a estrutura:
-        “Nome,Tipo,Validação,Observação”
-        
-        (if exists)
-        ## Cartões com Indicadores:
-        Formato de Tabela com campos com a estrutura:
-        “Nome,Tipo,Validação,Observação”
-        
-        (if exists)
-        ## Gráficos:
-        Formato de Tabela com campos com a estrutura:
-        “Nome,Tipo,Eixo X,Eixo Y”
-        Se existir rádios no gráfico, adicionar subtítulo "variações" listando em formato de lista todas as opções e explique a função..
-        
-        (if exists)
-        ## Lista:
-        Formato de Tabela com campos com a estrutura:
-        “Nome, Tipo, Validação, Observação”
-        se a lista tiver como resultado  "Nenhum registro foi encontrado ...", adicione um texto: "O sistema não apresenta nenhum dado registrado, o que torna insuficientes as informações para a descrição deste item. Dados adicionais serão incluídos nos próximos relatórios de detalhamento."
-        
-        (if exists)
-        ## Formulário : [nome do fomulário]
-        Formato de Tabela com campos com a estrutura:
-        “Nome, Tipo, Validação, Observação”
-        if existem campos com o ícone de cadeado, adicione abaixo da tabela o subtitulo:         
-        ### Observação :
-        * Os campos com o ícone de cadeado permitem que o valor seja travado para reutilização em futuras transferências, facilitando o preenchimento para valores que são 
-        frequentemente reutilizados."
-        
-        ## Regra de Negócio:
-        * Lógica de Processamento: crie a descrição,
-        * Ações Condicionais: crie a descrição,
-        * Permissões: crie a descrição.
-        
-        Regras criação do relatório:       
-        - Verifique se exite elemento semelhante a estrutura se existir adicione no relatório.
-        - Sempre crie a regra de negócio.
-        - Não adicione comentários, apenas títulos e subtítulos quando necessário.
-        - Não use traços ou linhas como separador entre os parágrafos.
-        - se campo for vazio, adicione a informação: “-”
-        - se o tipo de item não existir, não o adicione.
-        - create using markdown format.
-        - responda em português.
-        """)
-    """
-    Generate a DOCX file containing image descriptions.
-    """
+    
     try:
         # Get all images in the directory
         images = get_images_from_path(input_path)
-        # Prepare context for the template
-        context = {"images": []}
+
         def render():
             for img in images:
                 yield "<p>Starting documentation generation...</p>\n"
-                time.sleep(0.100)
-                # copy image to output folder      
-                copy_image =  os.path.join(static_image_path, os.path.basename(img))
-                shutil.copyfile(img, copy_image)
-                static_path =  os.path.join('static/images', os.path.basename(img))
-                # Use the generated URL in the img tag
-                yield f"<img src='{static_path}' alt='{os.path.basename(static_path)}' style='max-width: 100%; height: auto;' />"
+
+                # Copy image to the static folder 
+                path_to_copy = os.path.join(static_image_path, os.path.basename(img))
+                shutil.copyfile(img, path_to_copy)
                 
-                # check if file html exists
-                file_html = os.path.join(output_path, os.path.basename(img).split('.')[0] + '.html')
-                #if os.path.exists(os.path.join(output_path, file_html)):
-                    # read file and return
-                #    with open(os.path.join(output_path, file_html), 'r') as file:
-                  #      yield file.read()
-                #    continue
+                url_image = os.path.join('static/images', os.path.basename(img))
+                print(f"Image saved: {url_image}")
+                yield f"<img src='{url_image}' alt='{os.path.basename(url_image)}' style='max-width: 100%; height: auto;' />"
                 
-                time.sleep(0.100)
                 # Generate the description using your Ollama integration
-                markdown_text = describe_image_with_ollama(img, user_prompt)
+                markdown_text = describe_image_with_gemini(img)
                 html_text = markdown.markdown(markdown_text, extensions=['extra', 'tables'])
-                # Save file in output folder
-                with open(os.path.join(output_path, file_html), 'w') as f:
+                file_html = os.path.join(output_path, os.path.basename(img).split('.')[0] + '.html')
+                with open(file_html, 'w') as f:
                     f.write(html_text)
                 yield html_text
- 
+
         return Response(stream_with_context(render()), mimetype='text/html')
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
 
 @html_routes.route('/refactor', methods=['GET', 'POST'])
 def refactor():

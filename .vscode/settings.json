@@ -1,15 +1,30 @@
 {
   "cSpell.words": [
+    "astype",
+    "clahe",
+    "CLAHE",
+    "ESRGAN",
     "flasgger",
     "fout",
+    "fromarray",
     "gemini",
     "genai",
     "generativeai",
+    "imread",
+    "imwrite",
     "jenv",
     "jsonify",
+    "kmeans",
+    "KMEANS",
+    "ndarray",
     "nomic",
     "ollama",
     "pdfplumber",
-    "pypandoc"
+    "pypandoc",
+    "pytesseract",
+    "RRDB",
+    "thresholding",
+    "torchvision",
+    "upscaled"
   ]
 }

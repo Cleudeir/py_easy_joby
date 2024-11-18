@@ -1,0 +1,98 @@
+<h1>Nome da tela</h1>
+<p>Análise de Ganho de Peso</p>
+<h2>Descrição da tela</h2>
+<p>Tela para análise do ganho de peso de lotes, exibindo indicadores, histórico e gráficos de desempenho.</p>
+<h2>Campos input busca e/ou filtro: Filtro</h2>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data inicial</td>
+<td>Data</td>
+<td>Data válida</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Data final</td>
+<td>Data</td>
+<td>Data válida, posterior à data inicial</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Tipo de lote</td>
+<td>Seleção</td>
+<td>Seleção de um tipo de lote</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2>Cartões com Indicadores</h2>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPD</td>
+<td>Numérico</td>
+<td>Número com até 3 casas decimais</td>
+<td>Ganho de peso diário</td>
+</tr>
+<tr>
+<td>C.A.</td>
+<td>Numérico</td>
+<td>Número com até 2 casas decimais</td>
+<td>Conversão alimentar</td>
+</tr>
+</tbody>
+</table>
+<h2>Gráficos</h2>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Eixo X</th>
+<th>Eixo Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Histórico</td>
+<td>Barras</td>
+<td>Data</td>
+<td>Ganho de peso diário (GPD)</td>
+</tr>
+</tbody>
+</table>
+<h3>Variações</h3>
+<ul>
+<li>G.P.D.: Ganho de peso diário.</li>
+<li>Peso de entrada x Peso de saída: Diferença entre o peso inicial e final dos animais.</li>
+</ul>
+<h2>Lista</h2>
+<p>-</p>
+<h2>Regra de Negócio</h2>
+<ul>
+<li>
+<p>Lógica de Processamento: A tela apresenta o ganho de peso diário (GPD) e a conversão alimentar (C.A.) de um determinado período, selecionado pelo usuário através das datas inicial e final, e o tipo de lote. Os dados são exibidos em cartões e em um gráfico de barras que demonstra o histórico do GPD ao longo do tempo.</p>
+</li>
+<li>
+<p>Ações Condicionais: O filtro permite refinar a análise, focando em períodos e tipos de lotes específicos. A seleção de diferentes opções no filtro gera uma nova consulta e atualização dos indicadores e gráfico.</p>
+</li>
+<li>
+<p>Permissões: -</p>
+</li>
+</ul>
