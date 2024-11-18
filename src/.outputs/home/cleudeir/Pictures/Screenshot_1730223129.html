@@ -1,0 +1,95 @@
+<h1>Nome da tela</h1>
+<p>Home - Cliente</p>
+<h2>Descrição da tela</h2>
+<p>Tela inicial para clientes, exibindo serviços solicitados e finalizados.</p>
+<h2>Lista:</h2>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Número</td>
+<td>Número</td>
+<td>-</td>
+<td>Número de identificação do serviço.</td>
+</tr>
+<tr>
+<td>Local</td>
+<td>Texto</td>
+<td>-</td>
+<td>Local do serviço.</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Data</td>
+<td>Formato DD/MM/AAAA - HH:MM</td>
+<td>Data e hora do serviço.</td>
+</tr>
+<tr>
+<td>Serviço</td>
+<td>Texto</td>
+<td>-</td>
+<td>Descrição do serviço realizado.</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>Texto</td>
+<td>Pagamento realizado, OS concluída</td>
+<td>Status do serviço.</td>
+</tr>
+<tr>
+<td>Status Pagto.</td>
+<td>Texto</td>
+<td>Pago</td>
+<td>Status do pagamento do serviço.</td>
+</tr>
+<tr>
+<td>Clique aqui para mais detalhes</td>
+<td>Link</td>
+<td>-</td>
+<td>Link que direciona para mais detalhes do serviço.</td>
+</tr>
+</tbody>
+</table>
+<h2>Botões:</h2>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOLICITADOS</td>
+<td>Botão</td>
+<td>Exibe os serviços solicitados.</td>
+</tr>
+<tr>
+<td>FINALIZADOS</td>
+<td>Botão</td>
+<td>Exibe os serviços finalizados.</td>
+</tr>
+<tr>
+<td>Solicitar Novo Serviço</td>
+<td>Botão</td>
+<td>Direciona para tela de solicitação de serviço</td>
+</tr>
+</tbody>
+</table>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>
+<p>Lógica de Processamento: A tela exibe uma lista de serviços, divididos em "Solicitados" e "Finalizados", com detalhes como número, local, data, serviço, status e status de pagamento.  O usuário pode clicar em "Clique aqui para mais detalhes" para visualizar informações adicionais sobre um serviço específico.  O botão "Solicitar Novo Serviço" leva o usuário para uma nova tela para solicitar um novo serviço.</p>
+</li>
+<li>
+<p>Ações Condicionais: A exibição da lista de serviços muda dependendo do botão selecionado ("Solicitados" ou "Finalizados").  Ao clicar em "Solicitar Novo Serviço", o aplicativo navega para uma nova tela.</p>
+</li>
+</ul>

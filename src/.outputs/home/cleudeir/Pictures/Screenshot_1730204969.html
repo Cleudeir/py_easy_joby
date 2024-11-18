@@ -1,0 +1,79 @@
+<h1>Nome da tela</h1>
+<p>Cadastro UAU</p>
+<h2>Descrição da tela</h2>
+<p>Tela de cadastro de usuário do aplicativo UAU.</p>
+<h2>Formulário :</h2>
+<h3>Formulário de Cadastro</h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PINTOR</td>
+<td>Dropdown</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Nome</td>
+<td>Texto</td>
+<td>Requerido, Máximo de caracteres: -</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Sobrenome</td>
+<td>Texto</td>
+<td>Requerido, Máximo de caracteres: -</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Email</td>
+<td>Requerido, Formato de email válido</td>
+<td>-</td>
+</tr>
+<tr>
+<td>CPF</td>
+<td>Texto</td>
+<td>Requerido, Formato de CPF válido</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Telefone</td>
+<td>Texto</td>
+<td>Requerido, Formato de telefone válido</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Senha</td>
+<td>Senha</td>
+<td>Requerido, Máximo de caracteres: -, Mínimo de caracteres: -</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Confirmar Senha</td>
+<td>Senha</td>
+<td>Requerido, Senha deve ser igual a Senha</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3>Observação :</h3>
+<ul>
+<li>Os campos com o ícone de cadeado permitem que o valor seja travado para reutilização em futuras transferências, facilitando o preenchimento para valores que são frequentemente reutilizados.</li>
+</ul>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>
+<p>Lógica de Processamento: O usuário preenche todos os campos obrigatórios do formulário. Ao clicar em "Próximo", os dados são validados. Se os dados forem válidos, o usuário prossegue para a próxima etapa do cadastro. Caso contrário, mensagens de erro são exibidas para os campos inválidos.</p>
+</li>
+<li>
+<p>Ações Condicionais:  Se todos os campos forem preenchidos corretamente, o botão "Próximo" fica habilitado. Caso contrário, o botão permanece desabilitado.</p>
+</li>
+</ul>

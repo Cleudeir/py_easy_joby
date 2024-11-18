@@ -1,0 +1,39 @@
+<h1>Nome da tela</h1>
+<p>Redefinir Senha</p>
+<h2>Descrição da tela</h2>
+<p>Tela para redefinir a senha de acesso ao sistema UAU.</p>
+<h2>Formulário :</h2>
+<h3>Redefinir Senha</h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Digite sua senha</td>
+<td>Texto</td>
+<td>Obrigatório, mínimo de caracteres -</td>
+<td></td>
+</tr>
+<tr>
+<td>Confirme sua senha</td>
+<td>Texto</td>
+<td>Obrigatório, igual ao campo "Digite sua senha"</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>
+<p>Lógica de Processamento: O usuário deve preencher os campos "Digite sua senha" e "Confirme sua senha" com uma nova senha que atenda aos critérios de validação (mínimo de caracteres, etc.).  Após a confirmação, a senha é alterada no sistema.</p>
+</li>
+<li>
+<p>Ações Condicionais: Se os campos forem preenchidos corretamente (senha e confirmação iguais e atendendo aos critérios de validação), o botão "Enviar" fica ativo e ao ser clicado, a senha é alterada e o usuário é redirecionado para a tela de login. Caso contrário, uma mensagem de erro é exibida.</p>
+</li>
+</ul>

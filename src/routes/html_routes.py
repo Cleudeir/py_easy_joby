@@ -45,6 +45,13 @@ def image_description():
         images = get_images_from_path(input_path)
 
         def render():
+            docx_file = os.path.join(output_path, 'project_documentation.docx')
+            if os.path.exists(docx_file):
+                with open(docx_file, 'rb') as f:
+                    content = f.read()                   
+                    yield content
+                return
+            docx_html = ''
             for img in images:
                 yield "<p>Starting documentation generation...</p>\n"
 
@@ -54,16 +61,33 @@ def image_description():
                 
                 url_image = os.path.join('static/images', os.path.basename(img))
                 print(f"Image saved: {url_image}")
-                yield f"<img src='{url_image}' alt='{os.path.basename(url_image)}' style='max-width: 100%; height: auto;' />"
-                
+                html_image = f"<img src='{url_image}' alt='{os.path.basename(url_image)}' style='max-width: 100%; height: auto;' />"
+                # width 50% higth proporcional
+                docx_html += f"<img src='{img}' alt='{os.path.basename(img)}'width='50%' height='50%' object-fit='contain'/>"
+                yield html_image
+                # check if exists html file
+                if os.path.exists(os.path.join(output_path, os.path.basename(img).split('.')[0] + '.html')):
+                    #read file
+                    with open(os.path.join(output_path, os.path.basename(img).split('.')[0] + '.html'), 'r') as f:
+                        content = f.read()
+                        docx_html += content
+                        yield content
+                    continue
+                    
                 # Generate the description using your Ollama integration
                 markdown_text = describe_image_with_gemini(img)
                 html_text = markdown.markdown(markdown_text, extensions=['extra', 'tables'])
+                docx_html += html_text
                 file_html = os.path.join(output_path, os.path.basename(img).split('.')[0] + '.html')
                 with open(file_html, 'w') as f:
                     f.write(html_text)
                 yield html_text
-
+            # save docx file using docx_html
+            with open(docx_file, 'wb') as f:
+                f.write(docx_html.encode('utf-8'))
+            time.sleep(0.100)            
+            yield "<p>Documentation generation complete.</p>\n"
+            
         return Response(stream_with_context(render()), mimetype='text/html')
 
     except Exception as e:

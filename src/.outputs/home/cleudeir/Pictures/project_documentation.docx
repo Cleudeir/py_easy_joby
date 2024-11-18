@@ -1,0 +1,497 @@
+<img src='/home/cleudeir/Pictures/Screenshot_1730212740.png' alt='Screenshot_1730212740.png'width='50%' height='50%' object-fit='contain'/><h1>Nome da tela</h1>
+<p>Tela Inicial</p>
+<h2>Descrição da tela</h2>
+<p>Tela inicial de um aplicativo que apresenta uma pergunta ao usuário se ele tem um problema e precisa contratar os
+    serviços de um profissional.</p>
+<h2>Regra de Negócio</h2>
+<ul>
+    <li>
+        <p><strong>Lógica de Processamento:</strong> A tela apresenta uma pergunta ao usuário ("Você tem um problema?
+            Precisa contratar os serviços de um profissional?") ilustrada com imagens de pessoas com expressões de
+            dúvida. O usuário pode escolher entre "Pular" a tela ou clicar em "Próximo" para prosseguir.</p>
+    </li>
+    <li>
+        <p><strong>Ações Condicionais:</strong></p>
+        <ul>
+            <li>Se o usuário clicar em "Pular", o aplicativo o direciona para a próxima tela, ignorando a pergunta.</li>
+            <li>Se o usuário clicar em "Próximo", o aplicativo o direciona para a próxima tela, provavelmente
+                relacionada à contratação de serviços.</li>
+        </ul>
+    </li>
+</ul><img src='/home/cleudeir/Pictures/Screenshot_1730212743.png' alt='Screenshot_1730212743.png'width='50%' height='50%' object-fit='contain'/><h1>Nome da tela</h1>
+<p>Tela de Boas-vindas</p>
+<h2>Descrição da tela</h2>
+<p>Apresenta uma breve descrição dos serviços oferecidos pela UAU e uma imagem ilustrativa de profissionais realizando
+    diferentes tipos de serviços. A tela contém botões para "Pular" e "Próximo".</p>
+<h2>Regra de Negócio</h2>
+<ul>
+    <li>
+        <p><strong>Lógica de Processamento:</strong> A tela apresenta uma sequência de apresentação dos serviços da UAU.
+            O usuário pode optar por pular a introdução ou prosseguir para a próxima etapa.</p>
+    </li>
+    <li>
+        <p><strong>Ações Condicionais:</strong></p>
+        <ul>
+            <li>Ao clicar em "Pular", o usuário é direcionado para a próxima tela da aplicação, ignorando a
+                apresentação.</li>
+            <li>Ao clicar em "Próximo", o usuário é direcionado para a próxima tela da apresentação, exibindo mais
+                informações.</li>
+        </ul>
+    </li>
+</ul><img src='/home/cleudeir/Pictures/Screenshot_1730212144.png' alt='Screenshot_1730212144.png'width='50%' height='50%' object-fit='contain'/><h1>Nome da tela</h1>
+<p>Código de Verificação</p>
+<h2>Descrição da tela</h2>
+<p>Tela de verificação de código para acesso a uma conta. Apresenta o logo da empresa UAU, o e-mail para o qual o código
+    foi enviado e um campo para inserir o código recebido.</p>
+<h2>Formulário :</h2>
+<h3>Formulário de Verificação</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Validação</th>
+            <th>Observação</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Digite o código</td>
+            <td>Texto</td>
+            <td>Tamanho, caracteres numéricos ou alfabéticos</td>
+            <td>-</td>
+        </tr>
+    </tbody>
+</table>
+<h2>Regra de Negócio:</h2>
+<ul>
+    <li>
+        <p>Lógica de Processamento: O usuário digita o código de verificação recebido por e-mail no campo "Digite o
+            código". Ao clicar em "Enviar", o sistema valida o código. Se o código for válido, o usuário é redirecionado
+            para a próxima etapa. Caso contrário, uma mensagem de erro é exibida.</p>
+    </li>
+    <li>
+        <p>Ações Condicionais: Se o código for válido, o usuário é redirecionado. Se o código for inválido ou o campo
+            estiver vazio, exibe mensagem de erro.</p>
+    </li>
+</ul><img src='/home/cleudeir/Pictures/Screenshot_1730206900.png' alt='Screenshot_1730206900.png'width='50%' height='50%' object-fit='contain'/><h1>Nome da tela</h1>
+<p>Tela de Cadastro UAU</p>
+<h2>Descrição da tela</h2>
+<p>Tela inicial de aplicativo UAU, com logo e convite para cadastro.</p>
+<h2>Formulário :</h2>
+<h3>Formulário de Cadastro (implícito)</h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>
+<p>Lógica de Processamento: A tela apresenta a logo da empresa UAU e uma mensagem incentivando o usuário a realizar seu cadastro para oferecer seus serviços.  Ao clicar no botão "Finalizar" (presume-se), o usuário provavelmente será redirecionado para uma tela de cadastro.</p>
+</li>
+<li>
+<p>Ações Condicionais: O clique no botão "Finalizar" aciona a navegação para a próxima tela, provavelmente um formulário de cadastro.</p>
+</li>
+</ul><img src='/home/cleudeir/Pictures/Screenshot_1730212200.png' alt='Screenshot_1730212200.png'width='50%' height='50%' object-fit='contain'/><h1>Nome da tela</h1>
+<p>Redefinir Senha</p>
+<h2>Descrição da tela</h2>
+<p>Tela para redefinir a senha de acesso ao sistema UAU.</p>
+<h2>Formulário :</h2>
+<h3>Redefinir Senha</h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Digite sua senha</td>
+<td>Texto</td>
+<td>Obrigatório, mínimo de caracteres -</td>
+<td></td>
+</tr>
+<tr>
+<td>Confirme sua senha</td>
+<td>Texto</td>
+<td>Obrigatório, igual ao campo "Digite sua senha"</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>
+<p>Lógica de Processamento: O usuário deve preencher os campos "Digite sua senha" e "Confirme sua senha" com uma nova senha que atenda aos critérios de validação (mínimo de caracteres, etc.).  Após a confirmação, a senha é alterada no sistema.</p>
+</li>
+<li>
+<p>Ações Condicionais: Se os campos forem preenchidos corretamente (senha e confirmação iguais e atendendo aos critérios de validação), o botão "Enviar" fica ativo e ao ser clicado, a senha é alterada e o usuário é redirecionado para a tela de login. Caso contrário, uma mensagem de erro é exibida.</p>
+</li>
+</ul><img src='/home/cleudeir/Pictures/Screenshot_1730212747.png' alt='Screenshot_1730212747.png'width='50%' height='50%' object-fit='contain'/><h1>Nome da tela</h1>
+<p>Tela de Boas-Vindas/Cadastro</p>
+<h2>Descrição da tela</h2>
+<p>Tela inicial do aplicativo, exibindo o logo da empresa "UAU" e um breve texto incentivando o cadastro do usuário para encontrar um profissional que solucione seus problemas.</p>
+<h2>Lista:</h2>
+<p>-</p>
+<p>O sistema não apresenta nenhum dado registrado, o que torna insuficientes as informações para a descrição deste item. Dados adicionais serão incluídos nos próximos relatórios de detalhamento.</p>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>
+<p>Lógica de Processamento: A tela é exibida ao usuário ao iniciar o aplicativo.  Apresenta o logo e o texto de incentivo ao cadastro.  A navegação é feita através dos indicadores na parte inferior da tela.</p>
+</li>
+<li>
+<p>Ações Condicionais: Ao clicar em um dos indicadores, o usuário é direcionado para a próxima tela do processo de cadastro. Ao clicar em "Finalizar", o app fecha.</p>
+</li>
+</ul><img src='/home/cleudeir/Pictures/Screenshot_1730205030.png' alt='Screenshot_1730205030.png'width='50%' height='50%' object-fit='contain'/><h1>Nome da tela</h1>
+<p>Cadastro UAU</p>
+<h2>Descrição da tela</h2>
+<p>Tela de cadastro de usuário no aplicativo UAU.  Solicita informações do usuário, termos de uso e privacidade.</p>
+<h2>Formulário :</h2>
+<h3>Formulário de Cadastro</h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imagem de Perfil</td>
+<td>Imagem</td>
+<td>-</td>
+<td>Upload de imagem</td>
+</tr>
+<tr>
+<td>Campo CTPS</td>
+<td>Texto</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Campo FAC</td>
+<td>Texto</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>
+<p>Lógica de Processamento: O usuário preenche os campos de CTPS e FAC,  confirma os termos de uso e privacidade, e clica em "Cadastrar".  A imagem de perfil é opcional.</p>
+</li>
+<li>
+<p>Ações Condicionais: Caso o usuário não concorde com os termos de uso ou política de privacidade, o botão "Cadastrar" permanece desabilitado.  Após o clique em "Cadastrar", o sistema verifica a validade das informações e prossegue com o cadastro, ou exibe uma mensagem de erro caso necessário.  O usuário pode clicar em "Voltar" para retornar à tela anterior.</p>
+</li>
+</ul><img src='/home/cleudeir/Pictures/Screenshot_1730206896.png' alt='Screenshot_1730206896.png'width='50%' height='50%' object-fit='contain'/><h1>Nome da tela</h1>
+<p>Página Inicial de Cadastro de Parceiros UAU!</p>
+<h2>Descrição da tela</h2>
+<p>Tela inicial de um aplicativo que busca profissionais para se cadastrarem como parceiros. Apresenta uma imagem de profissionais em diferentes áreas e um texto convidando para o cadastro.</p>
+<h2>Campos input busca e/ou filtro:</h2>
+<p>-</p>
+<h2>Cartões com Indicadores:</h2>
+<p>-</p>
+<h2>Gráficos:</h2>
+<p>-</p>
+<h2>Lista:</h2>
+<p>-</p>
+<h2>Formulário:</h2>
+<p>-</p>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>
+<p>Lógica de Processamento: A tela apresenta uma mensagem de boas-vindas e convida o usuário a se tornar um parceiro da UAU!. Os botões "Pular" e "Próximo" permitem ao usuário navegar entre as etapas do processo de cadastro.</p>
+</li>
+<li>
+<p>Ações Condicionais:</p>
+<ul>
+<li>Ao clicar em "Pular", o usuário pode prosseguir para outra tela sem realizar o cadastro.</li>
+<li>Ao clicar em "Próximo", o usuário é direcionado para a próxima tela do processo de cadastro.</li>
+</ul>
+</li>
+</ul><img src='/home/cleudeir/Pictures/Screenshot_1730205300.png' alt='Screenshot_1730205300.png'width='50%' height='50%' object-fit='contain'/><h1>Tela de Sucesso de Cadastro</h1>
+<h2>Descrição da tela</h2>
+<p>Tela exibida após o sucesso do cadastro de um usuário, informando ao usuário que o cadastro foi realizado com sucesso.</p>
+<h2>Formulário :</h2>
+<h3>Formulário de Sucesso de Cadastro</h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mensagem</td>
+<td>Texto</td>
+<td>-</td>
+<td>Cadastro Realizado com Sucesso!</td>
+</tr>
+<tr>
+<td>Botão OK</td>
+<td>Botão</td>
+<td>-</td>
+<td>Fecha a tela</td>
+</tr>
+</tbody>
+</table>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>Lógica de Processamento: Após o usuário concluir o processo de cadastro, o sistema verifica se o cadastro foi efetuado com sucesso. Caso positivo, exibe a tela de sucesso com a mensagem "Cadastro Realizado com Sucesso!".</li>
+<li>Ações Condicionais: Se o cadastro for realizado com sucesso, a tela de sucesso é exibida. Caso contrário, uma tela de erro é exibida (não mostrada na imagem).</li>
+</ul><img src='/home/cleudeir/Pictures/Screenshot_1730204969.png' alt='Screenshot_1730204969.png'width='50%' height='50%' object-fit='contain'/><h1>Nome da tela</h1>
+<p>Cadastro UAU</p>
+<h2>Descrição da tela</h2>
+<p>Tela de cadastro de usuário do aplicativo UAU.</p>
+<h2>Formulário :</h2>
+<h3>Formulário de Cadastro</h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PINTOR</td>
+<td>Dropdown</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Nome</td>
+<td>Texto</td>
+<td>Requerido, Máximo de caracteres: -</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Sobrenome</td>
+<td>Texto</td>
+<td>Requerido, Máximo de caracteres: -</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Email</td>
+<td>Requerido, Formato de email válido</td>
+<td>-</td>
+</tr>
+<tr>
+<td>CPF</td>
+<td>Texto</td>
+<td>Requerido, Formato de CPF válido</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Telefone</td>
+<td>Texto</td>
+<td>Requerido, Formato de telefone válido</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Senha</td>
+<td>Senha</td>
+<td>Requerido, Máximo de caracteres: -, Mínimo de caracteres: -</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Confirmar Senha</td>
+<td>Senha</td>
+<td>Requerido, Senha deve ser igual a Senha</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3>Observação :</h3>
+<ul>
+<li>Os campos com o ícone de cadeado permitem que o valor seja travado para reutilização em futuras transferências, facilitando o preenchimento para valores que são frequentemente reutilizados.</li>
+</ul>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>
+<p>Lógica de Processamento: O usuário preenche todos os campos obrigatórios do formulário. Ao clicar em "Próximo", os dados são validados. Se os dados forem válidos, o usuário prossegue para a próxima etapa do cadastro. Caso contrário, mensagens de erro são exibidas para os campos inválidos.</p>
+</li>
+<li>
+<p>Ações Condicionais:  Se todos os campos forem preenchidos corretamente, o botão "Próximo" fica habilitado. Caso contrário, o botão permanece desabilitado.</p>
+</li>
+</ul><img src='/home/cleudeir/Pictures/Screenshot_1730204859.png' alt='Screenshot_1730204859.png'width='50%' height='50%' object-fit='contain'/><h1>Nome da tela</h1>
+<p>Tela de Login UAU</p>
+<h2>Descrição da tela</h2>
+<p>Tela de login para acesso ao sistema UAU.  Apresenta campos para inserção de e-mail e senha, botão de login, e opções para cadastro e redefinição de senha.</p>
+<h2>Formulário :</h2>
+<h3>Formulário de Login</h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Email</td>
+<td>Texto</td>
+<td>Email válido</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Senha</td>
+<td>Senha</td>
+<td>Mínimo de caracteres (não especificado)</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3>Observação :</h3>
+<ul>
+<li>Os campos com o ícone de cadeado permitem que o valor seja travado para reutilização em futuras transferências, facilitando o preenchimento para valores que são frequentemente reutilizados.</li>
+</ul>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>
+<p><strong>Lógica de Processamento:</strong> O sistema verifica se o e-mail e a senha inseridos correspondem a um usuário cadastrado no banco de dados.</p>
+</li>
+<li>
+<p><strong>Ações Condicionais:</strong></p>
+<ul>
+<li>Se o e-mail e a senha estiverem corretos, o usuário será redirecionado para a tela principal do sistema.</li>
+<li>Se o e-mail ou a senha estiverem incorretos, será exibida uma mensagem de erro.</li>
+<li>O botão "Cadastre-se" redireciona o usuário para a tela de cadastro.</li>
+<li>O link "Esqueceu sua senha?" redireciona o usuário para a tela de redefinição de senha.</li>
+</ul>
+</li>
+</ul><img src='/home/cleudeir/Pictures/Screenshot_1730205000.png' alt='Screenshot_1730205000.png'width='50%' height='50%' object-fit='contain'/><h1>Nome da tela</h1>
+<p>Cadastro de Endereço</p>
+<h2>Descrição da tela</h2>
+<p>Tela de cadastro de endereço para o sistema UAU.  O usuário preenche os campos com as informações do endereço e clica em "Próximo" para prosseguir.</p>
+<h2>Formulário :</h2>
+<h3>Cadastro de Endereço</h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CEP</td>
+<td>Texto</td>
+<td>Somente números, 8 dígitos</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Rua</td>
+<td>Texto</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Número</td>
+<td>Número</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Complemento</td>
+<td>Texto</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Referência</td>
+<td>Texto</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Bairro</td>
+<td>Texto</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Cidade</td>
+<td>Texto</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Estado</td>
+<td>Texto</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>
+<p>Lógica de Processamento: O usuário preenche os campos do formulário com as informações do endereço. Ao clicar em "Próximo", os dados são validados. Se houver erros, o usuário é notificado. Caso os dados estejam corretos, o sistema prossegue para a próxima etapa do processo.</p>
+</li>
+<li>
+<p>Ações Condicionais: O botão "Voltar" retorna o usuário para a tela anterior. O botão "Próximo" avança para a próxima tela somente se todos os campos obrigatórios estiverem preenchidos corretamente.</p>
+</li>
+</ul><img src='/home/cleudeir/Pictures/Screenshot_1730212014.png' alt='Screenshot_1730212014.png'width='50%' height='50%' object-fit='contain'/><h1>Nome da tela</h1>
+<p>Alterar Senha</p>
+<h2>Descrição da tela</h2>
+<p>Tela para alteração de senha, solicitando o email do usuário para envio de código de verificação.</p>
+<h2>Formulário :</h2>
+<h3>Formulário de Alteração de Senha</h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Informe o seu e-mail</td>
+<td>Texto</td>
+<td>Email válido</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>
+<p>Lógica de Processamento: O usuário insere seu email no campo "Informe o seu e-mail". Ao clicar em "Enviar", o sistema valida o email. Se válido, envia um código de verificação para o email informado. Caso inválido, apresenta mensagem de erro.</p>
+</li>
+<li>
+<p>Ações Condicionais: Se o email for válido, envia código de verificação e redireciona para próxima tela. Se o email for inválido, exibe mensagem de erro.</p>
+</li>
+</ul>

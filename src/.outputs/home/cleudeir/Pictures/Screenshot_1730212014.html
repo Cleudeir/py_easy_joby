@@ -1,0 +1,33 @@
+<h1>Nome da tela</h1>
+<p>Alterar Senha</p>
+<h2>Descrição da tela</h2>
+<p>Tela para alteração de senha, solicitando o email do usuário para envio de código de verificação.</p>
+<h2>Formulário :</h2>
+<h3>Formulário de Alteração de Senha</h3>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Informe o seu e-mail</td>
+<td>Texto</td>
+<td>Email válido</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>
+<p>Lógica de Processamento: O usuário insere seu email no campo "Informe o seu e-mail". Ao clicar em "Enviar", o sistema valida o email. Se válido, envia um código de verificação para o email informado. Caso inválido, apresenta mensagem de erro.</p>
+</li>
+<li>
+<p>Ações Condicionais: Se o email for válido, envia código de verificação e redireciona para próxima tela. Se o email for inválido, exibe mensagem de erro.</p>
+</li>
+</ul>

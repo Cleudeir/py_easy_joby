@@ -1,0 +1,74 @@
+<h1>Detalhes do Serviço</h1>
+<h2>Descrição da tela</h2>
+<p>Tela de detalhes de um serviço, exibindo informações como número do serviço, status, descrição, data de realização, valores de deslocamento e serviço, e fotos do serviço.</p>
+<h2>Campos de texto:</h2>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Validação</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Número</td>
+<td>Texto</td>
+<td>-</td>
+<td>Número identificador único do serviço</td>
+</tr>
+<tr>
+<td>Status do serviço</td>
+<td>Texto</td>
+<td>-</td>
+<td>Status atual do serviço</td>
+</tr>
+<tr>
+<td>Serviço</td>
+<td>Texto</td>
+<td>-</td>
+<td>Descrição detalhada do serviço</td>
+</tr>
+<tr>
+<td>Data da realização</td>
+<td>Data</td>
+<td>Formato DD/MM/AAAA</td>
+<td>Data em que o serviço foi realizado</td>
+</tr>
+<tr>
+<td>Valor Deslocamento</td>
+<td>Monetário</td>
+<td>Formato R$ X,XX</td>
+<td>Valor cobrado pelo deslocamento</td>
+</tr>
+<tr>
+<td>Valor do Serviço</td>
+<td>Monetário</td>
+<td>Formato R$ X,XX</td>
+<td>Valor total cobrado pelo serviço</td>
+</tr>
+</tbody>
+</table>
+<h2>Fotos:</h2>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[Serviço]</td>
+<td>Imagem</td>
+<td>Imagem(ns) relacionada(s) ao serviço</td>
+</tr>
+</tbody>
+</table>
+<h2>Regra de Negócio:</h2>
+<ul>
+<li>Lógica de Processamento: A tela exibe informações detalhadas de um serviço específico, recuperadas a partir do banco de dados utilizando o número do serviço como chave.</li>
+<li>Ações Condicionais: -</li>
+</ul>
