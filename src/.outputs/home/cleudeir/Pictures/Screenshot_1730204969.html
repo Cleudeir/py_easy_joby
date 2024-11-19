@@ -1,7 +1,11 @@
-<h1>Nome da tela</h1>
-<p>Cadastro UAU</p>
+<h2>Nome da tela</h2>
+<ul>
+<li>Cadastro</li>
+</ul>
 <h2>Descrição da tela</h2>
-<p>Tela de cadastro de usuário do aplicativo UAU.</p>
+<ul>
+<li>Tela de cadastro de usuário do aplicativo UAU.</li>
+</ul>
 <h2>Formulário :</h2>
 <h3>Formulário de Cadastro</h3>
 <table>
@@ -22,14 +26,14 @@
 </tr>
 <tr>
 <td>Nome</td>
-<td>Texto</td>
-<td>Requerido, Máximo de caracteres: -</td>
+<td>Text</td>
+<td>Requerido, Máximo de caracteres -</td>
 <td>-</td>
 </tr>
 <tr>
 <td>Sobrenome</td>
-<td>Texto</td>
-<td>Requerido, Máximo de caracteres: -</td>
+<td>Text</td>
+<td>Requerido, Máximo de caracteres -</td>
 <td>-</td>
 </tr>
 <tr>
@@ -40,26 +44,26 @@
 </tr>
 <tr>
 <td>CPF</td>
-<td>Texto</td>
+<td>Text</td>
 <td>Requerido, Formato de CPF válido</td>
 <td>-</td>
 </tr>
 <tr>
 <td>Telefone</td>
-<td>Texto</td>
-<td>Requerido, Formato de telefone válido</td>
+<td>Text</td>
+<td>Requerido, Formato de telefone válido (com DDD)</td>
 <td>-</td>
 </tr>
 <tr>
 <td>Senha</td>
-<td>Senha</td>
-<td>Requerido, Máximo de caracteres: -, Mínimo de caracteres: -</td>
+<td>Password</td>
+<td>Requerido, Mínimo de caracteres -</td>
 <td>-</td>
 </tr>
 <tr>
 <td>Confirmar Senha</td>
-<td>Senha</td>
-<td>Requerido, Senha deve ser igual a Senha</td>
+<td>Password</td>
+<td>Requerido, Deve ser igual à Senha</td>
 <td>-</td>
 </tr>
 </tbody>
@@ -71,9 +75,9 @@
 <h2>Regra de Negócio:</h2>
 <ul>
 <li>
-<p>Lógica de Processamento: O usuário preenche todos os campos obrigatórios do formulário. Ao clicar em "Próximo", os dados são validados. Se os dados forem válidos, o usuário prossegue para a próxima etapa do cadastro. Caso contrário, mensagens de erro são exibidas para os campos inválidos.</p>
+<p>Lógica de Processamento: O usuário preenche todos os campos obrigatórios do formulário. Ao clicar em "Próximo", o sistema valida os dados inseridos. Se todos os dados estiverem corretos, o usuário prossegue para a próxima etapa do cadastro. Caso contrário, o sistema exibe mensagens de erro indicando os campos que precisam ser corrigidos.</p>
 </li>
 <li>
-<p>Ações Condicionais:  Se todos os campos forem preenchidos corretamente, o botão "Próximo" fica habilitado. Caso contrário, o botão permanece desabilitado.</p>
+<p>Ações Condicionais: Se o formulário for preenchido corretamente, o sistema redireciona o usuário para a próxima tela. Se houver erros de validação, o sistema permanece na tela de cadastro, exibindo mensagens de erro para cada campo inválido.  O botão "Próximo" só será habilitado quando todos os campos obrigatórios forem preenchidos e validados corretamente.</p>
 </li>
 </ul>

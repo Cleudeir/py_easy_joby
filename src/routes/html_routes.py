@@ -2,11 +2,11 @@ import fnmatch
 import shutil
 import time
 from flask import Blueprint, render_template, request, current_app, Response, jsonify, stream_with_context
-from src.modules.image_description import  get_images_from_path
+from src.modules.image_description import  get_images_from_path, describe_image_with_gemini
 from src.modules.refactor import get_agent_separate
 from src.modules.agent_summary_reconstruction_code import get_agent_coder, get_agent_fix_summary, get_agent_similarity, get_agent_summary, get_agent_improvement
 from src.modules.directory_structure import get_directory_structure
-from src.modules.gpt import describe_image_with_gemini, get_ollama_models, get_ollama_response
+from src.modules.gpt import get_ollama_models, get_ollama_response
 from src.modules.file_processor import (
     read_pdf, read_docx, read_txt,
     split_file_by_text, split_file_by_lines, split_file_by_paragraphs
@@ -24,11 +24,6 @@ def home():
 
 @html_routes.route("/process-images", methods=["POST", "GET"])
 def image_description():
-    """
-    Endpoint to process images and generate documentation.
-    """
-    os.environ['TESSDATA_PREFIX'] = '/usr/share/tesseract-ocr/5/'
-
     if request.method == "GET":
         return render_template("image_description.html")
 
@@ -45,15 +40,12 @@ def image_description():
         images = get_images_from_path(input_path)
 
         def render():
-            docx_file = os.path.join(output_path, 'project_documentation.docx')
-            if os.path.exists(docx_file):
-                with open(docx_file, 'rb') as f:
-                    content = f.read()                   
-                    yield content
-                return
+            
+            yield "<p>Starting documentation generation...</p>\n"
             docx_html = ''
+            
             for img in images:
-                yield "<p>Starting documentation generation...</p>\n"
+      
 
                 # Copy image to the static folder 
                 path_to_copy = os.path.join(static_image_path, os.path.basename(img))
@@ -77,12 +69,14 @@ def image_description():
                 # Generate the description using your Ollama integration
                 markdown_text = describe_image_with_gemini(img)
                 html_text = markdown.markdown(markdown_text, extensions=['extra', 'tables'])
+          
+                
                 docx_html += html_text
                 file_html = os.path.join(output_path, os.path.basename(img).split('.')[0] + '.html')
                 with open(file_html, 'w') as f:
                     f.write(html_text)
                 yield html_text
-            # save docx file using docx_html
+            docx_file = os.path.join(output_path, 'project_documentation.docx')
             with open(docx_file, 'wb') as f:
                 f.write(docx_html.encode('utf-8'))
             time.sleep(0.100)            
