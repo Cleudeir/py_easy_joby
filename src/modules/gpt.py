@@ -44,6 +44,20 @@ def get_ollama_models():
         return model_names
     except Exception as e:
         return {"error": str(e)}
+    
+def get_ollama_vision_models():
+    try:
+        # Fetch available models using ollama.list
+        response = ollama.list()
+        models = response.get('models', [])  # Extract models from the response
+        # Filter models with name vision or llava
+        models = [model for model in models if 'vision' in model['name'].lower() or 'llava' in model['name'].lower()]
+        # return only names
+        models = [model['name'] for model in models]
+        
+        return models
+    except Exception as e:
+        return {"error": str(e)}
 
 # Function to get a response from an Ollama model
 def get_ollama_response(model_name, system_prompt, user_prompt):

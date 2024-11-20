@@ -14,6 +14,22 @@
         <form id="imageForm">
             <label for="path">Image Directory Path:</label>
             <input type="text" id="path" name="path" required>
+
+            <label for="provider">Provider:</label>
+            <select id="provider" name="provider" required onchange="toggleModelDropdown()">
+                <option value="gemini">Gemini</option>
+                <option value="ollama">Ollama</option>
+            </select>
+
+            <div id="modelSelection" style="display: none;">
+                <label for="model">Model:</label>
+                <select id="model" name="model">
+                    {% for model in models %}
+                    <option value="{{ model }}">{{ model }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
             <button type="submit">Submit</button>
         </form>
 
@@ -27,12 +43,24 @@
     </div>
 
     <script>
+        // Toggle the model dropdown based on the selected provider
+        function toggleModelDropdown() {
+            const provider = document.getElementById('provider').value;
+            const modelSelection = document.getElementById('modelSelection');
+            modelSelection.style.display = provider === 'ollama' ? 'block' : 'none';
+        }
+
+        // Handle form submission
         document.getElementById('imageForm').onsubmit = async (event) => {
             event.preventDefault();
 
             // Collect form data
             const formData = {
                 path: document.getElementById('path').value,
+                provider: document.getElementById('provider').value,
+                model: document.getElementById('provider').value === 'ollama'
+                    ? document.getElementById('model').value
+                    : null,
             };
 
             // Select the response container

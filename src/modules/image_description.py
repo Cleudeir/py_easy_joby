@@ -72,7 +72,7 @@ prompt_image_documents = """
     - responda em português.
     """
     
-def describe_image_with_ollama(image_path):
+def describe_image_with_ollama(image_path, model_name):
     """
     Uses Ollama Vision to describe an image.
     
@@ -88,7 +88,7 @@ def describe_image_with_ollama(image_path):
     try:
         # Send the user message and image to the Ollama Vision model
         response = ollama.chat(
-            model='llama3.2-vision',
+            model=model_name,
             messages=[{
                 'role': 'user',
                 'content': prompt_image_documents,

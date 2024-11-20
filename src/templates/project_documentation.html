@@ -18,8 +18,8 @@
 
             <label for="gpt_provider">GPT Provider:</label>
             <select id="gpt_provider" name="gpt_provider" required onchange="toggleModelDropdown()">
-                <option value="ollama">Ollama</option>
                 <option value="gemini">Gemini</option>
+                <option value="ollama">Ollama</option>
             </select>
 
             <div id="modelSelection" style="display: none;">
@@ -47,7 +47,7 @@
             <div id="loading">Generation...</div>
         </div>
         <br>
-        <a href="{{ url_for('html_routes.home') }}" style="text-align: center; display: block;">Back to Dashboard</a>
+        <a href="{{ url_for('home_routes.home') }}" style="text-align: center; display: block;">Back to Dashboard</a>
     </div>
 
     <script>
