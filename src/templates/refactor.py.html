@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Documentation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Generate Project Documentation</h1>
+
+        <form id="documentationForm" method="POST">
+            <label for="file">Choose a file:</label>
+            <input type="file" id="file" name="file" required>
+
+            <label for="gpt_provider">GPT Provider:</label>
+            <select id="gpt_provider" name="gpt_provider" required onchange="toggleModelDropdown()">
+                <option value="ollama">Ollama</option>
+                <option value="gemini">Gemini</option>
+            </select>
+
+            <div id="modelSelection" style="display: none;">
+                <label for="model">Model:</label>
+                <select id="model" name="model">
+                    {% for model in models %}
+                    <option value="{{ model }}">{{ model }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" id="generateDocumentationButton">Generate Documentation</button>
+        </form>
+
+        <!-- Documentation Content Section -->
+        <div id="documentationContent" style="display: none;">
+            <h2>Generated Documentation:</h2>
+            <div id="documentationOutput">
+                <!-- Streamed content will be added here -->
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div id="loading">Generation...</div>
+        </div>
+        <br>
+        <a href="{{ url_for('home_routes.home') }}" style="text-align: center; display: block;">Back to Dashboard</a>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            // Load the remembered values from localStorage if available
+
+            const savedGptProvider = localStorage.getItem('gpt_provider');
+
+            const savedModel = localStorage.getItem('model');
+
+            if (savedGptProvider) {
+                document.getElementById('gpt_provider').value = savedGptProvider;
+                // To show/hide model dropdown based on the provider
+            }
+            if (savedModel) {
+                document.getElementById('model').value = savedModel;
+            }
+
+            toggleModelDropdown();
+        });
+
+        // Display loading overlay and handle form submission
+        document.getElementById('documentationForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            // Save the form values to localStorage        
+            localStorage.setItem('gpt_provider', document.getElementById('gpt_provider').value);
+            localStorage.setItem('model', document.getElementById('model').value);
+
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            document.getElementById('documentationOutput').innerHTML = '';
+
+            // Fetch streaming data from the server
+            console.log('this.action: ', this.action);
+            fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this),
+            })
+                .then(response => {
+                    // Ensure response body can be read as text for streaming
+                    const reader = response.body.getReader();
+                    const decoder = new TextDecoder("utf-8");
+
+                    // Function to process each chunk of streamed data
+                    function readStream() {
+                        return reader.read().then(({ done, value }) => {
+                            if (done) {
+                                document.getElementById('loadingOverlay').style.display = 'none';
+                                return
+                            }
+
+                            document.getElementById('documentationContent').style.display = 'block';
+
+                            document.getElementById('loadingOverlay').style.display = 'none';
+
+                            // Append each streamed chunk to the documentation output
+                            const chunk = decoder.decode(value, { stream: true });
+                            const div = document.createElement('div');
+                            if (!chunk.includes("id='agent_coder'")) {
+                                div.classList.add('markdown-content');  // Add a class for styling (optional)
+                            }
+                            div.innerHTML = chunk;  // Set the chunk content
+                            // Append the div containing the chunk to the markdown content
+                            document.getElementById('documentationOutput').appendChild(div);
+                            document.getElementById('loadingOverlay').style.display = 'flex';
+                            document.getElementById('loadingOverlay').scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+                            return readStream();
+                        });
+                    }
+                    return readStream();
+                })
+                .catch(error => {
+                    document.getElementById('documentationOutput').innerHTML = `<p>Error: ${error.message}</p>`;
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                });
+        });
+
+        function toggleModelDropdown() {
+            const provider = document.getElementById('gpt_provider').value;
+            console.log('provider: ', provider);
+            document.getElementById('modelSelection').style.display = provider === 'ollama' ? 'block' : 'none';
+        }
+        // Show the loading indicator
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';  // Show loading indicator
+            document.getElementById('response').style.display = 'none';  // Hide response during loading
+        }
+    </script>
+</body>
+
+</html>
