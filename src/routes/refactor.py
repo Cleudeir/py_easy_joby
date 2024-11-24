@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, Response
-from src.modules.refactor import get_agent_separate
+from src.modules.refactor import get_agent_separate, get_agent_similarity
 from src.modules.gpt import get_ollama_models
 import markdown
 import time
