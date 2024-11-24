@@ -37,40 +37,7 @@ easy_joby_py/
             image_description.py
             file_processor.py
         static/
-            images/
-                Screenshot_1730220231.png
-                Screenshot_1730212740.png
-                2.png
-                Screenshot_1730221541.png
-                Screenshot_1730223129.png
-                4.png
-                Screenshot_1730220858.png
-                Screenshot_1730218907.png
-                Screenshot_1730212743.png
-                Screenshot_1730213094.png
-                Screenshot_1730222638.png
-                Screenshot_1730219640.png
-                Screenshot_1730222646.png
-                contrast_1.png
-                Screenshot_1730212144.png
-                Screenshot_1730222675.png
-                Screenshot_1730218910.png
-                Screenshot_1730397802.png
-                Screenshot_1730220460.png
-                Screenshot_1730206900.png
-                Screenshot_1730212200.png
-                Screenshot_1730212747.png
-                3.png
-                0.png
-                1.png
-                Screenshot_1730205030.png
-                Screenshot_1730206896.png
-                Screenshot_1730205300.png
-                5.png
-                Screenshot_1730204969.png
-                Screenshot_1730204859.png
-                Screenshot_1730205000.png
-                Screenshot_1730212014.png
+            images/                
             css/
                 styles.css                
 ```
