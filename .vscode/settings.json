@@ -23,6 +23,7 @@
     "pypandoc",
     "pytesseract",
     "RRDB",
+    "subindent",
     "thresholding",
     "torchvision",
     "upscaled"
