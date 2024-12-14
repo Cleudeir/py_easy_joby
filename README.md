@@ -1,8 +1,8 @@
 
-                # file_processor.py                
-                ## project structure
-                ```                    
-                py_easy_joby/
+# py_easy_joby                
+## project structure
+```                    
+py_easy_joby/
     README.md
     config.py
     requirements.txt
@@ -41,8 +41,8 @@
         static/
             css/
                 styles.css                
-                ```
-                ## Propósito e Descrição do Projeto
+```
+## Propósito e Descrição do Projeto
 
 Este projeto fornece uma biblioteca reutilizável para processamento de arquivos de texto, focando na extração de texto de PDFs, DOCX e TXT, e na divisão flexível desse texto em seções menores.  É útil para análise de texto, extração de dados e organização de documentos.
 
