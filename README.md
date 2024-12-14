@@ -1,7 +1,8 @@
 
-## Project structure
-```                    
-easy_joby_py/
+                # file_processor.py                
+                ## project structure
+                ```                    
+                py_easy_joby/
     README.md
     config.py
     requirements.txt
@@ -29,6 +30,7 @@ easy_joby_py/
             image_description.py
             ollama_response.py
         modules/
+            concatenate_project.py
             agent_summary_reconstruction_code.py
             directory_structure.py
             refactor.py
@@ -37,71 +39,44 @@ easy_joby_py/
             image_description.py
             file_processor.py
         static/
-            images/                
             css/
                 styles.css                
-```
-## Descrição do Projeto
+                ```
+                ## Propósito e Descrição do Projeto
 
-Este projeto é uma aplicação web para gerenciamento de projetos, oferecendo diversas ferramentas para otimizar o processo de desenvolvimento.  Ele inclui funcionalidades para: obter estrutura de diretórios, interagir com sistemas externos, dividir arquivos, refatorar código, gerar documentação de imagens, reconstrução de resumos de agentes e gerar documentação de projetos.  Utiliza modelos de linguagem grandes (LLMs) como Ollama e Gemini para auxiliar na geração de documentação.
+Este projeto fornece uma biblioteca reutilizável para processamento de arquivos de texto, focando na extração de texto de PDFs, DOCX e TXT, e na divisão flexível desse texto em seções menores.  É útil para análise de texto, extração de dados e organização de documentos.
 
 ## Dependências
 
 Antes de usar este projeto, instale as dependências:
 
 ```
-flask
 pdfplumber
-scikit-learn
-jinja2
-pytesseract
-torch
-torchvision
-pillow
-opencv-python
-flasgger
 python-docx
-ollama
-google-generativeai
-markdown
-python-dotenv
-pypandoc
 ```
 
 ## Como Instalar
 
 1. Clone este repositório.
 2. Instale as dependências: `pip install -r requirements.txt`
-3. Crie um arquivo `.env` com as configurações necessárias (chave de API do Google Generative AI, etc.).
-4. Execute a aplicação: `python app.py` (ou comando apropriado para o seu ambiente de desenvolvimento).
 
 ## Como Usar
 
-A aplicação web fornece uma interface para acessar diferentes módulos. Cada módulo oferece funcionalidades específicas:
-
-* **Estrutura de diretórios:** Exibe a estrutura de arquivos e pastas de um diretório especificado.
-* **Divisão de arquivos:** Permite dividir arquivos grandes em partes menores, com base em diferentes critérios (texto, número de linhas, parágrafos).
-* **Refatoração de código:** Ajuda a refatorar código, separando-o em funções.
-* **Documentação de imagens:** Gera documentação descritiva para imagens, utilizando modelos de linguagem.
-* **Reconstrução de resumos de agentes:** Reconstrói o código baseado em um resumo gerado por um modelo de linguagem.
-* **Documentação de projetos:** Gera uma documentação completa para um projeto, incluindo resumos de arquivos, sumário geral e post para o LinkedIn.
-* **Interface Ollama:** Permite interação com modelos Ollama.
+1. Importe as funções necessárias de `file_processor.py`.
+2. Use `read_pdf`, `read_docx`, ou `read_txt` para extrair texto de um arquivo.
+3. Utilize `split_file_by_text`, `split_file_by_lines`, ou `split_file_by_paragraphs` para dividir o texto conforme necessário.
 
 
 ## Arquitetura
 
-A aplicação é baseada em Flask, utilizando blueprints para organizar as rotas.  Os módulos individuais (estrutura de diretórios, divisão de arquivos, etc.) são implementados como blueprints separados, melhorando a organização e manutenibilidade do código. A geração de documentação se baseia fortemente em modelos de linguagem grandes acessados através de APIs (Ollama e Google Generative AI).
-
+O script é modular, separando a leitura de arquivos e a divisão de texto em funções distintas.  Isso melhora a legibilidade, manutenção e reusabilidade do código.
 
 ## Pipeline
 
-O pipeline geral envolve:
+1. **Leitura de Arquivo:** O tipo de arquivo é identificado e a função apropriada (`read_pdf`, `read_docx`, `read_txt`) é usada para extrair o texto.
+2. **Divisão de Texto:** O texto é dividido usando uma das funções de divisão, dependendo do critério escolhido pelo usuário.
+3. **Saída:** Uma lista de strings (cada string representando uma seção do texto) é retornada.
 
-1. **Solicitação do Usuário:** O usuário interage com a aplicação web via formulários.
-2. **Processamento:** A aplicação processa a solicitação do usuário, possivelmente utilizando modelos de linguagem para gerar documentação ou realizar outras tarefas.
-3. **Geração de Saída:** A aplicação gera a saída, que pode ser um HTML, um arquivo de texto ou outro formato, dependendo da funcionalidade.
-4. **Exibição da Saída:** A saída é exibida ao usuário na interface web.
 
-A arquitetura modular permite que cada funcionalidade tenha seu próprio pipeline específico, mas seguindo o fluxo geral descrito acima.
                 
                 
