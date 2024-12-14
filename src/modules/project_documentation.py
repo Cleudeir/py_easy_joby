@@ -9,7 +9,6 @@ def get_summary(content, filename, gpt_provider, model):
     system_prompt = """
     you are a software engineer creating a project documentation.  
     """
-
     user_prompt = f"""
     This is a code:
     {content}
@@ -17,17 +16,13 @@ def get_summary(content, filename, gpt_provider, model):
     ## Summary: 
         * {filename}
     ##  Project purpose and description
-        * ...        
+        * ...
+    ## Business rule
+        * ...
     ## how is Pipeline
         * ...
-    ## Input
-        ### Internal dependencies           
-            * Name modules           
-        ### External dependencies           
-            * Name libraries            
-    ## Output
-        * ...
     ---
+    Create summary without create code.
     """
 
     # Use Ollama to generate the summary with the specified model
@@ -51,7 +46,7 @@ def get_general_summary(summary, gpt_provider, model):
     user_prompt = f"""
     That is summary:
     {summary}
-    Follow this structure:
+    Follow this structure to create a summary:
     ## Project purpose and description
         * ... 
     ## Dependencies
@@ -72,40 +67,19 @@ def get_general_summary(summary, gpt_provider, model):
     ## how is pipeline
         *  ...
     
-    Create general summary of this project, not create code, no comments, no explanation, responda em Portuguese.
+    Create general summary of this project, no comments, no explanation, responda em Portuguese.
+    Create summary without create code.
     """
 
     if gpt_provider == "ollama":
         summary = get_ollama_response(model, system_prompt, user_prompt)
     elif gpt_provider == "gemini":
-        summary = get_genai_response(
-            system_prompt=system_prompt, user_prompt=user_prompt
-        )
+        summary = get_genai_response(system_prompt, user_prompt)
 
     if isinstance(summary, dict) and "error" in summary:
         return f"**Error**: {summary['error']}\n"
 
     return summary
-
-
-def get_linkedIn_post(summary, general_summary, filename, gpt_provider, model):
-    system_prompt = """
-    You are a software engineer creating a post for LinkedIn.
-    """
-
-    user_prompt = f"that is summary project:{general_summary}, and create a post for LinkedIn, responda em Portuguese."
-
-    if gpt_provider == "ollama":
-        summary = get_ollama_response(model, system_prompt, user_prompt)
-    elif gpt_provider == "gemini":
-        summary = get_genai_response(
-            system_prompt=system_prompt, user_prompt=user_prompt
-        )
-
-    if isinstance(summary, dict) and "error" in summary:
-        return f"**{filename} Summary**\n**Error**: {summary['error']}\n"
-    formatted_summary = f"# Summary: {filename}\n{summary}"
-    return formatted_summary
 
 
 def get_project_files(directory):
@@ -120,7 +94,18 @@ def get_project_files(directory):
         for file in files:
             # Only add files with specific extensions and ignore those starting with "."
             if not file.startswith(".") and file.endswith(
-                (".py", ".txt", ".html", ".yml", ".js", ".ts", ".tsx", ".jsx", ".json")
+                (
+                    ".py",
+                    ".txt",
+                    ".html",
+                    ".yml",
+                    ".js",
+                    ".ts",
+                    ".tsx",
+                    ".jsx",
+                    ".json",
+                    "java",
+                )
             ):
                 project_files.append(os.path.join(root, file))
     return project_files

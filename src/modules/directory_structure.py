@@ -35,4 +35,4 @@ def get_directory_structure(directory_path):
                     file_contents.append(f"{file_path}:\n[Error reading file: {e}]")
 
     # Combine structure and contents
-    return "\n".join(structure) + "\n\n" + "\n".join(file_contents)
+    return ["\n".join(structure), "\n".join(file_contents)]

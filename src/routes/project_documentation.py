@@ -5,7 +5,6 @@ from flask import Blueprint, current_app, render_template, request, Response
 from src.modules.project_documentation import (
     get_project_files,
     read_and_summarize_file,
-    get_linkedIn_post,
     get_general_summary,
 )
 from src.modules.directory_structure import get_directory_structure
@@ -60,7 +59,7 @@ def get_project_documentation():
                     yield markdown.markdown(summary) + "\n"
 
                 # GENERATE SUMMARY
-                structure = get_directory_structure(project_path)
+                structure, _ = get_directory_structure(project_path)
                 general_summary = get_general_summary(
                     summary=combined_summary,
                     gpt_provider=gpt_provider,
@@ -83,19 +82,6 @@ def get_project_documentation():
                 general_summary_html += f"<pre><code>{structure}</code></pre>\n"
                 general_summary_html += markdown.markdown(general_summary)
                 yield general_summary_html
-                time.sleep(0.100)
-                # Generate post LinkedIn
-                post = get_linkedIn_post(
-                    summary=combined_summary,
-                    general_summary=general_summary,
-                    filename="Post.md",
-                    gpt_provider=gpt_provider,
-                    model=selected_model,
-                )
-                # Save the post to a file
-                with open(os.path.join(uploads_dir, "Post.md"), "w") as f:
-                    f.write(post)
-                yield markdown.markdown(post)
                 time.sleep(0.100)
 
                 yield "<p>Documentation generation complete.</p>\n"
