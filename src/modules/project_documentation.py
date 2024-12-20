@@ -2,84 +2,120 @@ import os
 import time
 from src.modules.file_processor import read_pdf, read_docx
 from src.modules.gpt import get_ollama_response, get_genai_response
-from flask import current_app
+
+
+def getGptSummary(system_prompt, user_prompt, gpt_provider, model):
+    summary = None
+    if gpt_provider == "ollama":
+        summary = get_ollama_response(model, system_prompt, user_prompt)
+    elif gpt_provider == "gemini":
+        summary = get_genai_response(system_prompt, user_prompt)
+    if isinstance(summary, dict) and "error" in summary:
+        return f"**Error**: {summary['error']}\n"
+    return f"""{summary}"""
 
 
 def get_summary(content, filename, gpt_provider, model):
     system_prompt = """
     you are a software engineer creating a project documentation.  
     """
-    user_prompt = f"""
+    initial_user_prompt = f"""
     This is a code:
     {content}
-    Flow structure and summary, no comments, no explanation:
-    ## Summary: 
-        * {filename}
+    Structure:
+    """
+    finally_user_prompt = f"""
+    create follow this structure.
+    """
+    user_prompt = f"""
+    {initial_user_prompt}    
+    # {filename}
     ##  Project purpose and description
         * ...
-    ## Business rule
-        * ...
-    ## how is Pipeline
-        * ...
-    ---
-    Create summary without create code.
+    {finally_user_prompt}
     """
-
-    # Use Ollama to generate the summary with the specified model
-    if gpt_provider == "ollama":
-        summary = get_ollama_response(model, system_prompt, user_prompt)
-    elif gpt_provider == "gemini":
-        summary = get_genai_response(
-            system_prompt=system_prompt, user_prompt=user_prompt
-        )
-    # Check if the response is a dictionary, which indicates an error
-    if isinstance(summary, dict) and "error" in summary:
-        return f"**Error**: {summary['error']}\n"
-    # Return the formatted summary
+    summary = getGptSummary(system_prompt, user_prompt, gpt_provider, model)
+    time.sleep(4)
+    # ----------------------------------------------------------------------
+    user_prompt = f"""
+    {initial_user_prompt}
+    ## Execute Flow 
+        * ...
+    {finally_user_prompt}
+    """
+    summary += getGptSummary(system_prompt, user_prompt, gpt_provider, model)
+    time.sleep(4)
+    # ----------------------------------------------------------------------
+    user_prompt = f"""
+    {initial_user_prompt}
+    ## External libs
+        * ...
+    {finally_user_prompt}
+    """
+    summary += getGptSummary(system_prompt, user_prompt, gpt_provider, model)
+    time.sleep(4)
     return summary
 
 
-def get_general_summary(summary, gpt_provider, model):
+def get_generic_summary(summary, gpt_provider, model):
     system_prompt = """
-    You are a software engineer creating a README.md for GitHub.
+    You are a software engineer creating a README.md to document a project.
     """
+    initial_user_prompt = f"""
+    That is summary:
+    {summary}
+    Follow this structure to create a summary:
+    """
+    finally_user_prompt = f"""
+    Create general summary of this project, no comments, no explanation, responda em Portuguese.
+    Create summary without create code.
+    """
+    # ----------------------------------------------------------------------
+    user_prompt = f"""  
+    {initial_user_prompt}
+    ## Project purpose and description
+        * ...
+    {finally_user_prompt}
+    """
+
+    _summary = getGptSummary(system_prompt, user_prompt, gpt_provider, model)
+    time.sleep(4)
+    # ----------------------------------------------------------------------
+    user_prompt = f"""
+    {initial_user_prompt}
+    ## How to Install
+        * To get this project up and running, follow these steps:
+        * **Clone this repository;
+        * **Install dependencies:** `...`;
+        * **Create a .env file:** `...`;
+        * **Run the application:** `...`;      
+    {finally_user_prompt}
+    """
+    _summary += getGptSummary(system_prompt, user_prompt, gpt_provider, model)
+    time.sleep(4)
+    # ----------------------------------------------------------------------
+    user_prompt = f"""
+    {initial_user_prompt}
+    ## Dependencies
+    * Before you can start using or working with this project, make sure to install the following dependencies:
+        ```
+        * Dependencies name - whats this does?
+        ```
+    Create general summary of this project, no comments, no explanation, responda em Portuguese.
+    Create summary without create code.
+    """
+    # ----------------------------------------------------------------------
     user_prompt = f"""
     That is summary:
     {summary}
     Follow this structure to create a summary:
-    ## Project purpose and description
-        * ... 
-    ## Dependencies
-        * Before you can start using or working with this project, make sure to install the following dependencies:
-        ```
-        * Dependencies name
-        ``
-    ## How to Install
-        * To get this project up and running, follow these steps:
-            * **Clone this repository;
-            * **Install dependencies:** `...`;
-            * **Create a .env file:** `...`;
-            * **Run the application:** `...`;            
-    ## How to Use
+    ## how is architecture and design
         *  ...
-    ## how is architecture
-        *  ...
-    ## how is pipeline
-        *  ...
-    
-    Create general summary of this project, no comments, no explanation, responda em Portuguese.
-    Create summary without create code.
+    {finally_user_prompt}
     """
-
-    if gpt_provider == "ollama":
-        summary = get_ollama_response(model, system_prompt, user_prompt)
-    elif gpt_provider == "gemini":
-        summary = get_genai_response(system_prompt, user_prompt)
-
-    if isinstance(summary, dict) and "error" in summary:
-        return f"**Error**: {summary['error']}\n"
-
-    return summary
+    _summary += getGptSummary(system_prompt, user_prompt, gpt_provider, model)
+    time.sleep(4)
+    return _summary
 
 
 def get_project_files(directory):
@@ -111,7 +147,7 @@ def get_project_files(directory):
     return project_files
 
 
-def read_and_summarize_file(filepath, gpt_provider, model, uploads_dir):
+def read_and_summarize_file(filepath, gpt_provider, model, uploads_dir, useCache):
     try:
         """
         Reads a file and returns its summary using the specified model,
@@ -127,10 +163,11 @@ def read_and_summarize_file(filepath, gpt_provider, model, uploads_dir):
         join_path = "/".join(join_path.split("/")[:-1]) + "/" + file_name_only + ".txt"
 
         # check if file already exists
-        if os.path.exists(join_path):
-            # read file and return
-            with open(join_path, "r") as file:
-                return file.read()
+        if useCache:
+            if os.path.exists(join_path):
+                # read file and return
+                with open(join_path, "r") as file:
+                    return file.read()
 
         # Determine the relative path within the directory structure and create it in uploads
         os.makedirs(os.path.dirname(uploads_dir), exist_ok=True)
