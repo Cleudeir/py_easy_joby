@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Project Manager Dashboard</h1>
+        <h2>Available Modules:</h2>
+        <ul>
+            <li>
+                <a href="{{ url_for('reconstruction_routes.reconstruction_code') }}">Agent
+                    Summary and
+                    Reconstruction</a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

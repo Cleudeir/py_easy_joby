@@ -8,7 +8,7 @@ from src.modules.project_documentation import (
     get_generic_summary,
 )
 from src.modules.directory_structure import get_directory_structure
-from src.modules.gpt import get_ollama_models
+from Libs.LLM.Provider import get_ollama_models
 import markdown
 
 project_documentation_routes = Blueprint("project_documentation_routes", __name__)
@@ -18,13 +18,11 @@ project_documentation_routes = Blueprint("project_documentation_routes", __name_
     "/get_project_documentation", methods=["GET", "POST"]
 )
 def get_project_documentation():
-    available_models = get_ollama_models()
     documentation_html = None
 
     if request.method == "POST":
         print(request.form)
         project_path = request.form.get("project_path", "").strip()
-        selected_model = request.form.get("model", "").strip()
         gpt_provider = request.form.get("gpt_provider", "").strip()
         uploads_dir = os.path.join(current_app.root_path, "src/.outputs" + project_path)
         useCache = request.form.get("useCache", False)
@@ -33,8 +31,7 @@ def get_project_documentation():
             documentation_html = "<p>Error: Project directory path is required.</p>"
             return render_template(
                 "project_documentation.html",
-                documentation_html=documentation_html,
-                models=available_models,
+                documentation_html=documentation_html,                
             )
 
         os.makedirs(uploads_dir, exist_ok=True)
@@ -56,7 +53,7 @@ def get_project_documentation():
                         continue
 
                     summary = read_and_summarize_file(
-                        file_path, gpt_provider, selected_model, uploads_dir, useCache
+                        file_path, gpt_provider, uploads_dir, useCache
                     )
                     combined_summary += summary
                     yield markdown.markdown(summary) + "\n"
@@ -64,10 +61,9 @@ def get_project_documentation():
                 # GENERATE SUMMARY
                 general_summary = get_generic_summary(
                     summary=combined_summary,
-                    gpt_provider=gpt_provider,
-                    model=selected_model,
+                    gpt_provider=gpt_provider,              
                 )
-                general_summary_file = f"""# {file_name}\n{general_summary}"""
+                general_summary_file = f"""{general_summary}"""
                 # Save the summary to a file
                 with open(os.path.join(uploads_dir, "README.md"), "w") as f:
                     f.write(general_summary_file)
@@ -88,11 +84,10 @@ def get_project_documentation():
             return render_template(
                 "project_documentation.html",
                 documentation_html=documentation_html,
-                models=available_models,
+              
             )
 
     return render_template(
         "project_documentation.html",
-        documentation_html=documentation_html,
-        models=available_models,
+        documentation_html=documentation_html,     
     )

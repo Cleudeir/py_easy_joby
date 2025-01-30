@@ -1,21 +1,23 @@
 import os
 import time
 from src.modules.file_processor import read_pdf, read_docx
-from src.modules.gpt import get_ollama_response, get_genai_response
+from Libs.LLM.Provider import get_ollama_text, get_genai_text
+from src.Libs.Files import (create_folder_by_file_path, read_file_binary_content,
+    read_file_content, save_content_to_file)
 
 
-def getGptSummary(system_prompt, user_prompt, gpt_provider, model):
+def getGptSummary(system_prompt, user_prompt, gpt_provider):
     summary = None
     if gpt_provider == "ollama":
-        summary = get_ollama_response(model, system_prompt, user_prompt)
+        summary = get_ollama_text(system_prompt, user_prompt)
     elif gpt_provider == "gemini":
-        summary = get_genai_response(system_prompt, user_prompt)
+        summary = get_genai_text(system_prompt, user_prompt)
     if isinstance(summary, dict) and "error" in summary:
         return f"**Error**: {summary['error']}\n"
     return f"""{summary}"""
 
 
-def get_summary(content, filename, gpt_provider, model):
+def get_summary(content, filename, gpt_provider):
     system_prompt = """
     you are a software engineer creating a project documentation.  
     """
@@ -23,43 +25,22 @@ def get_summary(content, filename, gpt_provider, model):
     This is a code:
     {content}
     Structure:
-    """
-    finally_user_prompt = f"""
-    create follow this structure.
-    """
+    """    
+    # ----------------------------------------------------------------------
     user_prompt = f"""
     {initial_user_prompt}    
     # {filename}
     ##  Project purpose and description
         * ...
-    {finally_user_prompt}
+    create follow this structure.
     """
-    summary = getGptSummary(system_prompt, user_prompt, gpt_provider, model)
-    time.sleep(4)
-    # ----------------------------------------------------------------------
-    user_prompt = f"""
-    {initial_user_prompt}
-    ## Execute Flow 
-        * ...
-    {finally_user_prompt}
-    """
-    summary += getGptSummary(system_prompt, user_prompt, gpt_provider, model)
-    time.sleep(4)
-    # ----------------------------------------------------------------------
-    user_prompt = f"""
-    {initial_user_prompt}
-    ## External libs
-        * ...
-    {finally_user_prompt}
-    """
-    summary += getGptSummary(system_prompt, user_prompt, gpt_provider, model)
-    time.sleep(4)
+    summary = getGptSummary(system_prompt, user_prompt, gpt_provider)   
     return summary
 
 
-def get_generic_summary(summary, gpt_provider, model):
+def get_generic_summary(summary, gpt_provider):
     system_prompt = """
-    You are a software engineer creating a README.md to document a project.
+    You are a software engineer creating a project summary.
     """
     initial_user_prompt = f"""
     That is summary:
@@ -67,56 +48,21 @@ def get_generic_summary(summary, gpt_provider, model):
     Follow this structure to create a summary:
     """
     finally_user_prompt = f"""
-    Create general summary of this project, no comments, no explanation, responda em Portuguese.
+    Create general summary of this project, no comments, no explanation.
     Create summary without create code.
     """
     # ----------------------------------------------------------------------
     user_prompt = f"""  
     {initial_user_prompt}
-    ## Project purpose and description
-        * ...
+    ## Summary
+        ...(in details) 
+    ## Tech Stack
+        ...
     {finally_user_prompt}
     """
-
-    _summary = getGptSummary(system_prompt, user_prompt, gpt_provider, model)
-    time.sleep(4)
-    # ----------------------------------------------------------------------
-    user_prompt = f"""
-    {initial_user_prompt}
-    ## How to Install
-        * To get this project up and running, follow these steps:
-        * **Clone this repository;
-        * **Install dependencies:** `...`;
-        * **Create a .env file:** `...`;
-        * **Run the application:** `...`;      
-    {finally_user_prompt}
-    """
-    _summary += getGptSummary(system_prompt, user_prompt, gpt_provider, model)
-    time.sleep(4)
-    # ----------------------------------------------------------------------
-    user_prompt = f"""
-    {initial_user_prompt}
-    ## Dependencies
-    * Before you can start using or working with this project, make sure to install the following dependencies:
-        ```
-        * Dependencies name - whats this does?
-        ```
-    Create general summary of this project, no comments, no explanation, responda em Portuguese.
-    Create summary without create code.
-    """
-    # ----------------------------------------------------------------------
-    user_prompt = f"""
-    That is summary:
-    {summary}
-    Follow this structure to create a summary:
-    ## how is architecture and design
-        *  ...
-    {finally_user_prompt}
-    """
-    _summary += getGptSummary(system_prompt, user_prompt, gpt_provider, model)
-    time.sleep(4)
+    _summary = getGptSummary(system_prompt, user_prompt, gpt_provider)
+    # ----------------------------------------------------------------------   
     return _summary
-
 
 def get_project_files(directory):
     """
@@ -147,7 +93,7 @@ def get_project_files(directory):
     return project_files
 
 
-def read_and_summarize_file(filepath, gpt_provider, model, uploads_dir, useCache):
+def read_and_summarize_file(filepath, gpt_provider, uploads_dir, useCache):
     try:
         """
         Reads a file and returns its summary using the specified model,
@@ -162,42 +108,33 @@ def read_and_summarize_file(filepath, gpt_provider, model, uploads_dir, useCache
         file_name_only = (join_path.split("/")[-1]).split(".")[0]
         join_path = "/".join(join_path.split("/")[:-1]) + "/" + file_name_only + ".txt"
 
-        # check if file already exists
-        if useCache:
-            if os.path.exists(join_path):
-                # read file and return
-                with open(join_path, "r") as file:
-                    return file.read()
+        # check if file already exists      
+        if os.path.exists(join_path) and useCache:
+            read_file_content(join_path)             
 
         # Determine the relative path within the directory structure and create it in uploads
-        os.makedirs(os.path.dirname(uploads_dir), exist_ok=True)
+        create_folder_by_file_path(uploads_dir)
 
         # Read file content based on the file type
         content = None
-        if filepath.endswith(".txt"):
-            with open(filepath, "r") as file:
-                content = file.read()
-        elif filepath.endswith(".pdf"):
-            with open(filepath, "rb") as file:
-                content = read_pdf(file)
+        if filepath.endswith(".pdf"):
+            binary = read_file_binary_content(filepath)     
+            content = read_pdf(binary)
         elif filepath.endswith(".docx"):
-            with open(filepath, "rb") as file:
-                content = read_docx(file)
+            binary = read_file_binary_content(filepath)           
+            content = read_docx(binary)
         else:
-            with open(filepath, "r") as file:
-                content = file.read()
+            content = read_file_content(filepath)          
 
         if gpt_provider == "gemini":
             time.sleep(4)
 
         # Generate the summary using the specified model
-        summary = get_summary(content, filename, gpt_provider, model)
+        summary = get_summary(content, filename, gpt_provider)
         # Save the summary to the uploads directory
 
-        os.makedirs(os.path.dirname(join_path), exist_ok=True)
-        with open(join_path, "w") as summary_file:
-            summary_file.write(summary)
-
+        save_content_to_file(join_path, summary)
+     
         # delay time around
         end_time = time.time()
         print(
@@ -205,7 +142,6 @@ def read_and_summarize_file(filepath, gpt_provider, model, uploads_dir, useCache
             int((end_time - start_time) * 1000),
             "ms\n",
         )
-
         return summary  # Optionally return the summary if needed elsewhere
     except Exception as e:
         return {"error": str(e)}

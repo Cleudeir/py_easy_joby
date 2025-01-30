@@ -17,20 +17,10 @@
             <input type="text" id="project_path" name="project_path" placeholder="e.g. /path/to/project" required>
 
             <label for="gpt_provider">GPT Provider:</label>
-            <select id="gpt_provider" name="gpt_provider" required onchange="toggleModelDropdown()">
+            <select id="gpt_provider" name="gpt_provider" required>
                 <option value="gemini">Gemini</option>
                 <option value="ollama">Ollama</option>
-            </select>
-
-
-            <div id="modelSelection" style="display: none;">
-                <label for="model">Model:</label>
-                <select id="model" name="model">
-                    {% for model in models %}
-                    <option value="{{ model }}">{{ model }}</option>
-                    {% endfor %}
-                </select>
-            </div>
+            </select>         
             <div>
                 <input type="checkbox" id="useCache" name="useCache" checked>
                 Use cache
@@ -38,11 +28,10 @@
             <button type="submit" id="generateDocumentationButton">Generate Documentation</button>
         </form>
 
-        <!-- Documentation Content Section -->
+   
         <div id="documentationContent" style="display: none;">
             <h2>Generated Documentation:</h2>
-            <div id="documentationOutput">
-                <!-- Streamed content will be added here -->
+            <div id="documentationOutput">         
             </div>
         </div>
 
@@ -60,8 +49,6 @@
             // Load the remembered values from localStorage if available
             const savedProjectPath = localStorage.getItem('project_path');
             const savedGptProvider = localStorage.getItem('gpt_provider');
-            const savedModel = localStorage.getItem('model');
-
             if (savedProjectPath) {
                 document.getElementById('project_path').value = savedProjectPath;
             }
@@ -69,28 +56,18 @@
             if (savedGptProvider) {
                 document.getElementById('gpt_provider').value = savedGptProvider;
                 // To show/hide model dropdown based on the provider
-            }
-
-            if (savedModel) {
-                document.getElementById('model').value = savedModel;
-            }
-            toggleModelDropdown();
+            }          
         });
 
         // Display loading overlay and handle form submission
         document.getElementById('documentationForm').addEventListener('submit', function (event) {
             event.preventDefault();
-
             // Save the form values to localStorage
             localStorage.setItem('project_path', document.getElementById('project_path').value);
             localStorage.setItem('gpt_provider', document.getElementById('gpt_provider').value);
-            localStorage.setItem('model', document.getElementById('model').value);
 
             document.getElementById('loadingOverlay').style.display = 'flex';
             document.getElementById('documentationOutput').innerHTML = '';
-
-            // Fetch streaming data from the server
-            console.log('this.action: ', this);
             fetch(this.action, {
                 method: 'POST',
                 body: new FormData(this),
@@ -131,11 +108,6 @@
                     document.getElementById('loadingOverlay').style.display = 'none';
                 });
         });
-
-        function toggleModelDropdown() {
-            const provider = document.getElementById('gpt_provider').value;
-            document.getElementById('modelSelection').style.display = provider === 'ollama' ? 'block' : 'none';
-        }
     </script>
 </body>
 

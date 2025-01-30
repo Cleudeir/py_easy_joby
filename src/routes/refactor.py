@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, Response
 from src.modules.refactor import get_agent_separate, get_agent_similarity
-from src.modules.gpt import get_ollama_models
 import markdown
 import time
 
@@ -8,17 +7,14 @@ refactor_routes = Blueprint('refactor_routes', __name__)
 
 @refactor_routes.route('/refactor', methods=['GET', 'POST'])
 def refactor():
-    available_models = get_ollama_models()
+    
     documentation_html = None
 
     if request.method == 'POST':
-        selected_model = request.form.get('model', '').strip()
         gpt_provider = request.form.get('gpt_provider', '').strip()
-        file = request.files['file']
-        file_content = None
-        
+        file_content = None        
         try:
-            file_content = file.read().decode('utf-8')         
+            file_content = file.read().decode('utf-8')
         except Exception as e:
             documentation_html = f"<p>Error: Não foi possível ler o arquivo ({str(e)})</p>"            
             return Response(documentation_html, mimetype='text/html')
@@ -31,7 +27,7 @@ def refactor():
                 yield markdown.markdown(f"<pre><code id='agent_coder'>{file_content.replace('<', '&lt;')}</code></pre>")
                 time.sleep(0.100)
                 
-                coder = get_agent_separate(gpt_provider, selected_model, file_content)
+                coder = get_agent_separate(gpt_provider, file_content)
                 yield markdown.markdown(f"<pre><code id='agent_coder'>{coder.replace('<', '&lt;')}</code></pre>")
                 
                 agent_evaluation = get_agent_similarity(file_content, coder)
@@ -46,7 +42,7 @@ def refactor():
         except Exception as e:
             error_message = f"Error generating documentation: {str(e)}"
             documentation_html = f"<p>{error_message}</p>"
-            return render_template('agent_summary_reconstruction_code.html', documentation_html=documentation_html, models=available_models)
+            return render_template('agent_summary_reconstruction_code.html', documentation_html=documentation_html)
     
-    return render_template('agent_summary_reconstruction_code.html', documentation_html=documentation_html, models=available_models)
+    return render_template('agent_summary_reconstruction_code.html', documentation_html=documentation_html)
 

@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-from src.modules.gpt import get_ollama_models, get_ollama_response
+from Libs.LLM.Provider import get_ollama_models, get_ollama_text
 
 ollama_response_routes = Blueprint('ollama_response_routes', __name__)
 
@@ -11,7 +11,7 @@ def ollama_response():
         system_prompt = request.form['system_prompt']
         user_prompt = request.form['user_prompt']
 
-        response = get_ollama_response(model, system_prompt, user_prompt)
+        response = get_ollama_text(model, system_prompt, user_prompt)
         return render_template(
             'ollama.html',
             response=response,

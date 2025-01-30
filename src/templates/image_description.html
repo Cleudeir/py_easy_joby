@@ -20,15 +20,6 @@
                 <option value="gemini">Gemini</option>
                 <option value="ollama">Ollama</option>
             </select>
-
-            <div id="modelSelection" style="display: none;">
-                <label for="model">Model:</label>
-                <select id="model" name="model">
-                    {% for model in models %}
-                    <option value="{{ model }}">{{ model }}</option>
-                    {% endfor %}
-                </select>
-            </div>
             <div>
                 <input type="checkbox" id="useCache" name="useCache" checked>
                 Use cache
@@ -47,40 +38,22 @@
     </div>
 
     <script>
-        // Toggle the model dropdown based on the selected provider
-        function toggleModelDropdown() {
-            const provider = document.getElementById('provider').value;
-            const modelSelection = document.getElementById('modelSelection');
-            modelSelection.style.display = provider === 'ollama' ? 'block' : 'none';
-        }
-
-        // Handle form submission
         document.getElementById('imageForm').onsubmit = async (event) => {
             event.preventDefault();
-
-            // Collect form data
             const formData = {
                 path: document.getElementById('path').value,
-                provider: document.getElementById('provider').value,
-                model: document.getElementById('provider').value === 'ollama'
-                    ? document.getElementById('model').value
-                    : '',
+                provider: document.getElementById('provider').value,              
                 useCache: document.getElementById('useCache').checked ? true : false
             };
-
-            // Select the response container
             const streamOutput = document.getElementById('streamOutput');
             document.getElementById('loadingOverlay').style.display = 'flex';
-            streamOutput.innerHTML = ''; // Clear previous results
-
+            streamOutput.innerHTML = '';
             try {
                 const response = await fetch('/process-images', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
                 });
-
-                // Read the streaming response
                 const reader = response.body.getReader();
                 const decoder = new TextDecoder("utf-8");
 
@@ -91,14 +64,11 @@
 
                     if (value) {
                         const chunk = decoder.decode(value, { stream: true });
-                        // Append the received chunk to the output
                         document.getElementById('streamOutput').innerHTML += chunk;
                     }
                 }
-
                 document.getElementById('loadingOverlay').style.display = 'none';
-            } catch (err) {
-                // Handle errors
+            } catch (err) {             
                 console.error('Error:', err);
                 streamOutput.innerHTML = `<p style="color: red;">An unexpected error occurred: ${err.message}</p>`;
             }

@@ -4,7 +4,6 @@ import shutil
 import time
 from PIL import Image
 from flask import Blueprint, render_template, request, current_app, Response, jsonify, stream_with_context
-from src.modules.gpt import  get_ollama_vision_models
 from src.modules.image_description import describe_image_with_ollama, get_images_from_path, describe_image_with_gemini
 import markdown
 
@@ -12,17 +11,14 @@ image_description_routes = Blueprint('image_description_routes', __name__)
 
 @image_description_routes.route("/process-images", methods=["POST", "GET"])
 def image_description():
-    available_models = get_ollama_vision_models()
     if request.method == "GET":
-        return render_template("image_description.html", models=available_models)
+        return render_template("image_description.html")
 
     elif request.method == "POST":
         data = request.json
         input_path = data.get("path")
-        selected_model = data.get('model', '').strip()
         gpt_provider = data.get('provider', '').strip()
-        useCache = data.get("useCache", False)
-        
+        useCache = data.get("useCache", False)        
         output_path = os.path.join(current_app.root_path, 'src/.outputs' + input_path)
         static_image_path = os.path.join(current_app.root_path, 'src/static/images')
         os.makedirs(output_path, exist_ok=True)
@@ -70,9 +66,9 @@ def image_description():
                     continue
                 markdown_text = ''
                 if(gpt_provider == 'gemini'):
-                    markdown_text = describe_image_with_gemini(img)
+                    markdown_text = describe_image_with_gemini([img])
                 elif(gpt_provider == 'ollama'):
-                    markdown_text = describe_image_with_ollama(img, selected_model)
+                    markdown_text = describe_image_with_ollama([img])
                 html_text = markdown.markdown(markdown_text, extensions=['extra', 'tables'])
                 docx_html += html_text
                 file_html = document_html
@@ -83,11 +79,11 @@ def image_description():
             docx_file = os.path.join(output_path, 'project_documentation.docx')
             with open(docx_file, 'wb') as f:
                 f.write(docx_html.encode('utf-8'))
-            # command linux open docx
+            # command Linux open docx
             try:
-                os.system(f"libreoffice {docx_file}")
+                os.system(f"LibreOffice {docx_file}")
             except:
-                print("Libreoffice not found")
+                print("LibreOffice not found")
             
             time.sleep(0.100)            
             yield "<p>Documentation generation complete.</p>\n"

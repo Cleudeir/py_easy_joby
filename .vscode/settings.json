@@ -3,6 +3,7 @@
     "astype",
     "clahe",
     "CLAHE",
+    "dotenv",
     "ESRGAN",
     "flasgger",
     "fout",
@@ -17,6 +18,8 @@
     "jsonify",
     "kmeans",
     "KMEANS",
+    "llava",
+    "mypy",
     "ndarray",
     "nomic",
     "ollama",
@@ -24,9 +27,11 @@
     "pypandoc",
     "pytesseract",
     "RRDB",
+    "subfolders",
     "subindent",
     "thresholding",
     "torchvision",
     "upscaled"
-  ]
+  ],
+  "cSpell.language": "en,pt,pt-BR"
 }

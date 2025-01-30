@@ -1,0 +1,1508 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "google.generativeai",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "google.generativeai",
+        "description": "google.generativeai",
+        "detail": "google.generativeai",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "PIL.Image",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "PIL.Image",
+        "description": "PIL.Image",
+        "detail": "PIL.Image",
+        "documentation": {}
+    },
+    {
+        "label": "ollama",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "ollama",
+        "description": "ollama",
+        "detail": "ollama",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "get_genai_text",
+        "importPath": "src.Libs.LLM.Gemini",
+        "description": "src.Libs.LLM.Gemini",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Gemini",
+        "documentation": {}
+    },
+    {
+        "label": "send_image_to_gemini",
+        "importPath": "src.Libs.LLM.Gemini",
+        "description": "src.Libs.LLM.Gemini",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Gemini",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_embeddings",
+        "importPath": "src.Libs.LLM.Ollama",
+        "description": "src.Libs.LLM.Ollama",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Ollama",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_text",
+        "importPath": "src.Libs.LLM.Ollama",
+        "description": "src.Libs.LLM.Ollama",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Ollama",
+        "documentation": {}
+    },
+    {
+        "label": "send_image_to_ollama",
+        "importPath": "src.Libs.LLM.Ollama",
+        "description": "src.Libs.LLM.Ollama",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Ollama",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "current_app",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "stream_with_context",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "current_app",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "current_app",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "cosine_similarity",
+        "importPath": "sklearn.metrics.pairwise",
+        "description": "sklearn.metrics.pairwise",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics.pairwise",
+        "documentation": {}
+    },
+    {
+        "label": "cosine_similarity",
+        "importPath": "sklearn.metrics.pairwise",
+        "description": "sklearn.metrics.pairwise",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics.pairwise",
+        "documentation": {}
+    },
+    {
+        "label": "get_embeddings",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_text",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_coder",
+        "importPath": "src.Modules.reconstruction.module",
+        "description": "src.Modules.reconstruction.module",
+        "isExtraImport": true,
+        "detail": "src.Modules.reconstruction.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_fix_code",
+        "importPath": "src.Modules.reconstruction.module",
+        "description": "src.Modules.reconstruction.module",
+        "isExtraImport": true,
+        "detail": "src.Modules.reconstruction.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_fix_summary",
+        "importPath": "src.Modules.reconstruction.module",
+        "description": "src.Modules.reconstruction.module",
+        "isExtraImport": true,
+        "detail": "src.Modules.reconstruction.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_improvement",
+        "importPath": "src.Modules.reconstruction.module",
+        "description": "src.Modules.reconstruction.module",
+        "isExtraImport": true,
+        "detail": "src.Modules.reconstruction.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_summary",
+        "importPath": "src.Modules.reconstruction.module",
+        "description": "src.Modules.reconstruction.module",
+        "isExtraImport": true,
+        "detail": "src.Modules.reconstruction.module",
+        "documentation": {}
+    },
+    {
+        "label": "markdown",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "markdown",
+        "description": "markdown",
+        "detail": "markdown",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "save_content_to_file",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "create_folder_by_file_path",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "read_file_binary_content",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "read_file_content",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "save_content_to_file",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "pdfplumber",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pdfplumber",
+        "description": "pdfplumber",
+        "detail": "pdfplumber",
+        "documentation": {}
+    },
+    {
+        "label": "docx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "docx",
+        "description": "docx",
+        "detail": "docx",
+        "documentation": {}
+    },
+    {
+        "label": "send_image_to_gemini",
+        "importPath": "Libs.LLM.Provider",
+        "description": "Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "send_image_to_ollama",
+        "importPath": "Libs.LLM.Provider",
+        "description": "Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_text",
+        "importPath": "Libs.LLM.Provider",
+        "description": "Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_genai_text",
+        "importPath": "Libs.LLM.Provider",
+        "description": "Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_embeddings",
+        "importPath": "Libs.LLM.Provider",
+        "description": "Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_text",
+        "importPath": "Libs.LLM.Provider",
+        "description": "Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_genai_text",
+        "importPath": "Libs.LLM.Provider",
+        "description": "Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_models",
+        "importPath": "Libs.LLM.Provider",
+        "description": "Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_text",
+        "importPath": "Libs.LLM.Provider",
+        "description": "Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_models",
+        "importPath": "Libs.LLM.Provider",
+        "description": "Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "read_pdf",
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "isExtraImport": true,
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_docx",
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "isExtraImport": true,
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_pdf",
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "isExtraImport": true,
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_docx",
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "isExtraImport": true,
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_txt",
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "isExtraImport": true,
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_text",
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "isExtraImport": true,
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_lines",
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "isExtraImport": true,
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_paragraphs",
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "isExtraImport": true,
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "home_routes",
+        "importPath": "src.Modules.Home.route",
+        "description": "src.Modules.Home.route",
+        "isExtraImport": true,
+        "detail": "src.Modules.Home.route",
+        "documentation": {}
+    },
+    {
+        "label": "reconstruction_routes",
+        "importPath": "src.Modules.reconstruction_code.route",
+        "description": "src.Modules.reconstruction_code.route",
+        "isExtraImport": true,
+        "detail": "src.Modules.reconstruction_code.route",
+        "documentation": {}
+    },
+    {
+        "label": "get_directory_structure",
+        "importPath": "src.modules.directory_structure",
+        "description": "src.modules.directory_structure",
+        "isExtraImport": true,
+        "detail": "src.modules.directory_structure",
+        "documentation": {}
+    },
+    {
+        "label": "get_directory_structure",
+        "importPath": "src.modules.directory_structure",
+        "description": "src.modules.directory_structure",
+        "isExtraImport": true,
+        "detail": "src.modules.directory_structure",
+        "documentation": {}
+    },
+    {
+        "label": "io",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "io",
+        "description": "io",
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "describe_image_with_ollama",
+        "importPath": "src.modules.image_description",
+        "description": "src.modules.image_description",
+        "isExtraImport": true,
+        "detail": "src.modules.image_description",
+        "documentation": {}
+    },
+    {
+        "label": "get_images_from_path",
+        "importPath": "src.modules.image_description",
+        "description": "src.modules.image_description",
+        "isExtraImport": true,
+        "detail": "src.modules.image_description",
+        "documentation": {}
+    },
+    {
+        "label": "describe_image_with_gemini",
+        "importPath": "src.modules.image_description",
+        "description": "src.modules.image_description",
+        "isExtraImport": true,
+        "detail": "src.modules.image_description",
+        "documentation": {}
+    },
+    {
+        "label": "fnmatch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "fnmatch",
+        "description": "fnmatch",
+        "detail": "fnmatch",
+        "documentation": {}
+    },
+    {
+        "label": "get_project_files",
+        "importPath": "src.modules.project_documentation",
+        "description": "src.modules.project_documentation",
+        "isExtraImport": true,
+        "detail": "src.modules.project_documentation",
+        "documentation": {}
+    },
+    {
+        "label": "read_and_summarize_file",
+        "importPath": "src.modules.project_documentation",
+        "description": "src.modules.project_documentation",
+        "isExtraImport": true,
+        "detail": "src.modules.project_documentation",
+        "documentation": {}
+    },
+    {
+        "label": "get_generic_summary",
+        "importPath": "src.modules.project_documentation",
+        "description": "src.modules.project_documentation",
+        "isExtraImport": true,
+        "detail": "src.modules.project_documentation",
+        "documentation": {}
+    },
+    {
+        "label": "secure_filename",
+        "importPath": "werkzeug.utils",
+        "description": "werkzeug.utils",
+        "isExtraImport": true,
+        "detail": "werkzeug.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_separate",
+        "importPath": "src.modules.refactor",
+        "description": "src.modules.refactor",
+        "isExtraImport": true,
+        "detail": "src.modules.refactor",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_similarity",
+        "importPath": "src.modules.refactor",
+        "description": "src.modules.refactor",
+        "isExtraImport": true,
+        "detail": "src.modules.refactor",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "register_blueprints",
+        "importPath": "src.routes",
+        "description": "src.routes",
+        "isExtraImport": true,
+        "detail": "src.routes",
+        "documentation": {}
+    },
+    {
+        "label": "setup",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "find_packages",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "get_genai_text",
+        "kind": 2,
+        "importPath": "src.Libs.LLM.Gemini",
+        "description": "src.Libs.LLM.Gemini",
+        "peekOfCode": "def get_genai_text(system_prompt: str, user_prompt: str) -> Response:\n    try:\n        # Configure the API key\n        genai.configure(api_key=GEMINI_API_KEY)\n        # Define the generation configuration\n        generation_config = {\n            \"temperature\": 1,\n            \"top_p\": 0.95,\n            \"top_k\": 40,\n            \"max_output_tokens\": 8192,",
+        "detail": "src.Libs.LLM.Gemini",
+        "documentation": {}
+    },
+    {
+        "label": "send_image_to_gemini",
+        "kind": 2,
+        "importPath": "src.Libs.LLM.Gemini",
+        "description": "src.Libs.LLM.Gemini",
+        "peekOfCode": "def send_image_to_gemini(system_prompt: str, user_prompt: str, images_path: list[str]) -> Union[str, dict]:\n    try:\n        # Configure the API key\n        genai.configure(api_key=GEMINI_API_KEY)\n        for image_path in images_path:\n            print(image_path)\n            file = genai.upload_file(image_path)\n        # Define the generation configuration for Gemini\n        generation_config = {\n            \"temperature\": 1,",
+        "detail": "src.Libs.LLM.Gemini",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "kind": 5,
+        "importPath": "src.Libs.LLM.Gemini",
+        "description": "src.Libs.LLM.Gemini",
+        "peekOfCode": "Response = Union[str, dict]\n# Function to get a response from Google Generative AI with model, system, and user prompts\ndef get_genai_text(system_prompt: str, user_prompt: str) -> Response:\n    try:\n        # Configure the API key\n        genai.configure(api_key=GEMINI_API_KEY)\n        # Define the generation configuration\n        generation_config = {\n            \"temperature\": 1,\n            \"top_p\": 0.95,",
+        "detail": "src.Libs.LLM.Gemini",
+        "documentation": {}
+    },
+    {
+        "label": "send_image_to_ollama",
+        "kind": 2,
+        "importPath": "src.Libs.LLM.Ollama",
+        "description": "src.Libs.LLM.Ollama",
+        "peekOfCode": "def send_image_to_ollama(system_prompt: str, user_prompt: str, images_path:  list[str]) -> Response:\n    try:\n        # Prepare the image and messages to send to Ollama\n        messages = [\n            {\"role\": \"system\", \"content\": system_prompt},\n            {\"role\": \"user\", \"content\": user_prompt, 'images': images_path},\n        ]\n        check_ollama_model_exists(MODEL_OLLAMA_VISION)        \n        # Call ollama.chat with the vision model and messages (assuming a vision-enabled model)\n        response = ollama.chat(model=MODEL_OLLAMA_VISION, messages=messages)",
+        "detail": "src.Libs.LLM.Ollama",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_text",
+        "kind": 2,
+        "importPath": "src.Libs.LLM.Ollama",
+        "description": "src.Libs.LLM.Ollama",
+        "peekOfCode": "def get_ollama_text(system_prompt: str, user_prompt: str) -> dict:\n    try:\n        url = f\"{OLLAMA_BASE_URL}/api/generate\"  # Updated API endpoint\n        headers = {\n            \"Content-Type\": \"application/json\"\n        }\n        payload = {\n            \"model\": MODEL_OLLAMA,  # Replace with the model you're using\n            \"prompt\": f\"{system_prompt}\\n{user_prompt}\",\n            \"stream\": False        ",
+        "detail": "src.Libs.LLM.Ollama",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_embeddings",
+        "kind": 2,
+        "importPath": "src.Libs.LLM.Ollama",
+        "description": "src.Libs.LLM.Ollama",
+        "peekOfCode": "def get_ollama_embeddings(text_input: str) -> Union[list, dict]:\n    try:\n        check_ollama_model_exists(MODEL_EMBEDDING_OLLAMA)\n        # Call ollama.embed with the specified model and input text\n        response = ollama.embed(model=MODEL_EMBEDDING_OLLAMA, input=text_input)\n        # Extract and return the embeddings\n        embeddings = response[\"embeddings\"]\n        return embeddings\n    except Exception as e:\n        return {\"error\": str(e)}",
+        "detail": "src.Libs.LLM.Ollama",
+        "documentation": {}
+    },
+    {
+        "label": "check_ollama_model_exists",
+        "kind": 2,
+        "importPath": "src.Libs.LLM.Ollama",
+        "description": "src.Libs.LLM.Ollama",
+        "peekOfCode": "def check_ollama_model_exists(model_name: str) -> bool:\n    try:\n        # Fetch available models using ollama.list\n        response = client.list()\n        models = response.get(\"models\", [])  # Extract models from the response\n        # Return True if the model exists in the list\n        model_names = [model[\"name\"] for model in models]\n        print(model_names)\n        if(model_name in model_names):     \n         return True",
+        "detail": "src.Libs.LLM.Ollama",
+        "documentation": {}
+    },
+    {
+        "label": "client",
+        "kind": 5,
+        "importPath": "src.Libs.LLM.Ollama",
+        "description": "src.Libs.LLM.Ollama",
+        "peekOfCode": "client = ollama.Client(\n    host=OLLAMA_BASE_URL, headers={\"x-some-header\": \"some-value\"}\n)\n# Type annotation for the response from Ollama and Google Generative AI\nResponse = Union[str, dict]\n# Function to send an image to Ollama's vision model, along with system and user prompts\ndef send_image_to_ollama(system_prompt: str, user_prompt: str, images_path:  list[str]) -> Response:\n    try:\n        # Prepare the image and messages to send to Ollama\n        messages = [",
+        "detail": "src.Libs.LLM.Ollama",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "kind": 5,
+        "importPath": "src.Libs.LLM.Ollama",
+        "description": "src.Libs.LLM.Ollama",
+        "peekOfCode": "Response = Union[str, dict]\n# Function to send an image to Ollama's vision model, along with system and user prompts\ndef send_image_to_ollama(system_prompt: str, user_prompt: str, images_path:  list[str]) -> Response:\n    try:\n        # Prepare the image and messages to send to Ollama\n        messages = [\n            {\"role\": \"system\", \"content\": system_prompt},\n            {\"role\": \"user\", \"content\": user_prompt, 'images': images_path},\n        ]\n        check_ollama_model_exists(MODEL_OLLAMA_VISION)        ",
+        "detail": "src.Libs.LLM.Ollama",
+        "documentation": {}
+    },
+    {
+        "label": "get_text",
+        "kind": 2,
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "peekOfCode": "def get_text(system_prompt: str, user_prompt: str) -> Response:\n    if PROVIDER == \"gemini\":\n        return get_genai_text(system_prompt, user_prompt)\n    elif PROVIDER == \"ollama\":\n        return get_ollama_text(system_prompt, user_prompt)\n    else:\n        return {\"error\": \"Unsupported provider\"}\ndef get_vision(system_prompt: str, user_prompt: str, images_path: list[str]) -> Response:\n    if PROVIDER == \"gemini\":\n        return send_image_to_gemini(system_prompt, user_prompt, images_path)",
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_vision",
+        "kind": 2,
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "peekOfCode": "def get_vision(system_prompt: str, user_prompt: str, images_path: list[str]) -> Response:\n    if PROVIDER == \"gemini\":\n        return send_image_to_gemini(system_prompt, user_prompt, images_path)\n    elif PROVIDER == \"ollama\":    \n        return send_image_to_ollama(system_prompt, user_prompt, images_path)\n    else:\n        return {\"error\": \"Unsupported provider\"}\ndef get_embeddings(system_prompt: str, user_prompt: str) -> Response:\n    if PROVIDER == \"gemini\":\n        return get_ollama_embeddings(system_prompt, user_prompt)",
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_embeddings",
+        "kind": 2,
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "peekOfCode": "def get_embeddings(system_prompt: str, user_prompt: str) -> Response:\n    if PROVIDER == \"gemini\":\n        return get_ollama_embeddings(system_prompt, user_prompt)\n    elif PROVIDER == \"ollama\":\n        return get_ollama_embeddings(system_prompt, user_prompt)\n    else:\n        return {\"error\": \"Unsupported provider\"}",
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "kind": 5,
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "peekOfCode": "Response = Union[str, dict]\ndef get_text(system_prompt: str, user_prompt: str) -> Response:\n    if PROVIDER == \"gemini\":\n        return get_genai_text(system_prompt, user_prompt)\n    elif PROVIDER == \"ollama\":\n        return get_ollama_text(system_prompt, user_prompt)\n    else:\n        return {\"error\": \"Unsupported provider\"}\ndef get_vision(system_prompt: str, user_prompt: str, images_path: list[str]) -> Response:\n    if PROVIDER == \"gemini\":",
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "create_folder_by_file_path",
+        "kind": 2,
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "peekOfCode": "def create_folder_by_file_path(file_path: str) -> None:\n    \"\"\"\n    Creates a folder at the specified path.\n    :param folder_path: Path to the folder to create.\n    \"\"\"\n    try:\n        folder_path = os.path.dirname(file_path)\n        os.makedirs(folder_path, exist_ok=True)\n        print(f\"Folder created at {folder_path}\")\n    except Exception as e:",
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "save_content_to_file",
+        "kind": 2,
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "peekOfCode": "def save_content_to_file(file_path: str, content: str) -> None:\n    \"\"\"\n    Saves the provided content to a file.\n    :param file_path: Path to the file where content will be saved.\n    :param content: The content to write to the file.\n    \"\"\"\n    try:\n        # Create the directory if it doesn't exist\n        os.makedirs(os.path.dirname(file_path), exist_ok=True)\n        with open(file_path, 'w') as file:",
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "read_file_content",
+        "kind": 2,
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "peekOfCode": "def read_file_content(file_path: str) -> str:\n    \"\"\"\n    Reads and returns the content of a specified file.\n    :param file_path: Path to the file to read.\n    :return: Content of the file as a string.\n    \"\"\"\n    try:\n        with open(file_path, 'r') as file:\n            return file.read()\n    except Exception as e:",
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "read_file_binary_content",
+        "kind": 2,
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "peekOfCode": "def read_file_binary_content(file_path: str) -> str:\n    \"\"\"\n    Reads and returns the content of a specified file.\n    :param file_path: Path to the file to read.\n    :return: Content of the file as a string.\n    \"\"\"\n    try:\n        with open(file_path, 'rb') as file:\n            return file.read()\n    except Exception as e:",
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "list_files_in_folder",
+        "kind": 2,
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "peekOfCode": "def list_files_in_folder(folder_path: str, include_subfolders: bool = False) -> list:\n    \"\"\"\n    Lists all files in the given folder and optionally in subfolders.\n    :param folder_path: Path to the folder to list files from.\n    :param include_subfolders: Whether to include files in subfolders.\n    :return: A list of file paths in the folder and subfolders.\n    \"\"\"\n    file_list = []\n    try:\n        for root, _, files in os.walk(folder_path) if include_subfolders else [(folder_path, [], os.listdir(folder_path))]:",
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "read_files_by_extension",
+        "kind": 2,
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "peekOfCode": "def read_files_by_extension(folder_path: str, extension: str, include_subfolders: bool = False) -> dict:\n    \"\"\"\n    Reads all files with the specified extension in a folder and optionally in subfolders, returning their contents.\n    :param folder_path: Path to the folder to search.\n    :param extension: File extension to filter by (e.g., \".txt\").\n    :param include_subfolders: Whether to include files in subfolders.\n    :return: Dictionary with file names as keys and their contents as values.\n    \"\"\"\n    files_content = {}\n    try:",
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "read_all_files_in_folder",
+        "kind": 2,
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "peekOfCode": "def read_all_files_in_folder(folder_path: str, include_subfolders: bool = False) -> dict:\n    \"\"\"\n    Reads all files in a folder and optionally in subfolders, returning their contents.\n    :param folder_path: Path to the folder to read files from.\n    :param include_subfolders: Whether to include files in subfolders.\n    :return: Dictionary with file names as keys and their contents as values.\n    \"\"\"\n    files_content = {}\n    try:\n        for root, _, files in os.walk(folder_path) if include_subfolders else [(folder_path, [], os.listdir(folder_path))]:",
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "home",
+        "kind": 2,
+        "importPath": "src.Modules.Home.route",
+        "description": "src.Modules.Home.route",
+        "peekOfCode": "def home():\n    \"\"\"Home Page\"\"\"\n    return render_template('home.html')",
+        "detail": "src.Modules.Home.route",
+        "documentation": {}
+    },
+    {
+        "label": "home_routes",
+        "kind": 5,
+        "importPath": "src.Modules.Home.route",
+        "description": "src.Modules.Home.route",
+        "peekOfCode": "home_routes = Blueprint('home_routes', __name__, template_folder='.')\n@home_routes.route('/')\ndef home():\n    \"\"\"Home Page\"\"\"\n    return render_template('home.html')",
+        "detail": "src.Modules.Home.route",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_summary",
+        "kind": 2,
+        "importPath": "src.Modules.reconstruction.module",
+        "description": "src.Modules.reconstruction.module",
+        "peekOfCode": "def get_agent_summary(file_content):  \n    system_prompt  = \"You are a software engineer. will create documentation.\"     \n    user_prompt = f\"\"\"\n    {file_content}   \n    Summarize that code.\n    Use this structure:\n    {structure}\n    not use code in the response, not use exemple, no comments, no explanation.  \n    \"\"\"\n    # Use Ollama to generate the summary with the specified model",
+        "detail": "src.Modules.reconstruction.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_coder",
+        "kind": 2,
+        "importPath": "src.Modules.reconstruction.module",
+        "description": "src.Modules.reconstruction.module",
+        "peekOfCode": "def get_agent_coder(summary):   \n    system_prompt  = \"You are a software engineer.\"\n    summary = f\"\"\"\n    create code using that summary of the code:\n    {summary}\n    only create code, no comments in code, no explanation, only code. create with perfect indentation, create complete code.\n    \"\"\"\n    # Use Ollama to generate the summary with the specified model\n    data = get_text( system_prompt, summary)\n    # Check if the response is a dictionary, which indicates an error",
+        "detail": "src.Modules.reconstruction.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_similarity",
+        "kind": 2,
+        "importPath": "src.Modules.reconstruction.module",
+        "description": "src.Modules.reconstruction.module",
+        "peekOfCode": "def get_agent_similarity(file_content, reconstruct_code):\n    embeddings_code = get_embeddings(text_input=file_content)\n    embeddings_reconstruct_code = get_embeddings(text_input=reconstruct_code)\n    similaridade = cosine_similarity(embeddings_code, embeddings_reconstruct_code)\n    return similaridade[0][0]\ndef get_agent_improvement(file_content, code_generation):       \n    system_prompt  = \"You are a software engineer. will create documentation.\"\n    user_prompt =f\"\"\"    \n    That is code a original code:\n    {file_content}",
+        "detail": "src.Modules.reconstruction.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_improvement",
+        "kind": 2,
+        "importPath": "src.Modules.reconstruction.module",
+        "description": "src.Modules.reconstruction.module",
+        "peekOfCode": "def get_agent_improvement(file_content, code_generation):       \n    system_prompt  = \"You are a software engineer. will create documentation.\"\n    user_prompt =f\"\"\"    \n    That is code a original code:\n    {file_content}\n    and this is generated code:\n    {code_generation}\n    Analyze this summary and appoint the missing and wrong points.\n    Response in this structure:\n    ### Missing:",
+        "detail": "src.Modules.reconstruction.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_fix_summary",
+        "kind": 2,
+        "importPath": "src.Modules.reconstruction.module",
+        "description": "src.Modules.reconstruction.module",
+        "peekOfCode": "def get_agent_fix_summary(summary, improvement):  \n    system_prompt = \"You are a software engineer.  will create documentation\"\n    user_prompt = f\"\"\"  \n    That is a summary of the code:\n    {summary}\n    Attention in this appointment:\n    {improvement}\n    improve summary using this structure:\n    {structure}    \n    not use code in the response, not use exemple, no comments, no explanation.",
+        "detail": "src.Modules.reconstruction.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_fix_code",
+        "kind": 2,
+        "importPath": "src.Modules.reconstruction.module",
+        "description": "src.Modules.reconstruction.module",
+        "peekOfCode": "def get_agent_fix_code(code, improvement):  \n    system_prompt = \"You are a software engineer.  will create documentation\"\n    user_prompt = f\"\"\"  \n    That is a code:\n    {code}\n    Attention in this appointment to fix code:\n    {improvement}\n    response only code, no comments in code, no comments, no explanation.    \n    \"\"\"\n    # Use Ollama to generate the summary with the specified model",
+        "detail": "src.Modules.reconstruction.module",
+        "documentation": {}
+    },
+    {
+        "label": "structure",
+        "kind": 5,
+        "importPath": "src.Modules.reconstruction.module",
+        "description": "src.Modules.reconstruction.module",
+        "peekOfCode": "structure = \"\"\"\n    # File Summary\n    ## Language & Frameworks\n        Programming language and frameworks used.\n    ## Purpose\n        Primary goal of the file.\n    ## Functions & Classes\n        List each function or class with inputs and outputs.\n    ## Execution Flow\n        Hierarchical execution flow.",
+        "detail": "src.Modules.reconstruction.module",
+        "documentation": {}
+    },
+    {
+        "label": "reconstruction_code",
+        "kind": 2,
+        "importPath": "src.Modules.reconstruction.route",
+        "description": "src.Modules.reconstruction.route",
+        "peekOfCode": "def reconstruction_code():\n    documentation_html = None\n    if request.method == 'GET':\n         return render_template('reconstruction.html', documentation_html=documentation_html)\n    if request.method == 'POST':\n        file = request.files['file']\n        file_content = None\n        try:\n            file_content = file.read().decode('utf-8')\n        except Exception as e:",
+        "detail": "src.Modules.reconstruction.route",
+        "documentation": {}
+    },
+    {
+        "label": "reconstruction_routes",
+        "kind": 5,
+        "importPath": "src.Modules.reconstruction.route",
+        "description": "src.Modules.reconstruction.route",
+        "peekOfCode": "reconstruction_routes = Blueprint('reconstruction_routes', __name__, template_folder='.')\n@reconstruction_routes.route('/reconstruction_code', methods=['GET', 'POST'])\ndef reconstruction_code():\n    documentation_html = None\n    if request.method == 'GET':\n         return render_template('reconstruction.html', documentation_html=documentation_html)\n    if request.method == 'POST':\n        file = request.files['file']\n        file_content = None\n        try:",
+        "detail": "src.Modules.reconstruction.route",
+        "documentation": {}
+    },
+    {
+        "label": "get_concatenate_project",
+        "kind": 2,
+        "importPath": "src.modules.concatenate_project",
+        "description": "src.modules.concatenate_project",
+        "peekOfCode": "def get_concatenate_project(directory_path):\n    if not os.path.exists(directory_path):\n        return \"Directory does not exist.\"\n    # Generate a unique file name for the concatenated file\n    unique_file_name = f\"concatenated_{uuid.uuid4().hex}.txt\"\n    unique_file_path = os.path.join(directory_path, unique_file_name)\n    structure = []\n    concatenated_content = []\n    for dirpath, dirnames, filenames in os.walk(directory_path):\n        # Ignore any directories that start with '.' or '__'",
+        "detail": "src.modules.concatenate_project",
+        "documentation": {}
+    },
+    {
+        "label": "get_directory_structure",
+        "kind": 2,
+        "importPath": "src.modules.directory_structure",
+        "description": "src.modules.directory_structure",
+        "peekOfCode": "def get_directory_structure(directory_path):\n    if not os.path.exists(directory_path):\n        return \"Directory does not exist.\"\n    structure = []\n    file_contents = []\n    for dirpath, dirnames, filenames in os.walk(directory_path):\n        # Ignore any directories that start with '.' or '__'\n        dirnames[:] = [\n            d\n            for d in dirnames",
+        "detail": "src.modules.directory_structure",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_text",
+        "kind": 2,
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "peekOfCode": "def split_file_by_text(file_content, split_text):\n    \"\"\"\n    Split the given file content by the provided text.\n    :param file_content: The content of the file as a string\n    :param split_text: The text to use as the splitting point\n    :return: A list of strings, each representing a section of the split content\n    \"\"\"\n    sections = file_content.split(split_text)\n    return sections\ndef split_file_by_lines(file_content, lines_per_section):",
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_lines",
+        "kind": 2,
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "peekOfCode": "def split_file_by_lines(file_content, lines_per_section):\n    \"\"\"\n    Split the file content into sections based on the number of lines.\n    :param file_content: The content of the file as a string\n    :param lines_per_section: Number of lines per section\n    :return: A list of strings, each representing a section of the split content\n    \"\"\"\n    lines = file_content.splitlines()\n    sections = [lines[i:i+lines_per_section] for i in range(0, len(lines), lines_per_section)]\n    return ['\\n'.join(section) for section in sections]",
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_paragraphs",
+        "kind": 2,
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "peekOfCode": "def split_file_by_paragraphs(file_content):\n    \"\"\"\n    Split the file content into sections based on paragraphs.\n    :param file_content: The content of the file as a string\n    :return: A list of paragraphs\n    \"\"\"\n    paragraphs = file_content.split('\\n')\n    return paragraphs\ndef read_pdf(file):\n    \"\"\"",
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_pdf",
+        "kind": 2,
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "peekOfCode": "def read_pdf(file):\n    \"\"\"\n    Extract text from a PDF file while preserving original formatting.\n    :param file: File object (PDF)\n    :return: The text content of the PDF as a string\n    \"\"\"\n    text = \"\"\n    with pdfplumber.open(file) as pdf:\n        for page in pdf.pages:\n            # Extract text from the page, preserving layout",
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_docx",
+        "kind": 2,
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "peekOfCode": "def read_docx(file):\n    \"\"\"\n    Extract text from a DOCX file.\n    :param file: File object (DOCX)\n    :return: The text content of the DOCX as a string\n    \"\"\"\n    doc = docx.Document(file)\n    return '\\n'.join([para.text for para in doc.paragraphs])\ndef read_txt(file):\n    \"\"\"",
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_txt",
+        "kind": 2,
+        "importPath": "src.modules.file_processor",
+        "description": "src.modules.file_processor",
+        "peekOfCode": "def read_txt(file):\n    \"\"\"\n    Extract text from a TXT file.\n    :param file: File object (TXT)\n    :return: The text content of the TXT as a string\n    \"\"\"\n    return file.read().decode('utf-8')",
+        "detail": "src.modules.file_processor",
+        "documentation": {}
+    },
+    {
+        "label": "get_images_from_path",
+        "kind": 2,
+        "importPath": "src.modules.image_description",
+        "description": "src.modules.image_description",
+        "peekOfCode": "def get_images_from_path(path: str):\n    \"\"\"\n    Reads a directory and returns a list of image file paths.\n    \"\"\"\n    supported_formats = {\".jpg\", \".jpeg\", \".png\", \".bmp\", \".gif\"}\n    return [\n        os.path.join(path, file)\n        for file in os.listdir(path)\n        if os.path.isfile(os.path.join(path, file)) and os.path.splitext(file)[1].lower() in supported_formats\n    ]",
+        "detail": "src.modules.image_description",
+        "documentation": {}
+    },
+    {
+        "label": "describe_image_with_ollama",
+        "kind": 2,
+        "importPath": "src.modules.image_description",
+        "description": "src.modules.image_description",
+        "peekOfCode": "def describe_image_with_ollama(images_path: list[str]):    \n    return send_image_to_gemini(system_prompt,user_prompt, images_path)\ndef describe_image_with_gemini(images_path: list[str]):\n    return send_image_to_ollama(system_prompt,user_prompt, images_path)",
+        "detail": "src.modules.image_description",
+        "documentation": {}
+    },
+    {
+        "label": "describe_image_with_gemini",
+        "kind": 2,
+        "importPath": "src.modules.image_description",
+        "description": "src.modules.image_description",
+        "peekOfCode": "def describe_image_with_gemini(images_path: list[str]):\n    return send_image_to_ollama(system_prompt,user_prompt, images_path)",
+        "detail": "src.modules.image_description",
+        "documentation": {}
+    },
+    {
+        "label": "system_prompt",
+        "kind": 5,
+        "importPath": "src.modules.image_description",
+        "description": "src.modules.image_description",
+        "peekOfCode": "system_prompt = \"You are a software engineer.  will create documentation\"\nuser_prompt = \"\"\"\n    Analise as Imagens e Ajude a Documentar o Software, flow structure, no comments, no explanation.\n    ## Nome da tela\n    * Nome\n    ## Descrição da tela\n    * breve descrição da tela\n    (Se existir busca e/ou filtro)\n    ## Campos input busca e/ou filtro:\n    Formato de Tabela com campos com a estrutura:",
+        "detail": "src.modules.image_description",
+        "documentation": {}
+    },
+    {
+        "label": "user_prompt",
+        "kind": 5,
+        "importPath": "src.modules.image_description",
+        "description": "src.modules.image_description",
+        "peekOfCode": "user_prompt = \"\"\"\n    Analise as Imagens e Ajude a Documentar o Software, flow structure, no comments, no explanation.\n    ## Nome da tela\n    * Nome\n    ## Descrição da tela\n    * breve descrição da tela\n    (Se existir busca e/ou filtro)\n    ## Campos input busca e/ou filtro:\n    Formato de Tabela com campos com a estrutura:\n    “Nome,Tipo,Validação,Observação”",
+        "detail": "src.modules.image_description",
+        "documentation": {}
+    },
+    {
+        "label": "getGptSummary",
+        "kind": 2,
+        "importPath": "src.modules.project_documentation",
+        "description": "src.modules.project_documentation",
+        "peekOfCode": "def getGptSummary(system_prompt, user_prompt, gpt_provider):\n    summary = None\n    if gpt_provider == \"ollama\":\n        summary = get_ollama_text(system_prompt, user_prompt)\n    elif gpt_provider == \"gemini\":\n        summary = get_genai_text(system_prompt, user_prompt)\n    if isinstance(summary, dict) and \"error\" in summary:\n        return f\"**Error**: {summary['error']}\\n\"\n    return f\"\"\"{summary}\"\"\"\ndef get_summary(content, filename, gpt_provider):",
+        "detail": "src.modules.project_documentation",
+        "documentation": {}
+    },
+    {
+        "label": "get_summary",
+        "kind": 2,
+        "importPath": "src.modules.project_documentation",
+        "description": "src.modules.project_documentation",
+        "peekOfCode": "def get_summary(content, filename, gpt_provider):\n    system_prompt = \"\"\"\n    you are a software engineer creating a project documentation.  \n    \"\"\"\n    initial_user_prompt = f\"\"\"\n    This is a code:\n    {content}\n    Structure:\n    \"\"\"    \n    # ----------------------------------------------------------------------",
+        "detail": "src.modules.project_documentation",
+        "documentation": {}
+    },
+    {
+        "label": "get_generic_summary",
+        "kind": 2,
+        "importPath": "src.modules.project_documentation",
+        "description": "src.modules.project_documentation",
+        "peekOfCode": "def get_generic_summary(summary, gpt_provider):\n    system_prompt = \"\"\"\n    You are a software engineer creating a project summary.\n    \"\"\"\n    initial_user_prompt = f\"\"\"\n    That is summary:\n    {summary}\n    Follow this structure to create a summary:\n    \"\"\"\n    finally_user_prompt = f\"\"\"",
+        "detail": "src.modules.project_documentation",
+        "documentation": {}
+    },
+    {
+        "label": "get_project_files",
+        "kind": 2,
+        "importPath": "src.modules.project_documentation",
+        "description": "src.modules.project_documentation",
+        "peekOfCode": "def get_project_files(directory):\n    \"\"\"\n    Recursively gets all files in the provided directory, excluding paths that start with \".\".\n    \"\"\"\n    project_files = []\n    for root, dirs, files in os.walk(directory):\n        # Skip directories that start with \".\"\n        dirs[:] = [d for d in dirs if not (d.startswith(\".\") or d.startswith(\"__\"))]\n        for file in files:\n            # Only add files with specific extensions and ignore those starting with \".\"",
+        "detail": "src.modules.project_documentation",
+        "documentation": {}
+    },
+    {
+        "label": "read_and_summarize_file",
+        "kind": 2,
+        "importPath": "src.modules.project_documentation",
+        "description": "src.modules.project_documentation",
+        "peekOfCode": "def read_and_summarize_file(filepath, gpt_provider, uploads_dir, useCache):\n    try:\n        \"\"\"\n        Reads a file and returns its summary using the specified model,\n        saving the summary in the uploads directory with the same structure as the original file.\n        \"\"\"\n        # start time\n        start_time = time.time()\n        filename = os.path.basename(filepath)\n        split_path = uploads_dir.split(\"/\")[-1]",
+        "detail": "src.modules.project_documentation",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_separate",
+        "kind": 2,
+        "importPath": "src.modules.refactor",
+        "description": "src.modules.refactor",
+        "peekOfCode": "def get_agent_separate(gpt_provider,  file_content):\n    system_prompt = \"You are a software engineer\"\n    user_prompt = f\"\"\"\n    {file_content}\n    refactor this code, separate in functions, only create code, no comments in code, no explanation, only code. create with perfect indentation, create complete code.\n    \"\"\"\n    # Use Ollama to generate the summary with the specified model\n    if gpt_provider == \"ollama\":\n        data = get_ollama_text(system_prompt, user_prompt)\n    elif gpt_provider == \"gemini\":",
+        "detail": "src.modules.refactor",
+        "documentation": {}
+    },
+    {
+        "label": "get_agent_similarity",
+        "kind": 2,
+        "importPath": "src.modules.refactor",
+        "description": "src.modules.refactor",
+        "peekOfCode": "def get_agent_similarity(file_content, reconstruct_code):\n    embeddings_code = get_ollama_embeddings(        text_input=file_content\n    )\n    embeddings_reconstruct_code = get_ollama_embeddings(        text_input=reconstruct_code\n    )\n    similarity = cosine_similarity(embeddings_code, embeddings_reconstruct_code)\n    return similarity[0][0]",
+        "detail": "src.modules.refactor",
+        "documentation": {}
+    },
+    {
+        "label": "register_blueprints",
+        "kind": 2,
+        "importPath": "src.routes.__init__ copy",
+        "description": "src.routes.__init__ copy",
+        "peekOfCode": "def register_blueprints(app):\n    app.register_blueprint(home_routes)\n    app.register_blueprint(reconstruction_routes)\n    # app.register_blueprint(image_description_routes)\n    # app.register_blueprint(refactor_routes)\n    # app.register_blueprint(project_documentation_routes)\n    # app.register_blueprint(directory_structure_routes)\n    # app.register_blueprint(ollama_response_routes)\n    # app.register_blueprint(file_splitter_routes)\n    # app.register_blueprint(receive_files_routes)",
+        "detail": "src.routes.__init__ copy",
+        "documentation": {}
+    },
+    {
+        "label": "get_directory_structure_route",
+        "kind": 2,
+        "importPath": "src.routes.directory_structure",
+        "description": "src.routes.directory_structure",
+        "peekOfCode": "def get_directory_structure_route():\n    if request.method == \"POST\":\n        directory_path = request.form[\"directory_path\"]\n        structure, content = get_directory_structure(directory_path)\n        html = f\"{structure}</br>\\n\\n{content}\"\n        return render_template(\"directory_structure.html\", structure=html)\n    return render_template(\"directory_structure.html\")",
+        "detail": "src.routes.directory_structure",
+        "documentation": {}
+    },
+    {
+        "label": "directory_structure_routes",
+        "kind": 5,
+        "importPath": "src.routes.directory_structure",
+        "description": "src.routes.directory_structure",
+        "peekOfCode": "directory_structure_routes = Blueprint(\"directory_structure_routes\", __name__)\n@directory_structure_routes.route(\"/get-directory-structure\", methods=[\"GET\", \"POST\"])\ndef get_directory_structure_route():\n    if request.method == \"POST\":\n        directory_path = request.form[\"directory_path\"]\n        structure, content = get_directory_structure(directory_path)\n        html = f\"{structure}</br>\\n\\n{content}\"\n        return render_template(\"directory_structure.html\", structure=html)\n    return render_template(\"directory_structure.html\")",
+        "detail": "src.routes.directory_structure",
+        "documentation": {}
+    },
+    {
+        "label": "file_splitter",
+        "kind": 2,
+        "importPath": "src.routes.file_splitter",
+        "description": "src.routes.file_splitter",
+        "peekOfCode": "def file_splitter():\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        if file.filename.endswith('.pdf'):\n            file_content = read_pdf(file)\n        elif file.filename.endswith('.docx'):\n            file_content = read_docx(file)\n        elif file.filename.endswith('.txt'):",
+        "detail": "src.routes.file_splitter",
+        "documentation": {}
+    },
+    {
+        "label": "file_splitter_routes",
+        "kind": 5,
+        "importPath": "src.routes.file_splitter",
+        "description": "src.routes.file_splitter",
+        "peekOfCode": "file_splitter_routes = Blueprint('file_splitter_routes', __name__)\n@file_splitter_routes.route('/file-splitter', methods=['GET', 'POST'])\ndef file_splitter():\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        if file.filename.endswith('.pdf'):\n            file_content = read_pdf(file)\n        elif file.filename.endswith('.docx'):",
+        "detail": "src.routes.file_splitter",
+        "documentation": {}
+    },
+    {
+        "label": "image_description",
+        "kind": 2,
+        "importPath": "src.routes.image_description",
+        "description": "src.routes.image_description",
+        "peekOfCode": "def image_description():\n    if request.method == \"GET\":\n        return render_template(\"image_description.html\")\n    elif request.method == \"POST\":\n        data = request.json\n        input_path = data.get(\"path\")\n        gpt_provider = data.get('provider', '').strip()\n        useCache = data.get(\"useCache\", False)        \n        output_path = os.path.join(current_app.root_path, 'src/.outputs' + input_path)\n        static_image_path = os.path.join(current_app.root_path, 'src/static/images')",
+        "detail": "src.routes.image_description",
+        "documentation": {}
+    },
+    {
+        "label": "image_description_routes",
+        "kind": 5,
+        "importPath": "src.routes.image_description",
+        "description": "src.routes.image_description",
+        "peekOfCode": "image_description_routes = Blueprint('image_description_routes', __name__)\n@image_description_routes.route(\"/process-images\", methods=[\"POST\", \"GET\"])\ndef image_description():\n    if request.method == \"GET\":\n        return render_template(\"image_description.html\")\n    elif request.method == \"POST\":\n        data = request.json\n        input_path = data.get(\"path\")\n        gpt_provider = data.get('provider', '').strip()\n        useCache = data.get(\"useCache\", False)        ",
+        "detail": "src.routes.image_description",
+        "documentation": {}
+    },
+    {
+        "label": "ollama_response",
+        "kind": 2,
+        "importPath": "src.routes.ollama_response",
+        "description": "src.routes.ollama_response",
+        "peekOfCode": "def ollama_response():\n    models = get_ollama_models()\n    if request.method == 'POST':\n        model = request.form['model']\n        system_prompt = request.form['system_prompt']\n        user_prompt = request.form['user_prompt']\n        response = get_ollama_text(model, system_prompt, user_prompt)\n        return render_template(\n            'ollama.html',\n            response=response,",
+        "detail": "src.routes.ollama_response",
+        "documentation": {}
+    },
+    {
+        "label": "ollama_response_routes",
+        "kind": 5,
+        "importPath": "src.routes.ollama_response",
+        "description": "src.routes.ollama_response",
+        "peekOfCode": "ollama_response_routes = Blueprint('ollama_response_routes', __name__)\n@ollama_response_routes.route('/ollama-response', methods=['GET', 'POST'])\ndef ollama_response():\n    models = get_ollama_models()\n    if request.method == 'POST':\n        model = request.form['model']\n        system_prompt = request.form['system_prompt']\n        user_prompt = request.form['user_prompt']\n        response = get_ollama_text(model, system_prompt, user_prompt)\n        return render_template(",
+        "detail": "src.routes.ollama_response",
+        "documentation": {}
+    },
+    {
+        "label": "get_project_documentation",
+        "kind": 2,
+        "importPath": "src.routes.project_documentation",
+        "description": "src.routes.project_documentation",
+        "peekOfCode": "def get_project_documentation():\n    documentation_html = None\n    if request.method == \"POST\":\n        print(request.form)\n        project_path = request.form.get(\"project_path\", \"\").strip()\n        gpt_provider = request.form.get(\"gpt_provider\", \"\").strip()\n        uploads_dir = os.path.join(current_app.root_path, \"src/.outputs\" + project_path)\n        useCache = request.form.get(\"useCache\", False)\n        if not project_path:\n            documentation_html = \"<p>Error: Project directory path is required.</p>\"",
+        "detail": "src.routes.project_documentation",
+        "documentation": {}
+    },
+    {
+        "label": "project_documentation_routes",
+        "kind": 5,
+        "importPath": "src.routes.project_documentation",
+        "description": "src.routes.project_documentation",
+        "peekOfCode": "project_documentation_routes = Blueprint(\"project_documentation_routes\", __name__)\n@project_documentation_routes.route(\n    \"/get_project_documentation\", methods=[\"GET\", \"POST\"]\n)\ndef get_project_documentation():\n    documentation_html = None\n    if request.method == \"POST\":\n        print(request.form)\n        project_path = request.form.get(\"project_path\", \"\").strip()\n        gpt_provider = request.form.get(\"gpt_provider\", \"\").strip()",
+        "detail": "src.routes.project_documentation",
+        "documentation": {}
+    },
+    {
+        "label": "upload_folder",
+        "kind": 2,
+        "importPath": "src.routes.receive_files",
+        "description": "src.routes.receive_files",
+        "peekOfCode": "def upload_folder():\n    \"\"\"\n    Endpoint to receive and save multiple files uploaded as part of a folder.\n    \"\"\"\n    if request.method == \"GET\":\n        return render_template(\"upload_folder.html\")\n    files = request.files.getlist(\"files[]\")\n    # join src/.outputs/files\n    if not files:\n        return jsonify({\"error\": \"No files uploaded.\"}), 400",
+        "detail": "src.routes.receive_files",
+        "documentation": {}
+    },
+    {
+        "label": "receive_files_routes",
+        "kind": 5,
+        "importPath": "src.routes.receive_files",
+        "description": "src.routes.receive_files",
+        "peekOfCode": "receive_files_routes = Blueprint(\"receive_files_routes\", __name__)\n@receive_files_routes.route(\"/upload-folder\", methods=[\"GET\", \"POST\"])\ndef upload_folder():\n    \"\"\"\n    Endpoint to receive and save multiple files uploaded as part of a folder.\n    \"\"\"\n    if request.method == \"GET\":\n        return render_template(\"upload_folder.html\")\n    files = request.files.getlist(\"files[]\")\n    # join src/.outputs/files",
+        "detail": "src.routes.receive_files",
+        "documentation": {}
+    },
+    {
+        "label": "refactor",
+        "kind": 2,
+        "importPath": "src.routes.refactor",
+        "description": "src.routes.refactor",
+        "peekOfCode": "def refactor():\n    documentation_html = None\n    if request.method == 'POST':\n        gpt_provider = request.form.get('gpt_provider', '').strip()\n        file_content = None        \n        try:\n            file_content = file.read().decode('utf-8')\n        except Exception as e:\n            documentation_html = f\"<p>Error: Não foi possível ler o arquivo ({str(e)})</p>\"            \n            return Response(documentation_html, mimetype='text/html')",
+        "detail": "src.routes.refactor",
+        "documentation": {}
+    },
+    {
+        "label": "refactor_routes",
+        "kind": 5,
+        "importPath": "src.routes.refactor",
+        "description": "src.routes.refactor",
+        "peekOfCode": "refactor_routes = Blueprint('refactor_routes', __name__)\n@refactor_routes.route('/refactor', methods=['GET', 'POST'])\ndef refactor():\n    documentation_html = None\n    if request.method == 'POST':\n        gpt_provider = request.form.get('gpt_provider', '').strip()\n        file_content = None        \n        try:\n            file_content = file.read().decode('utf-8')\n        except Exception as e:",
+        "detail": "src.routes.refactor",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__, template_folder='src/templates', static_folder='src/static')\napp.config.from_object(Config)\n# Register all blueprints\nregister_blueprints(app)\nif __name__ == '__main__':\n    app.run(debug=app.config['DEBUG'])",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "kind": 6,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "class Config:\n    UPLOAD_FOLDER = 'uploads'\n    DEBUG = True\n    SWAGGER = {\n        'title': 'My Flask API',\n        'uiversion': 3\n    }",
+        "detail": "config",
+        "documentation": {}
+    }
+]
