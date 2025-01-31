@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-from src.modules.file_processor import (
+from Libs.File_processor import (
     read_pdf, read_docx, read_txt,
     split_file_by_text, split_file_by_lines, split_file_by_paragraphs
 )

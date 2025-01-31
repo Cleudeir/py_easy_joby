@@ -74,13 +74,7 @@ def get_ollama_text(system_prompt: str, user_prompt: str) -> dict:
             if "</think>" in text:
                 text_after_think = text.split("</think>")[1]
                 text = text_after_think               
-
-            # Extract text inside ```
-            if("```" in text):
-                text_inside_backticks1 = text.split("```")[1]
-                if("```" in text_inside_backticks1):
-                    text_inside_backticks2 = text_inside_backticks1.split("```")[0]
-                    text = text_inside_backticks2               
+            
             return text
         else:
             return {"error": f"Request failed with status code {response.status_code}"}

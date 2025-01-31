@@ -11,31 +11,23 @@
 <body>
     <div class="container">
         <h1>Generate Project Documentation</h1>
-
         <form id="documentationForm" method="POST">
-            <label for="project_path">Project Directory Path:</label>
-            <input type="text" id="project_path" name="project_path" placeholder="e.g. /path/to/project" required>
-
-            <label for="gpt_provider">GPT Provider:</label>
-            <select id="gpt_provider" name="gpt_provider" required>
-                <option value="gemini">Gemini</option>
-                <option value="ollama">Ollama</option>
-            </select>         
+            <label for="project_path">Project Name:</label>
+            <input type="text" id="project_name" name="project_name">
+            <label for="project_path">Select Project Directory:</label>
+            <input type="file" id="project_path" name="project_path" webkitdirectory directory required>    
             <div>
                 <input type="checkbox" id="useCache" name="useCache" checked>
                 Use cache
             </div>
             <button type="submit" id="generateDocumentationButton">Generate Documentation</button>
         </form>
-
-   
+        
         <div id="documentationContent" style="display: none;">
             <h2>Generated Documentation:</h2>
             <div id="documentationOutput">         
             </div>
         </div>
-
-        <!-- Loading Overlay -->
         <div class="loading-overlay" id="loadingOverlay">
             <div id="loading">Generation...</div>
         </div>
@@ -48,15 +40,9 @@
         window.addEventListener('DOMContentLoaded', function () {
             // Load the remembered values from localStorage if available
             const savedProjectPath = localStorage.getItem('project_path');
-            const savedGptProvider = localStorage.getItem('gpt_provider');
             if (savedProjectPath) {
                 document.getElementById('project_path').value = savedProjectPath;
-            }
-
-            if (savedGptProvider) {
-                document.getElementById('gpt_provider').value = savedGptProvider;
-                // To show/hide model dropdown based on the provider
-            }          
+            }              
         });
 
         // Display loading overlay and handle form submission
@@ -64,10 +50,9 @@
             event.preventDefault();
             // Save the form values to localStorage
             localStorage.setItem('project_path', document.getElementById('project_path').value);
-            localStorage.setItem('gpt_provider', document.getElementById('gpt_provider').value);
-
             document.getElementById('loadingOverlay').style.display = 'flex';
             document.getElementById('documentationOutput').innerHTML = '';
+            console.log( new FormData(this))
             fetch(this.action, {
                 method: 'POST',
                 body: new FormData(this),

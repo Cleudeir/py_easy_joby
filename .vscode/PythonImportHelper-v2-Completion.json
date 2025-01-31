@@ -118,6 +118,24 @@
         "documentation": {}
     },
     {
+        "label": "pdfplumber",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pdfplumber",
+        "description": "pdfplumber",
+        "detail": "pdfplumber",
+        "documentation": {}
+    },
+    {
+        "label": "docx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "docx",
+        "description": "docx",
+        "detail": "docx",
+        "documentation": {}
+    },
+    {
         "label": "Blueprint",
         "importPath": "flask",
         "description": "flask",
@@ -127,6 +145,46 @@
     },
     {
         "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "current_app",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
         "importPath": "flask",
         "description": "flask",
         "isExtraImport": true,
@@ -326,46 +384,6 @@
         "documentation": {}
     },
     {
-        "label": "Response",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "Blueprint",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "current_app",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "render_template",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "request",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
         "label": "jsonify",
         "importPath": "flask",
         "description": "flask",
@@ -414,19 +432,109 @@
         "documentation": {}
     },
     {
-        "label": "cosine_similarity",
-        "importPath": "sklearn.metrics.pairwise",
-        "description": "sklearn.metrics.pairwise",
+        "label": "fnmatch",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "sklearn.metrics.pairwise",
+        "importPath": "fnmatch",
+        "description": "fnmatch",
+        "detail": "fnmatch",
         "documentation": {}
     },
     {
-        "label": "cosine_similarity",
-        "importPath": "sklearn.metrics.pairwise",
-        "description": "sklearn.metrics.pairwise",
+        "label": "time",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "sklearn.metrics.pairwise",
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "read_pdf",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_docx",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_pdf",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_docx",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_txt",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_text",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_lines",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_paragraphs",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_text",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_genai_text",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_text",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
         "documentation": {}
     },
     {
@@ -443,6 +551,135 @@
         "description": "src.Libs.LLM.Provider",
         "isExtraImport": true,
         "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "create_folder_by_file_path",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "read_file_binary_content",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "read_file_content",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "save_content_to_file",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "read_file_content",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "save_content_to_file",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "save_image_to_file",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "save_content_to_file",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "get_final_summary",
+        "importPath": "src.Modules.project_documentation.module",
+        "description": "src.Modules.project_documentation.module",
+        "isExtraImport": true,
+        "detail": "src.Modules.project_documentation.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_summary",
+        "importPath": "src.Modules.project_documentation.module",
+        "description": "src.Modules.project_documentation.module",
+        "isExtraImport": true,
+        "detail": "src.Modules.project_documentation.module",
+        "documentation": {}
+    },
+    {
+        "label": "read_and_summarize_file",
+        "importPath": "src.Modules.project_documentation.module",
+        "description": "src.Modules.project_documentation.module",
+        "isExtraImport": true,
+        "detail": "src.Modules.project_documentation.module",
+        "documentation": {}
+    },
+    {
+        "label": "markdown",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "markdown",
+        "description": "markdown",
+        "detail": "markdown",
+        "documentation": {}
+    },
+    {
+        "label": "read_docx",
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_pdf",
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "cosine_similarity",
+        "importPath": "sklearn.metrics.pairwise",
+        "description": "sklearn.metrics.pairwise",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics.pairwise",
+        "documentation": {}
+    },
+    {
+        "label": "cosine_similarity",
+        "importPath": "sklearn.metrics.pairwise",
+        "description": "sklearn.metrics.pairwise",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics.pairwise",
         "documentation": {}
     },
     {
@@ -486,88 +723,12 @@
         "documentation": {}
     },
     {
-        "label": "markdown",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "markdown",
-        "description": "markdown",
-        "detail": "markdown",
-        "documentation": {}
-    },
-    {
-        "label": "time",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "time",
-        "description": "time",
-        "detail": "time",
-        "documentation": {}
-    },
-    {
-        "label": "save_content_to_file",
-        "importPath": "src.Libs.Files",
-        "description": "src.Libs.Files",
-        "isExtraImport": true,
-        "detail": "src.Libs.Files",
-        "documentation": {}
-    },
-    {
-        "label": "create_folder_by_file_path",
-        "importPath": "src.Libs.Files",
-        "description": "src.Libs.Files",
-        "isExtraImport": true,
-        "detail": "src.Libs.Files",
-        "documentation": {}
-    },
-    {
-        "label": "read_file_binary_content",
-        "importPath": "src.Libs.Files",
-        "description": "src.Libs.Files",
-        "isExtraImport": true,
-        "detail": "src.Libs.Files",
-        "documentation": {}
-    },
-    {
-        "label": "read_file_content",
-        "importPath": "src.Libs.Files",
-        "description": "src.Libs.Files",
-        "isExtraImport": true,
-        "detail": "src.Libs.Files",
-        "documentation": {}
-    },
-    {
-        "label": "save_content_to_file",
-        "importPath": "src.Libs.Files",
-        "description": "src.Libs.Files",
-        "isExtraImport": true,
-        "detail": "src.Libs.Files",
-        "documentation": {}
-    },
-    {
         "label": "uuid",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "uuid",
         "description": "uuid",
         "detail": "uuid",
-        "documentation": {}
-    },
-    {
-        "label": "pdfplumber",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "pdfplumber",
-        "description": "pdfplumber",
-        "detail": "pdfplumber",
-        "documentation": {}
-    },
-    {
-        "label": "docx",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "docx",
-        "description": "docx",
-        "detail": "docx",
         "documentation": {}
     },
     {
@@ -580,22 +741,6 @@
     },
     {
         "label": "send_image_to_ollama",
-        "importPath": "Libs.LLM.Provider",
-        "description": "Libs.LLM.Provider",
-        "isExtraImport": true,
-        "detail": "Libs.LLM.Provider",
-        "documentation": {}
-    },
-    {
-        "label": "get_ollama_text",
-        "importPath": "Libs.LLM.Provider",
-        "description": "Libs.LLM.Provider",
-        "isExtraImport": true,
-        "detail": "Libs.LLM.Provider",
-        "documentation": {}
-    },
-    {
-        "label": "get_genai_text",
         "importPath": "Libs.LLM.Provider",
         "description": "Libs.LLM.Provider",
         "isExtraImport": true,
@@ -643,78 +788,6 @@
         "documentation": {}
     },
     {
-        "label": "get_ollama_models",
-        "importPath": "Libs.LLM.Provider",
-        "description": "Libs.LLM.Provider",
-        "isExtraImport": true,
-        "detail": "Libs.LLM.Provider",
-        "documentation": {}
-    },
-    {
-        "label": "read_pdf",
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "isExtraImport": true,
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_docx",
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "isExtraImport": true,
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_pdf",
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "isExtraImport": true,
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_docx",
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "isExtraImport": true,
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_txt",
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "isExtraImport": true,
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
-        "label": "split_file_by_text",
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "isExtraImport": true,
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
-        "label": "split_file_by_lines",
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "isExtraImport": true,
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
-        "label": "split_file_by_paragraphs",
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "isExtraImport": true,
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
         "label": "home_routes",
         "importPath": "src.Modules.Home.route",
         "description": "src.Modules.Home.route",
@@ -728,14 +801,6 @@
         "description": "src.Modules.reconstruction_code.route",
         "isExtraImport": true,
         "detail": "src.Modules.reconstruction_code.route",
-        "documentation": {}
-    },
-    {
-        "label": "get_directory_structure",
-        "importPath": "src.modules.directory_structure",
-        "description": "src.modules.directory_structure",
-        "isExtraImport": true,
-        "detail": "src.modules.directory_structure",
         "documentation": {}
     },
     {
@@ -794,39 +859,6 @@
         "description": "src.modules.image_description",
         "isExtraImport": true,
         "detail": "src.modules.image_description",
-        "documentation": {}
-    },
-    {
-        "label": "fnmatch",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "fnmatch",
-        "description": "fnmatch",
-        "detail": "fnmatch",
-        "documentation": {}
-    },
-    {
-        "label": "get_project_files",
-        "importPath": "src.modules.project_documentation",
-        "description": "src.modules.project_documentation",
-        "isExtraImport": true,
-        "detail": "src.modules.project_documentation",
-        "documentation": {}
-    },
-    {
-        "label": "read_and_summarize_file",
-        "importPath": "src.modules.project_documentation",
-        "description": "src.modules.project_documentation",
-        "isExtraImport": true,
-        "detail": "src.modules.project_documentation",
-        "documentation": {}
-    },
-    {
-        "label": "get_generic_summary",
-        "importPath": "src.modules.project_documentation",
-        "description": "src.modules.project_documentation",
-        "isExtraImport": true,
-        "detail": "src.modules.project_documentation",
         "documentation": {}
     },
     {
@@ -1011,6 +1043,60 @@
         "documentation": {}
     },
     {
+        "label": "split_file_by_text",
+        "kind": 2,
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "peekOfCode": "def split_file_by_text(file_content, split_text):\n    \"\"\"\n    Split the given file content by the provided text.\n    :param file_content: The content of the file as a string\n    :param split_text: The text to use as the splitting point\n    :return: A list of strings, each representing a section of the split content\n    \"\"\"\n    sections = file_content.split(split_text)\n    return sections\ndef split_file_by_lines(file_content, lines_per_section):",
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_lines",
+        "kind": 2,
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "peekOfCode": "def split_file_by_lines(file_content, lines_per_section):\n    \"\"\"\n    Split the file content into sections based on the number of lines.\n    :param file_content: The content of the file as a string\n    :param lines_per_section: Number of lines per section\n    :return: A list of strings, each representing a section of the split content\n    \"\"\"\n    lines = file_content.splitlines()\n    sections = [lines[i:i+lines_per_section] for i in range(0, len(lines), lines_per_section)]\n    return ['\\n'.join(section) for section in sections]",
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_paragraphs",
+        "kind": 2,
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "peekOfCode": "def split_file_by_paragraphs(file_content):\n    \"\"\"\n    Split the file content into sections based on paragraphs.\n    :param file_content: The content of the file as a string\n    :return: A list of paragraphs\n    \"\"\"\n    paragraphs = file_content.split('\\n')\n    return paragraphs\ndef read_pdf(file):\n    \"\"\"",
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_pdf",
+        "kind": 2,
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "peekOfCode": "def read_pdf(file):\n    \"\"\"\n    Extract text from a PDF file while preserving original formatting.\n    :param file: File object (PDF)\n    :return: The text content of the PDF as a string\n    \"\"\"\n    text = \"\"\n    with pdfplumber.open(file) as pdf:\n        for page in pdf.pages:\n            # Extract text from the page, preserving layout",
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_docx",
+        "kind": 2,
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "peekOfCode": "def read_docx(file):\n    \"\"\"\n    Extract text from a DOCX file.\n    :param file: File object (DOCX)\n    :return: The text content of the DOCX as a string\n    \"\"\"\n    doc = docx.Document(file)\n    return '\\n'.join([para.text for para in doc.paragraphs])\ndef read_txt(file):\n    \"\"\"",
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_txt",
+        "kind": 2,
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "peekOfCode": "def read_txt(file):\n    \"\"\"\n    Extract text from a TXT file.\n    :param file: File object (TXT)\n    :return: The text content of the TXT as a string\n    \"\"\"\n    return file.read().decode('utf-8')",
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
         "label": "create_folder_by_file_path",
         "kind": 2,
         "importPath": "src.Libs.Files",
@@ -1025,6 +1111,15 @@
         "importPath": "src.Libs.Files",
         "description": "src.Libs.Files",
         "peekOfCode": "def save_content_to_file(file_path: str, content: str) -> None:\n    \"\"\"\n    Saves the provided content to a file.\n    :param file_path: Path to the file where content will be saved.\n    :param content: The content to write to the file.\n    \"\"\"\n    try:\n        # Create the directory if it doesn't exist\n        os.makedirs(os.path.dirname(file_path), exist_ok=True)\n        with open(file_path, 'w') as file:",
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "save_image_to_file",
+        "kind": 2,
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "peekOfCode": "def save_image_to_file(file_path: str, image_binary: bytes) -> None:\n    \"\"\"\n    Saves an image file in binary format.\n    :param file_path: Path to the image file.\n    :param image_binary: The binary content of the image.\n    \"\"\"\n    try:\n        os.makedirs(os.path.dirname(file_path), exist_ok=True)\n        with open(file_path, 'wb') as img_file:\n            img_file.write(image_binary)",
         "detail": "src.Libs.Files",
         "documentation": {}
     },
@@ -1089,6 +1184,60 @@
         "description": "src.Modules.Home.route",
         "peekOfCode": "home_routes = Blueprint('home_routes', __name__, template_folder='.')\n@home_routes.route('/')\ndef home():\n    \"\"\"Home Page\"\"\"\n    return render_template('home.html')",
         "detail": "src.Modules.Home.route",
+        "documentation": {}
+    },
+    {
+        "label": "get_summary",
+        "kind": 2,
+        "importPath": "src.Modules.project_documentation.module",
+        "description": "src.Modules.project_documentation.module",
+        "peekOfCode": "def get_summary(content, filename):\n    system_prompt = \"\"\"\n    you are a software engineer creating a project documentation.  \n    \"\"\" \n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"\n    This is a code:\n    {content}\n    Structure:\n    # {filename}",
+        "detail": "src.Modules.project_documentation.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_final_summary",
+        "kind": 2,
+        "importPath": "src.Modules.project_documentation.module",
+        "description": "src.Modules.project_documentation.module",
+        "peekOfCode": "def get_final_summary(summary):\n    system_prompt = \"\"\"\n    You are a software engineer creating a project summary.\n    \"\"\"\n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"  \n    That is summary:\n    {summary}\n    Follow this structure to create a summary:\n    ## Summary",
+        "detail": "src.Modules.project_documentation.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_project_files",
+        "kind": 2,
+        "importPath": "src.Modules.project_documentation.module",
+        "description": "src.Modules.project_documentation.module",
+        "peekOfCode": "def get_project_files(files):\n    project_files = []\n    ignore_patterns = [\"project_documentation.txt\", \"readme.txt\"]\n    for file in files:     \n        try:\n            file_name = file.filename\n            print(file_name)\n            if any(fnmatch.fnmatch(file_name, pattern) for pattern in ignore_patterns):                \n                continue\n            if not file_name.startswith(\".\") and file_name.endswith((",
+        "detail": "src.Modules.project_documentation.module",
+        "documentation": {}
+    },
+    {
+        "label": "read_and_summarize_file",
+        "kind": 2,
+        "importPath": "src.Modules.project_documentation.module",
+        "description": "src.Modules.project_documentation.module",
+        "peekOfCode": "def read_and_summarize_file(file, uploads_dir, useCache):\n    try:\n        \"\"\"\n        Reads a file and returns its summary using the specified model,\n        saving the summary in the uploads directory with the same structure as the original file.\n        \"\"\"\n        # start time\n        start_time = time.time()\n        content = file.get(\"content\")\n        filename = file.get(\"name\")",
+        "detail": "src.Modules.project_documentation.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_project_documentation",
+        "kind": 2,
+        "importPath": "src.Modules.project_documentation.route",
+        "description": "src.Modules.project_documentation.route",
+        "peekOfCode": "def get_project_documentation():\n    documentation_html = None\n    if(request.method == \"GET\"):\n        return render_template(\"project_documentation.html\", documentation_html=documentation_html)\n    if request.method == \"POST\":\n        useCache = request.form.get(\"useCache\", False)\n        project_name = request.form.get(\"project_name\", \"\").replace(\" \", \"_\")        \n        if not project_name:\n            return \"<p>Error: Project directory path is required.</p>\"\n        uploads_dir = os.path.join(current_app.root_path, \"src/.outputs/\" + project_name + \"/\")",
+        "detail": "src.Modules.project_documentation.route",
+        "documentation": {}
+    },
+    {
+        "label": "project_documentation_routes",
+        "kind": 5,
+        "importPath": "src.Modules.project_documentation.route",
+        "description": "src.Modules.project_documentation.route",
+        "peekOfCode": "project_documentation_routes = Blueprint(\"project_documentation_routes\", __name__, template_folder=\".\")\n@project_documentation_routes.route(\n    \"/get_project_documentation\", methods=[\"GET\", \"POST\"]\n)\ndef get_project_documentation():\n    documentation_html = None\n    if(request.method == \"GET\"):\n        return render_template(\"project_documentation.html\", documentation_html=documentation_html)\n    if request.method == \"POST\":\n        useCache = request.form.get(\"useCache\", False)",
+        "detail": "src.Modules.project_documentation.route",
         "documentation": {}
     },
     {
@@ -1191,60 +1340,6 @@
         "documentation": {}
     },
     {
-        "label": "split_file_by_text",
-        "kind": 2,
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "peekOfCode": "def split_file_by_text(file_content, split_text):\n    \"\"\"\n    Split the given file content by the provided text.\n    :param file_content: The content of the file as a string\n    :param split_text: The text to use as the splitting point\n    :return: A list of strings, each representing a section of the split content\n    \"\"\"\n    sections = file_content.split(split_text)\n    return sections\ndef split_file_by_lines(file_content, lines_per_section):",
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
-        "label": "split_file_by_lines",
-        "kind": 2,
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "peekOfCode": "def split_file_by_lines(file_content, lines_per_section):\n    \"\"\"\n    Split the file content into sections based on the number of lines.\n    :param file_content: The content of the file as a string\n    :param lines_per_section: Number of lines per section\n    :return: A list of strings, each representing a section of the split content\n    \"\"\"\n    lines = file_content.splitlines()\n    sections = [lines[i:i+lines_per_section] for i in range(0, len(lines), lines_per_section)]\n    return ['\\n'.join(section) for section in sections]",
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
-        "label": "split_file_by_paragraphs",
-        "kind": 2,
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "peekOfCode": "def split_file_by_paragraphs(file_content):\n    \"\"\"\n    Split the file content into sections based on paragraphs.\n    :param file_content: The content of the file as a string\n    :return: A list of paragraphs\n    \"\"\"\n    paragraphs = file_content.split('\\n')\n    return paragraphs\ndef read_pdf(file):\n    \"\"\"",
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_pdf",
-        "kind": 2,
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "peekOfCode": "def read_pdf(file):\n    \"\"\"\n    Extract text from a PDF file while preserving original formatting.\n    :param file: File object (PDF)\n    :return: The text content of the PDF as a string\n    \"\"\"\n    text = \"\"\n    with pdfplumber.open(file) as pdf:\n        for page in pdf.pages:\n            # Extract text from the page, preserving layout",
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_docx",
-        "kind": 2,
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "peekOfCode": "def read_docx(file):\n    \"\"\"\n    Extract text from a DOCX file.\n    :param file: File object (DOCX)\n    :return: The text content of the DOCX as a string\n    \"\"\"\n    doc = docx.Document(file)\n    return '\\n'.join([para.text for para in doc.paragraphs])\ndef read_txt(file):\n    \"\"\"",
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_txt",
-        "kind": 2,
-        "importPath": "src.modules.file_processor",
-        "description": "src.modules.file_processor",
-        "peekOfCode": "def read_txt(file):\n    \"\"\"\n    Extract text from a TXT file.\n    :param file: File object (TXT)\n    :return: The text content of the TXT as a string\n    \"\"\"\n    return file.read().decode('utf-8')",
-        "detail": "src.modules.file_processor",
-        "documentation": {}
-    },
-    {
         "label": "get_images_from_path",
         "kind": 2,
         "importPath": "src.modules.image_description",
@@ -1287,51 +1382,6 @@
         "description": "src.modules.image_description",
         "peekOfCode": "user_prompt = \"\"\"\n    Analise as Imagens e Ajude a Documentar o Software, flow structure, no comments, no explanation.\n    ## Nome da tela\n    * Nome\n    ## Descrição da tela\n    * breve descrição da tela\n    (Se existir busca e/ou filtro)\n    ## Campos input busca e/ou filtro:\n    Formato de Tabela com campos com a estrutura:\n    “Nome,Tipo,Validação,Observação”",
         "detail": "src.modules.image_description",
-        "documentation": {}
-    },
-    {
-        "label": "getGptSummary",
-        "kind": 2,
-        "importPath": "src.modules.project_documentation",
-        "description": "src.modules.project_documentation",
-        "peekOfCode": "def getGptSummary(system_prompt, user_prompt, gpt_provider):\n    summary = None\n    if gpt_provider == \"ollama\":\n        summary = get_ollama_text(system_prompt, user_prompt)\n    elif gpt_provider == \"gemini\":\n        summary = get_genai_text(system_prompt, user_prompt)\n    if isinstance(summary, dict) and \"error\" in summary:\n        return f\"**Error**: {summary['error']}\\n\"\n    return f\"\"\"{summary}\"\"\"\ndef get_summary(content, filename, gpt_provider):",
-        "detail": "src.modules.project_documentation",
-        "documentation": {}
-    },
-    {
-        "label": "get_summary",
-        "kind": 2,
-        "importPath": "src.modules.project_documentation",
-        "description": "src.modules.project_documentation",
-        "peekOfCode": "def get_summary(content, filename, gpt_provider):\n    system_prompt = \"\"\"\n    you are a software engineer creating a project documentation.  \n    \"\"\"\n    initial_user_prompt = f\"\"\"\n    This is a code:\n    {content}\n    Structure:\n    \"\"\"    \n    # ----------------------------------------------------------------------",
-        "detail": "src.modules.project_documentation",
-        "documentation": {}
-    },
-    {
-        "label": "get_generic_summary",
-        "kind": 2,
-        "importPath": "src.modules.project_documentation",
-        "description": "src.modules.project_documentation",
-        "peekOfCode": "def get_generic_summary(summary, gpt_provider):\n    system_prompt = \"\"\"\n    You are a software engineer creating a project summary.\n    \"\"\"\n    initial_user_prompt = f\"\"\"\n    That is summary:\n    {summary}\n    Follow this structure to create a summary:\n    \"\"\"\n    finally_user_prompt = f\"\"\"",
-        "detail": "src.modules.project_documentation",
-        "documentation": {}
-    },
-    {
-        "label": "get_project_files",
-        "kind": 2,
-        "importPath": "src.modules.project_documentation",
-        "description": "src.modules.project_documentation",
-        "peekOfCode": "def get_project_files(directory):\n    \"\"\"\n    Recursively gets all files in the provided directory, excluding paths that start with \".\".\n    \"\"\"\n    project_files = []\n    for root, dirs, files in os.walk(directory):\n        # Skip directories that start with \".\"\n        dirs[:] = [d for d in dirs if not (d.startswith(\".\") or d.startswith(\"__\"))]\n        for file in files:\n            # Only add files with specific extensions and ignore those starting with \".\"",
-        "detail": "src.modules.project_documentation",
-        "documentation": {}
-    },
-    {
-        "label": "read_and_summarize_file",
-        "kind": 2,
-        "importPath": "src.modules.project_documentation",
-        "description": "src.modules.project_documentation",
-        "peekOfCode": "def read_and_summarize_file(filepath, gpt_provider, uploads_dir, useCache):\n    try:\n        \"\"\"\n        Reads a file and returns its summary using the specified model,\n        saving the summary in the uploads directory with the same structure as the original file.\n        \"\"\"\n        # start time\n        start_time = time.time()\n        filename = os.path.basename(filepath)\n        split_path = uploads_dir.split(\"/\")[-1]",
-        "detail": "src.modules.project_documentation",
         "documentation": {}
     },
     {
@@ -1431,24 +1481,6 @@
         "description": "src.routes.ollama_response",
         "peekOfCode": "ollama_response_routes = Blueprint('ollama_response_routes', __name__)\n@ollama_response_routes.route('/ollama-response', methods=['GET', 'POST'])\ndef ollama_response():\n    models = get_ollama_models()\n    if request.method == 'POST':\n        model = request.form['model']\n        system_prompt = request.form['system_prompt']\n        user_prompt = request.form['user_prompt']\n        response = get_ollama_text(model, system_prompt, user_prompt)\n        return render_template(",
         "detail": "src.routes.ollama_response",
-        "documentation": {}
-    },
-    {
-        "label": "get_project_documentation",
-        "kind": 2,
-        "importPath": "src.routes.project_documentation",
-        "description": "src.routes.project_documentation",
-        "peekOfCode": "def get_project_documentation():\n    documentation_html = None\n    if request.method == \"POST\":\n        print(request.form)\n        project_path = request.form.get(\"project_path\", \"\").strip()\n        gpt_provider = request.form.get(\"gpt_provider\", \"\").strip()\n        uploads_dir = os.path.join(current_app.root_path, \"src/.outputs\" + project_path)\n        useCache = request.form.get(\"useCache\", False)\n        if not project_path:\n            documentation_html = \"<p>Error: Project directory path is required.</p>\"",
-        "detail": "src.routes.project_documentation",
-        "documentation": {}
-    },
-    {
-        "label": "project_documentation_routes",
-        "kind": 5,
-        "importPath": "src.routes.project_documentation",
-        "description": "src.routes.project_documentation",
-        "peekOfCode": "project_documentation_routes = Blueprint(\"project_documentation_routes\", __name__)\n@project_documentation_routes.route(\n    \"/get_project_documentation\", methods=[\"GET\", \"POST\"]\n)\ndef get_project_documentation():\n    documentation_html = None\n    if request.method == \"POST\":\n        print(request.form)\n        project_path = request.form.get(\"project_path\", \"\").strip()\n        gpt_provider = request.form.get(\"gpt_provider\", \"\").strip()",
-        "detail": "src.routes.project_documentation",
         "documentation": {}
     },
     {

@@ -27,6 +27,20 @@ def save_content_to_file(file_path: str, content: str) -> None:
     except Exception as e:
         print(f"Error saving content to file: {e}")
 
+def save_image_to_file(file_path: str, image_binary: bytes) -> None:
+    """
+    Saves an image file in binary format.
+    :param file_path: Path to the image file.
+    :param image_binary: The binary content of the image.
+    """
+    try:
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, 'wb') as img_file:
+            img_file.write(image_binary)
+        print(f"Image saved to {file_path}")
+    except Exception as e:
+        print(f"Error saving image to file: {e}")
+
 def read_file_content(file_path: str) -> str:
     """
     Reads and returns the content of a specified file.
