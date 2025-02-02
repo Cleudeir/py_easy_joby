@@ -482,7 +482,7 @@
         "documentation": {}
     },
     {
-        "label": "get_summary",
+        "label": "get_generate_code",
         "importPath": "src.Modules.project_documentation.module",
         "description": "src.Modules.project_documentation.module",
         "isExtraImport": true,
@@ -490,7 +490,7 @@
         "documentation": {}
     },
     {
-        "label": "get_summary_fix_follow",
+        "label": "get_summary",
         "importPath": "src.Modules.project_documentation.module",
         "description": "src.Modules.project_documentation.module",
         "isExtraImport": true,
@@ -556,10 +556,18 @@
     },
     {
         "label": "time_format_string",
-        "importPath": "src.Libs.Time",
-        "description": "src.Libs.Time",
+        "importPath": "Libs.Utils",
+        "description": "Libs.Utils",
         "isExtraImport": true,
-        "detail": "src.Libs.Time",
+        "detail": "Libs.Utils",
+        "documentation": {}
+    },
+    {
+        "label": "extract_code_blocks",
+        "importPath": "src.Libs.Utils",
+        "description": "src.Libs.Utils",
+        "isExtraImport": true,
+        "detail": "src.Libs.Utils",
         "documentation": {}
     },
     {
@@ -1113,12 +1121,21 @@
         "documentation": {}
     },
     {
+        "label": "extract_code_blocks",
+        "kind": 2,
+        "importPath": "src.Libs.Utils",
+        "description": "src.Libs.Utils",
+        "peekOfCode": "def extract_code_blocks(text):\n    pattern = r\"```(?:\\w+)?\\n([\\s\\S]*?)```\"\n    matches = re.findall(pattern, text)\n    return [match.strip() for match in matches][0]\ndef time_format_string(start_time):\n    response_time = (time.time() - start_time) * 1000  # Convert to milliseconds\n    if response_time < 1000:\n        return f\"{response_time:.0f} ms\"\n    seconds = response_time / 1000\n    if seconds < 60:",
+        "detail": "src.Libs.Utils",
+        "documentation": {}
+    },
+    {
         "label": "time_format_string",
         "kind": 2,
-        "importPath": "src.Libs.Time",
-        "description": "src.Libs.Time",
-        "peekOfCode": "def time_format_string(start_time):\n        response_time = (time.time() - start_time) * 1000\n        elapsed_time = f\"{response_time:.2f} ms\"\n        if(response_time > 1000):  \n            elapsed_time = f\"{elapsed_time // 60} min {(elapsed_time % 60):.2f} s\"\n        if(response_time > 60 *1000):\n            elapsed_time = f\"{elapsed_time // (60 * 60)} h {elapsed_time % (60 * 60) // 60} min {elapsed_time % (60 * 60) % 60} s\"\n        if(response_time > 60 * 60 * 1000):\n            elapsed_time = f\"{elapsed_time // (60 * 60 * 24)} d {elapsed_time % (60 * 60 * 24) // (60 * 60)} h {elapsed_time % (60 * 60) // 60} min {elapsed_time % (60 * 60) % 60} s\"\n        if(response_time > 60 * 60 * 24 * 1000):",
-        "detail": "src.Libs.Time",
+        "importPath": "src.Libs.Utils",
+        "description": "src.Libs.Utils",
+        "peekOfCode": "def time_format_string(start_time):\n    response_time = (time.time() - start_time) * 1000  # Convert to milliseconds\n    if response_time < 1000:\n        return f\"{response_time:.0f} ms\"\n    seconds = response_time / 1000\n    if seconds < 60:\n        return f\"{seconds:.2f} s\"\n    minutes = seconds / 60\n    if minutes < 60:\n        return f\"{int(minutes)} min {seconds % 60:.2f} s\"",
+        "detail": "src.Libs.Utils",
         "documentation": {}
     },
     {
@@ -1144,16 +1161,16 @@
         "kind": 2,
         "importPath": "src.Modules.project_documentation.module",
         "description": "src.Modules.project_documentation.module",
-        "peekOfCode": "def get_summary(content):\n    system_prompt = \"\"\"\n    you are a software engineer create documentation explain to the user.  \n    \"\"\" \n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"\n    This is a file, you need summary:\n    {content}\n    Create this one-paragraph summary using terms as an explainer for 18 year olds. no use of code, creation of summary, no comments, no suggestions, no corrections, no explanation.\n    Follow this structure markdown:  ",
+        "peekOfCode": "def get_summary(content):\n    system_prompt = \"\"\"\n    you are a software engineer create documentation explain to the user.  \n    \"\"\" \n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"\n    This is a file, you need summary:\n    {content}\n    Create this one-paragraph summary using layman's terms and non-technical. no use of code, creation of summary, no comments, no suggestions, no corrections, no explanation.\n    Follow this structure markdown:  ",
         "detail": "src.Modules.project_documentation.module",
         "documentation": {}
     },
     {
-        "label": "get_summary_fix_follow",
+        "label": "get_generate_code",
         "kind": 2,
         "importPath": "src.Modules.project_documentation.module",
         "description": "src.Modules.project_documentation.module",
-        "peekOfCode": "def get_summary_fix_follow(content, filename):\n    system_prompt = \"\"\"\n    you are a software engineer create documentation explain to the user.  \n    \"\"\" \n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"\n    This is a summary created :\n    {content}\n    This is a structure:\n       ----",
+        "peekOfCode": "def get_generate_code(file_name, summary):\n    system_prompt = \"\"\"\n    you are a software engineer.  \n    \"\"\" \n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"\n    That is summary the code:\n    {summary}\n    create code for file:{file_name}\n        -use best practices, ",
         "detail": "src.Modules.project_documentation.module",
         "documentation": {}
     },
@@ -1162,7 +1179,7 @@
         "kind": 2,
         "importPath": "src.Modules.project_documentation.module",
         "description": "src.Modules.project_documentation.module",
-        "peekOfCode": "def get_final_summary(summary):\n    system_prompt = \"\"\"\n    you are a software engineer create documentation explain to the user.\n    \"\"\"\n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"  \n    That is summary:\n    {summary}\n    Follow this structure to create a summary:\n    ## Summary",
+        "peekOfCode": "def get_final_summary(summary):\n    system_prompt = \"\"\"\n    you are a software engineer create documentation explain to the user. use all time to elaborate best summary.\n    \"\"\"\n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"  \n    That is summary:\n    {summary}\n    Create a one-paragraph summary using this summary code files, create a summary explain this code base works, your business rules. no use code, no comments, no explanation.\n    Follow this structure to create a summary:",
         "detail": "src.Modules.project_documentation.module",
         "documentation": {}
     },

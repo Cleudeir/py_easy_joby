@@ -10,7 +10,7 @@ def get_summary(content):
     user_prompt = f"""
     This is a file, you need summary:
     {content}
-    Create this one-paragraph summary using terms as an explainer for 18 year olds. no use of code, creation of summary, no comments, no suggestions, no corrections, no explanation.
+    Create this one-paragraph summary using layman's terms and non-technical. no use of code, creation of summary, no comments, no suggestions, no corrections, no explanation.
     Follow this structure markdown:  
     ## Summary
         ...(once paragraph)
@@ -18,44 +18,40 @@ def get_summary(content):
     summary = get_text(system_prompt, user_prompt)   
     return summary
 
-def get_summary_fix_follow(content, filename):
+def get_generate_code(file_name, summary):
     system_prompt = """
-    you are a software engineer create documentation explain to the user.  
+    you are a software engineer.  
     """ 
     # ----------------------------------------------------------------------
     user_prompt = f"""
-    This is a summary created :
-    {content}
-    This is a structure:
-       ----
-        ## File name
-        - {filename}
-        ##  Project purpose and description
-            ... 
-        ----
-    check this summary flow structure, and fix if exists errors:
-     - If exists code , remove all code if exists code, create summary without code.
-     - If exists commends, remove all commends.
-     - If exists explanations, remove all explanations.
-     - If exists suggestions, remove all suggestions.
+    That is summary the code:
+    {summary}
+    create code for file:{file_name}
+        -use best practices, 
+        -complete with all function and logics
+        -no use of code
+        -no comments
+        -no explanation.
+        -using perfect indentation     
     """
-    summary = get_text(system_prompt, user_prompt)   
-    return summary
+    code = get_text(system_prompt, user_prompt)
+    # ----------------------------------------------------------------------   
+    return code
 
 def get_final_summary(summary):
     system_prompt = """
-    you are a software engineer create documentation explain to the user.
+    you are a software engineer create documentation explain to the user. use all time to elaborate best summary.
     """
     # ----------------------------------------------------------------------
     user_prompt = f"""  
     That is summary:
     {summary}
+    Create a one-paragraph summary using this summary code files, create a summary explain this code base works, your business rules. no use code, no comments, no explanation.
     Follow this structure to create a summary:
     ## Summary
         ...(in details) 
     ## Tech Stack 
-        ...(bullet points)
-    obs: Create summary using terms like a explainer to children 18 years old. no use code, Create summary, no comments, no suggestions any fix, no explanation.
+        ...(bullet points)   
     """
     _summary = get_text(system_prompt, user_prompt)
     # ----------------------------------------------------------------------   

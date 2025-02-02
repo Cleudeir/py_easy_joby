@@ -2,12 +2,13 @@ import os
 import fnmatch
 import time
 from flask import Blueprint, current_app, render_template, request, Response
-from src.Modules.project_documentation.module import (get_final_summary, get_summary,
-    get_summary_fix_follow)
+from src.Modules.project_documentation.module import (get_final_summary, get_generate_code,
+    get_summary)
 import markdown
 from src.Libs.Files import read_file_content, save_content_to_file, save_image_to_file
 from src.Libs.File_processor import read_docx, read_pdf
-from src.Libs.Time import time_format_string
+from Libs.Utils import time_format_string
+from src.Libs.Utils import extract_code_blocks
 
 project_documentation_routes = Blueprint("project_documentation_routes", __name__, template_folder=".")
 
@@ -60,7 +61,7 @@ def get_project_documentation():
         def generate_summary():
             combined_summary = ""
             yield "<p>Starting documentation generation...</p>\n"
-            delay = 0.100
+            delay = 0.010
             for content in list_content:
                 start_time = time.time()
                 file_name = content["file_name"]
@@ -69,25 +70,37 @@ def get_project_documentation():
                 summary = None
                 
                 if os.path.exists(summary_path) and useCache:
+                    time.sleep(delay)
                     summary = read_file_content(summary_path)
                 else:                     
                     summary = get_summary(content)
                     save_content_to_file(summary_path, summary)
                     
+          
                 combined_summary += f"## {file_name}\n\n{summary}\n\n"
-                yield markdown.markdown(f"<p>Creating summary for : <strong>{file_name}</strong></p> ")
-                
+                yield markdown.markdown(f"<p>Creating summary for : <strong>{file_name}</strong></p> ")                
                 elapsed_time = time_format_string(start_time)
                 yield markdown.markdown(f"{summary}\n<p>Time render: <strong>{elapsed_time}</strong></p>\n")
                 
+                start_time = time.time()
+                gen_code = get_generate_code(file_name, summary)
+                elapsed_time = time_format_string(start_time)
+                file_code = f"<pre><code id='agent_coder'>{extract_code_blocks(gen_code).replace('<', '&lt;')}</code></pre>\n" 
+                yield markdown.markdown(f"<p>Creating code for : <strong>{file_name}</strong></p> ")
+                yield markdown.markdown(f"{file_code}\n<p>Time render: <strong>{elapsed_time}</strong></p>\n")
+                save_content_to_file(file_path, extract_code_blocks(gen_code))
+            
+            
+            yield markdown.markdown(combined_summary)
+            start_time_final = time.time()
             final_summary = get_final_summary(
                 summary=combined_summary,                            
-            )   
+            )
             time.sleep(delay)
-            start_time = time.time()
-            elapsed_time = time_format_string(start_time)
+            elapsed_time_final = time_format_string(start_time_final)
+            
             yield markdown.markdown(f"<p>Creating summary for : <strong>Readme.md</strong></p> ") 
-            yield markdown.markdown(f"{final_summary}\n<p>Time render: <strong>{elapsed_time}</strong></p>\n")
+            yield markdown.markdown(f"{final_summary}\n<p>Time render: <strong>{elapsed_time_final}</strong></p>\n")
                       
             save_content_to_file(
                 uploads_dir + "README.md",
