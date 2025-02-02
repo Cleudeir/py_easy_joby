@@ -9,16 +9,10 @@ import requests
 
 # Import environment variables at the start
 OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL")
-print('------------')
-print('Ollama Variables\n')
-print(OLLAMA_BASE_URL)
 MODEL_OLLAMA: str = os.getenv("MODEL_OLLAMA")
-print(MODEL_OLLAMA)
 MODEL_OLLAMA_VISION: str = os.getenv("MODEL_OLLAMA_VISION")
-print(MODEL_OLLAMA_VISION)
 MODEL_EMBEDDING_OLLAMA: str = os.getenv("MODEL_EMBEDDING_OLLAMA")
-print(MODEL_EMBEDDING_OLLAMA)
-print('------------')
+
 
 # Setup Ollama client with environment URL
 client = ollama.Client(
@@ -67,14 +61,10 @@ def get_ollama_text(system_prompt: str, user_prompt: str) -> dict:
         if response.status_code == 200:
             response_data = response.json()
             text = response_data.get("response", '')
-            print("Original text:", text)
-
             # Extract text after </think>
-
             if "</think>" in text:
                 text_after_think = text.split("</think>")[1]
-                text = text_after_think               
-            
+                text = text_after_think            
             return text
         else:
             return {"error": f"Request failed with status code {response.status_code}"}

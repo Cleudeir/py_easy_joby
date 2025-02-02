@@ -15,18 +15,17 @@
             <label for="project_path">Project Name:</label>
             <input type="text" id="project_name" name="project_name">
             <label for="project_path">Select Project Directory:</label>
-            <input type="file" id="project_path" name="project_path" webkitdirectory directory required>    
+            <input type="file" id="project_path" name="project_path" multiple webkitdirectory directory required>
             <div>
                 <input type="checkbox" id="useCache" name="useCache" checked>
                 Use cache
             </div>
             <button type="submit" id="generateDocumentationButton">Generate Documentation</button>
         </form>
-        
+
         <div id="documentationContent" style="display: none;">
             <h2>Generated Documentation:</h2>
-            <div id="documentationOutput">         
-            </div>
+            <div id="documentationOutput"></div>
         </div>
         <div class="loading-overlay" id="loadingOverlay">
             <div id="loading">Generation...</div>
@@ -36,63 +35,73 @@
     </div>
 
     <script>
-        // Remember the previously entered values for project_path, gpt_provider, and model
         window.addEventListener('DOMContentLoaded', function () {
-            // Load the remembered values from localStorage if available
             const savedProjectPath = localStorage.getItem('project_path');
             if (savedProjectPath) {
                 document.getElementById('project_path').value = savedProjectPath;
-            }              
+            }
         });
 
-        // Display loading overlay and handle form submission
         document.getElementById('documentationForm').addEventListener('submit', function (event) {
             event.preventDefault();
-            // Save the form values to localStorage
+
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const documentationContent = document.getElementById('documentationContent');
+            const documentationOutput = document.getElementById('documentationOutput');
+
             localStorage.setItem('project_path', document.getElementById('project_path').value);
-            document.getElementById('loadingOverlay').style.display = 'flex';
-            document.getElementById('documentationOutput').innerHTML = '';
-            console.log( new FormData(this))
+
+            // Show loading overlay
+            loadingOverlay.style.display = 'flex';
+            documentationOutput.innerHTML = '';
+
             fetch(this.action, {
                 method: 'POST',
                 body: new FormData(this),
             })
                 .then(response => {
-                    // Ensure response body can be read as text for streaming
                     const reader = response.body.getReader();
                     const decoder = new TextDecoder("utf-8");
 
-                    // Function to process each chunk of streamed data
                     function readStream() {
                         return reader.read().then(({ done, value }) => {
-                            if (done) {
-                                document.getElementById('loadingOverlay').style.display = 'none';
-                                return
+                            if (value) {
+                                documentationContent.style.display = 'block';
+                                const chunk = decoder.decode(value, { stream: true });
+
+                                const div = document.createElement('div');
+                                div.classList.add('markdown-content');
+                                div.innerHTML = chunk;
+
+                                const copyButton = document.createElement('button');
+                                copyButton.innerText = '📋';
+                                copyButton.classList.add('copy-button');
+                                copyButton.onclick = function () {
+                                    navigator.clipboard.writeText(div.innerText.split('📋')[0]);
+                                };
+
+                                div.appendChild(copyButton);
+                                documentationOutput.appendChild(div);
                             }
 
-                            document.getElementById('documentationContent').style.display = 'block';
+                            if (done) {
+                                // Hide loading overlay when fully completed
+                                loadingOverlay.style.display = 'none';
+                                return;
+                            }
 
-                            document.getElementById('loadingOverlay').style.display = 'none';
-
-                            // Append each streamed chunk to the documentation output
-                            const chunk = decoder.decode(value, { stream: true });
-                            const div = document.createElement('div');  // Create a new div for each chunk
-                            div.classList.add('markdown-content');  // Add a class for styling (optional)
-                            div.innerHTML = chunk;  // Set the chunk content
-                            // Append the div containing the chunk to the markdown content
-                            document.getElementById('documentationOutput').appendChild(div);
-                            document.getElementById('loadingOverlay').style.display = 'flex';
-                            document.getElementById('loadingOverlay').scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
                             return readStream();
                         });
                     }
+
                     return readStream();
                 })
                 .catch(error => {
-                    document.getElementById('documentationOutput').innerHTML = `<p>Error: ${error.message}</p>`;
-                    document.getElementById('loadingOverlay').style.display = 'none';
+                    documentationOutput.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+                    loadingOverlay.style.display = 'none';
                 });
         });
+
     </script>
 </body>
 

@@ -1,4 +1,5 @@
 import os
+import time
 from typing import Union
 from src.Libs.LLM.Gemini import get_genai_text, send_image_to_gemini
 from src.Libs.LLM.Ollama import get_ollama_embeddings, get_ollama_text, send_image_to_ollama
@@ -12,6 +13,7 @@ Response = Union[str, dict]
 
 def get_text(system_prompt: str, user_prompt: str) -> Response:
     if PROVIDER == "gemini":
+        time.sleep(4)
         return get_genai_text(system_prompt, user_prompt)
     elif PROVIDER == "ollama":
         return get_ollama_text(system_prompt, user_prompt)
@@ -19,6 +21,7 @@ def get_text(system_prompt: str, user_prompt: str) -> Response:
         return {"error": "Unsupported provider"}
 def get_vision(system_prompt: str, user_prompt: str, images_path: list[str]) -> Response:
     if PROVIDER == "gemini":
+        time.sleep(4)
         return send_image_to_gemini(system_prompt, user_prompt, images_path)
     elif PROVIDER == "ollama":    
         return send_image_to_ollama(system_prompt, user_prompt, images_path)
@@ -26,6 +29,7 @@ def get_vision(system_prompt: str, user_prompt: str, images_path: list[str]) -> 
         return {"error": "Unsupported provider"}
 def get_embeddings(system_prompt: str, user_prompt: str) -> Response:
     if PROVIDER == "gemini":
+        time.sleep(4)
         return get_ollama_embeddings(system_prompt, user_prompt)
     elif PROVIDER == "ollama":
         return get_ollama_embeddings(system_prompt, user_prompt)

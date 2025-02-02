@@ -18,6 +18,15 @@
         "documentation": {}
     },
     {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
         "label": "Union",
         "importPath": "typing",
         "description": "typing",
@@ -432,104 +441,6 @@
         "documentation": {}
     },
     {
-        "label": "fnmatch",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "fnmatch",
-        "description": "fnmatch",
-        "detail": "fnmatch",
-        "documentation": {}
-    },
-    {
-        "label": "time",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "time",
-        "description": "time",
-        "detail": "time",
-        "documentation": {}
-    },
-    {
-        "label": "read_pdf",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_docx",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_pdf",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_docx",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_txt",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "split_file_by_text",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "split_file_by_lines",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "split_file_by_paragraphs",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "get_ollama_text",
-        "importPath": "src.Libs.LLM.Provider",
-        "description": "src.Libs.LLM.Provider",
-        "isExtraImport": true,
-        "detail": "src.Libs.LLM.Provider",
-        "documentation": {}
-    },
-    {
-        "label": "get_genai_text",
-        "importPath": "src.Libs.LLM.Provider",
-        "description": "src.Libs.LLM.Provider",
-        "isExtraImport": true,
-        "detail": "src.Libs.LLM.Provider",
-        "documentation": {}
-    },
-    {
         "label": "get_text",
         "importPath": "src.Libs.LLM.Provider",
         "description": "src.Libs.LLM.Provider",
@@ -554,35 +465,45 @@
         "documentation": {}
     },
     {
-        "label": "create_folder_by_file_path",
-        "importPath": "src.Libs.Files",
-        "description": "src.Libs.Files",
+        "label": "fnmatch",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "src.Libs.Files",
+        "importPath": "fnmatch",
+        "description": "fnmatch",
+        "detail": "fnmatch",
         "documentation": {}
     },
     {
-        "label": "read_file_binary_content",
-        "importPath": "src.Libs.Files",
-        "description": "src.Libs.Files",
+        "label": "get_final_summary",
+        "importPath": "src.Modules.project_documentation.module",
+        "description": "src.Modules.project_documentation.module",
         "isExtraImport": true,
-        "detail": "src.Libs.Files",
+        "detail": "src.Modules.project_documentation.module",
         "documentation": {}
     },
     {
-        "label": "read_file_content",
-        "importPath": "src.Libs.Files",
-        "description": "src.Libs.Files",
+        "label": "get_summary",
+        "importPath": "src.Modules.project_documentation.module",
+        "description": "src.Modules.project_documentation.module",
         "isExtraImport": true,
-        "detail": "src.Libs.Files",
+        "detail": "src.Modules.project_documentation.module",
         "documentation": {}
     },
     {
-        "label": "save_content_to_file",
-        "importPath": "src.Libs.Files",
-        "description": "src.Libs.Files",
+        "label": "get_summary_fix_follow",
+        "importPath": "src.Modules.project_documentation.module",
+        "description": "src.Modules.project_documentation.module",
         "isExtraImport": true,
-        "detail": "src.Libs.Files",
+        "detail": "src.Modules.project_documentation.module",
+        "documentation": {}
+    },
+    {
+        "label": "markdown",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "markdown",
+        "description": "markdown",
+        "detail": "markdown",
         "documentation": {}
     },
     {
@@ -618,39 +539,6 @@
         "documentation": {}
     },
     {
-        "label": "get_final_summary",
-        "importPath": "src.Modules.project_documentation.module",
-        "description": "src.Modules.project_documentation.module",
-        "isExtraImport": true,
-        "detail": "src.Modules.project_documentation.module",
-        "documentation": {}
-    },
-    {
-        "label": "get_summary",
-        "importPath": "src.Modules.project_documentation.module",
-        "description": "src.Modules.project_documentation.module",
-        "isExtraImport": true,
-        "detail": "src.Modules.project_documentation.module",
-        "documentation": {}
-    },
-    {
-        "label": "read_and_summarize_file",
-        "importPath": "src.Modules.project_documentation.module",
-        "description": "src.Modules.project_documentation.module",
-        "isExtraImport": true,
-        "detail": "src.Modules.project_documentation.module",
-        "documentation": {}
-    },
-    {
-        "label": "markdown",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "markdown",
-        "description": "markdown",
-        "detail": "markdown",
-        "documentation": {}
-    },
-    {
         "label": "read_docx",
         "importPath": "src.Libs.File_processor",
         "description": "src.Libs.File_processor",
@@ -664,6 +552,14 @@
         "description": "src.Libs.File_processor",
         "isExtraImport": true,
         "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "time_format_string",
+        "importPath": "src.Libs.Time",
+        "description": "src.Libs.Time",
+        "isExtraImport": true,
+        "detail": "src.Libs.Time",
         "documentation": {}
     },
     {
@@ -809,6 +705,54 @@
         "description": "src.modules.directory_structure",
         "isExtraImport": true,
         "detail": "src.modules.directory_structure",
+        "documentation": {}
+    },
+    {
+        "label": "read_pdf",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_docx",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_txt",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_text",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_lines",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_paragraphs",
+        "importPath": "Libs.File_processor",
+        "description": "Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "Libs.File_processor",
         "documentation": {}
     },
     {
@@ -1011,7 +955,7 @@
         "kind": 2,
         "importPath": "src.Libs.LLM.Provider",
         "description": "src.Libs.LLM.Provider",
-        "peekOfCode": "def get_text(system_prompt: str, user_prompt: str) -> Response:\n    if PROVIDER == \"gemini\":\n        return get_genai_text(system_prompt, user_prompt)\n    elif PROVIDER == \"ollama\":\n        return get_ollama_text(system_prompt, user_prompt)\n    else:\n        return {\"error\": \"Unsupported provider\"}\ndef get_vision(system_prompt: str, user_prompt: str, images_path: list[str]) -> Response:\n    if PROVIDER == \"gemini\":\n        return send_image_to_gemini(system_prompt, user_prompt, images_path)",
+        "peekOfCode": "def get_text(system_prompt: str, user_prompt: str) -> Response:\n    if PROVIDER == \"gemini\":\n        time.sleep(4)\n        return get_genai_text(system_prompt, user_prompt)\n    elif PROVIDER == \"ollama\":\n        return get_ollama_text(system_prompt, user_prompt)\n    else:\n        return {\"error\": \"Unsupported provider\"}\ndef get_vision(system_prompt: str, user_prompt: str, images_path: list[str]) -> Response:\n    if PROVIDER == \"gemini\":",
         "detail": "src.Libs.LLM.Provider",
         "documentation": {}
     },
@@ -1020,7 +964,7 @@
         "kind": 2,
         "importPath": "src.Libs.LLM.Provider",
         "description": "src.Libs.LLM.Provider",
-        "peekOfCode": "def get_vision(system_prompt: str, user_prompt: str, images_path: list[str]) -> Response:\n    if PROVIDER == \"gemini\":\n        return send_image_to_gemini(system_prompt, user_prompt, images_path)\n    elif PROVIDER == \"ollama\":    \n        return send_image_to_ollama(system_prompt, user_prompt, images_path)\n    else:\n        return {\"error\": \"Unsupported provider\"}\ndef get_embeddings(system_prompt: str, user_prompt: str) -> Response:\n    if PROVIDER == \"gemini\":\n        return get_ollama_embeddings(system_prompt, user_prompt)",
+        "peekOfCode": "def get_vision(system_prompt: str, user_prompt: str, images_path: list[str]) -> Response:\n    if PROVIDER == \"gemini\":\n        time.sleep(4)\n        return send_image_to_gemini(system_prompt, user_prompt, images_path)\n    elif PROVIDER == \"ollama\":    \n        return send_image_to_ollama(system_prompt, user_prompt, images_path)\n    else:\n        return {\"error\": \"Unsupported provider\"}\ndef get_embeddings(system_prompt: str, user_prompt: str) -> Response:\n    if PROVIDER == \"gemini\":",
         "detail": "src.Libs.LLM.Provider",
         "documentation": {}
     },
@@ -1029,7 +973,7 @@
         "kind": 2,
         "importPath": "src.Libs.LLM.Provider",
         "description": "src.Libs.LLM.Provider",
-        "peekOfCode": "def get_embeddings(system_prompt: str, user_prompt: str) -> Response:\n    if PROVIDER == \"gemini\":\n        return get_ollama_embeddings(system_prompt, user_prompt)\n    elif PROVIDER == \"ollama\":\n        return get_ollama_embeddings(system_prompt, user_prompt)\n    else:\n        return {\"error\": \"Unsupported provider\"}",
+        "peekOfCode": "def get_embeddings(system_prompt: str, user_prompt: str) -> Response:\n    if PROVIDER == \"gemini\":\n        time.sleep(4)\n        return get_ollama_embeddings(system_prompt, user_prompt)\n    elif PROVIDER == \"ollama\":\n        return get_ollama_embeddings(system_prompt, user_prompt)\n    else:\n        return {\"error\": \"Unsupported provider\"}",
         "detail": "src.Libs.LLM.Provider",
         "documentation": {}
     },
@@ -1038,7 +982,7 @@
         "kind": 5,
         "importPath": "src.Libs.LLM.Provider",
         "description": "src.Libs.LLM.Provider",
-        "peekOfCode": "Response = Union[str, dict]\ndef get_text(system_prompt: str, user_prompt: str) -> Response:\n    if PROVIDER == \"gemini\":\n        return get_genai_text(system_prompt, user_prompt)\n    elif PROVIDER == \"ollama\":\n        return get_ollama_text(system_prompt, user_prompt)\n    else:\n        return {\"error\": \"Unsupported provider\"}\ndef get_vision(system_prompt: str, user_prompt: str, images_path: list[str]) -> Response:\n    if PROVIDER == \"gemini\":",
+        "peekOfCode": "Response = Union[str, dict]\ndef get_text(system_prompt: str, user_prompt: str) -> Response:\n    if PROVIDER == \"gemini\":\n        time.sleep(4)\n        return get_genai_text(system_prompt, user_prompt)\n    elif PROVIDER == \"ollama\":\n        return get_ollama_text(system_prompt, user_prompt)\n    else:\n        return {\"error\": \"Unsupported provider\"}\ndef get_vision(system_prompt: str, user_prompt: str, images_path: list[str]) -> Response:",
         "detail": "src.Libs.LLM.Provider",
         "documentation": {}
     },
@@ -1169,6 +1113,15 @@
         "documentation": {}
     },
     {
+        "label": "time_format_string",
+        "kind": 2,
+        "importPath": "src.Libs.Time",
+        "description": "src.Libs.Time",
+        "peekOfCode": "def time_format_string(start_time):\n        response_time = (time.time() - start_time) * 1000\n        elapsed_time = f\"{response_time:.2f} ms\"\n        if(response_time > 1000):  \n            elapsed_time = f\"{elapsed_time // 60} min {(elapsed_time % 60):.2f} s\"\n        if(response_time > 60 *1000):\n            elapsed_time = f\"{elapsed_time // (60 * 60)} h {elapsed_time % (60 * 60) // 60} min {elapsed_time % (60 * 60) % 60} s\"\n        if(response_time > 60 * 60 * 1000):\n            elapsed_time = f\"{elapsed_time // (60 * 60 * 24)} d {elapsed_time % (60 * 60 * 24) // (60 * 60)} h {elapsed_time % (60 * 60) // 60} min {elapsed_time % (60 * 60) % 60} s\"\n        if(response_time > 60 * 60 * 24 * 1000):",
+        "detail": "src.Libs.Time",
+        "documentation": {}
+    },
+    {
         "label": "home",
         "kind": 2,
         "importPath": "src.Modules.Home.route",
@@ -1191,7 +1144,16 @@
         "kind": 2,
         "importPath": "src.Modules.project_documentation.module",
         "description": "src.Modules.project_documentation.module",
-        "peekOfCode": "def get_summary(content, filename):\n    system_prompt = \"\"\"\n    you are a software engineer creating a project documentation.  \n    \"\"\" \n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"\n    This is a code:\n    {content}\n    Structure:\n    # {filename}",
+        "peekOfCode": "def get_summary(content):\n    system_prompt = \"\"\"\n    you are a software engineer create documentation explain to the user.  \n    \"\"\" \n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"\n    This is a file, you need summary:\n    {content}\n    Create this one-paragraph summary using terms as an explainer for 18 year olds. no use of code, creation of summary, no comments, no suggestions, no corrections, no explanation.\n    Follow this structure markdown:  ",
+        "detail": "src.Modules.project_documentation.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_summary_fix_follow",
+        "kind": 2,
+        "importPath": "src.Modules.project_documentation.module",
+        "description": "src.Modules.project_documentation.module",
+        "peekOfCode": "def get_summary_fix_follow(content, filename):\n    system_prompt = \"\"\"\n    you are a software engineer create documentation explain to the user.  \n    \"\"\" \n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"\n    This is a summary created :\n    {content}\n    This is a structure:\n       ----",
         "detail": "src.Modules.project_documentation.module",
         "documentation": {}
     },
@@ -1200,25 +1162,7 @@
         "kind": 2,
         "importPath": "src.Modules.project_documentation.module",
         "description": "src.Modules.project_documentation.module",
-        "peekOfCode": "def get_final_summary(summary):\n    system_prompt = \"\"\"\n    You are a software engineer creating a project summary.\n    \"\"\"\n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"  \n    That is summary:\n    {summary}\n    Follow this structure to create a summary:\n    ## Summary",
-        "detail": "src.Modules.project_documentation.module",
-        "documentation": {}
-    },
-    {
-        "label": "get_project_files",
-        "kind": 2,
-        "importPath": "src.Modules.project_documentation.module",
-        "description": "src.Modules.project_documentation.module",
-        "peekOfCode": "def get_project_files(files):\n    project_files = []\n    ignore_patterns = [\"project_documentation.txt\", \"readme.txt\"]\n    for file in files:     \n        try:\n            file_name = file.filename\n            print(file_name)\n            if any(fnmatch.fnmatch(file_name, pattern) for pattern in ignore_patterns):                \n                continue\n            if not file_name.startswith(\".\") and file_name.endswith((",
-        "detail": "src.Modules.project_documentation.module",
-        "documentation": {}
-    },
-    {
-        "label": "read_and_summarize_file",
-        "kind": 2,
-        "importPath": "src.Modules.project_documentation.module",
-        "description": "src.Modules.project_documentation.module",
-        "peekOfCode": "def read_and_summarize_file(file, uploads_dir, useCache):\n    try:\n        \"\"\"\n        Reads a file and returns its summary using the specified model,\n        saving the summary in the uploads directory with the same structure as the original file.\n        \"\"\"\n        # start time\n        start_time = time.time()\n        content = file.get(\"content\")\n        filename = file.get(\"name\")",
+        "peekOfCode": "def get_final_summary(summary):\n    system_prompt = \"\"\"\n    you are a software engineer create documentation explain to the user.\n    \"\"\"\n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"  \n    That is summary:\n    {summary}\n    Follow this structure to create a summary:\n    ## Summary",
         "detail": "src.Modules.project_documentation.module",
         "documentation": {}
     },

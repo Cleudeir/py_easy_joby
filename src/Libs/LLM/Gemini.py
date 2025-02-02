@@ -1,5 +1,6 @@
 import os
 import google.generativeai as genai  # M
+import time
 from typing import Union
 import PIL.Image
 
@@ -36,6 +37,7 @@ def get_genai_text(system_prompt: str, user_prompt: str) -> Response:
 
         # Send the user prompt and return the response
         response = chat_session.send_message(user_prompt)
+     
         return response.text
     except Exception as e:
         return {"error": str(e)}
