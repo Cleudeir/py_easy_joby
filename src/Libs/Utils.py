@@ -3,11 +3,29 @@ import re
 
 import re
 
-def extract_code_blocks(text):
-    pattern = r"```(?:\w+)?\n([\s\S]*?)```"
-    matches = re.findall(pattern, text)
-    return [match.strip() for match in matches][0]
+def extract_code_blocks(text_replace):
+    try:
+        text_replace = text_replace
+        if("```" in text_replace):
+            pattern = r"```(?:\w+)?\n([\s\S]*?)```"
+            matches = re.findall(pattern, text_replace)
+            text_replace = [match.strip() for match in matches][0]
+        if("<" in text_replace):
+            return text_replace.replace('<', '&lt;')
+        return text_replace
+    except Exception as e:
+        print(f"Error extracting code blocks: {e}")
+        return ""
 
+def extract_code_replace(text):
+    try:
+        pattern = r"```(?:\w+)?\n([\s\S]*?)```"
+        matches = re.findall(pattern, text)
+        return [match.strip() for match in matches][0]
+    except Exception as e:
+        print(f"Error extracting code blocks: {e}")
+        return ""
+    
 def time_format_string(start_time):
     response_time = (time.time() - start_time) * 1000  # Convert to milliseconds
 

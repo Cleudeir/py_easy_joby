@@ -83,13 +83,20 @@ def get_project_documentation():
                 yield markdown.markdown(f"{summary}\n<p>Time render: <strong>{elapsed_time}</strong></p>\n")
                 
                 start_time = time.time()
-                gen_code = get_generate_code(file_name, summary)
+                
+                gen_code = None
+                if os.path.exists(file_path) and useCache:
+                    time.sleep(delay)
+                    gen_code = read_file_content(file_path)
+                else:                     
+                    gen_code = get_generate_code(file_name, summary)
+                    save_content_to_file(file_path, extract_code_blocks(gen_code))
+                    
                 elapsed_time = time_format_string(start_time)
-                file_code = f"<pre><code id='agent_coder'>{extract_code_blocks(gen_code).replace('<', '&lt;')}</code></pre>\n" 
+                file_code = f"<pre><code id='agent_coder'>{extract_code_blocks(gen_code)}</code></pre>\n" 
                 yield markdown.markdown(f"<p>Creating code for : <strong>{file_name}</strong></p> ")
                 yield markdown.markdown(f"{file_code}\n<p>Time render: <strong>{elapsed_time}</strong></p>\n")
-                save_content_to_file(file_path, extract_code_blocks(gen_code))
-            
+
             
             yield markdown.markdown(combined_summary)
             start_time_final = time.time()

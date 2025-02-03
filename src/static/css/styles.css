@@ -135,16 +135,25 @@ button:hover {
     background-color: #2980b9;
 }
 
-/* Preformatted Text Styles */
+/* Code Block Styles */
 pre {
-    background-color: #f4f4f9;
-    border: 1px solid #dfe6e9;
     padding: 15px;
     overflow-x: auto;
     border-radius: 6px;
-    white-space: pre-wrap;
-    /* Allows long lines to break and wrap */
+    white-space: pre-wrap; /* Allows long lines to break and wrap */
+    font-family: 'Consolas', 'Courier New', monospace; /* VSCode's default font family */
+    font-size: 1em;
+
 }
+
+/* Inline Code Styles */
+code {
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 1em;
+}
+
 
 /* Add this to your existing CSS file for a simple loading spinner */
 #loading::before {
@@ -193,20 +202,6 @@ pre {
     color: #333;
 }
 
-.markdown-content pre {
-    background-color: #f4f4f9;
-    padding: 15px;
-    border-radius: 6px;
-    overflow-x: auto;
-}
-
-
-
-.markdown-content code {
-    background-color: #e8e8e8;
-    padding: 2px 4px;
-    border-radius: 4px;
-}
 
 /* Table Styles */
 table {

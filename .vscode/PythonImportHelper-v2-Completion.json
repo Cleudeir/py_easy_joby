@@ -1125,7 +1125,16 @@
         "kind": 2,
         "importPath": "src.Libs.Utils",
         "description": "src.Libs.Utils",
-        "peekOfCode": "def extract_code_blocks(text):\n    pattern = r\"```(?:\\w+)?\\n([\\s\\S]*?)```\"\n    matches = re.findall(pattern, text)\n    return [match.strip() for match in matches][0]\ndef time_format_string(start_time):\n    response_time = (time.time() - start_time) * 1000  # Convert to milliseconds\n    if response_time < 1000:\n        return f\"{response_time:.0f} ms\"\n    seconds = response_time / 1000\n    if seconds < 60:",
+        "peekOfCode": "def extract_code_blocks(text_replace):\n    try:\n        text_replace = text_replace\n        if(\"```\" in text_replace):\n            pattern = r\"```(?:\\w+)?\\n([\\s\\S]*?)```\"\n            matches = re.findall(pattern, text_replace)\n            text_replace = [match.strip() for match in matches][0]\n        if(\"<\" in text_replace):\n            return text_replace.replace('<', '&lt;')\n        return text_replace",
+        "detail": "src.Libs.Utils",
+        "documentation": {}
+    },
+    {
+        "label": "extract_code_replace",
+        "kind": 2,
+        "importPath": "src.Libs.Utils",
+        "description": "src.Libs.Utils",
+        "peekOfCode": "def extract_code_replace(text):\n    try:\n        pattern = r\"```(?:\\w+)?\\n([\\s\\S]*?)```\"\n        matches = re.findall(pattern, text)\n        return [match.strip() for match in matches][0]\n    except Exception as e:\n        print(f\"Error extracting code blocks: {e}\")\n        return \"\"\ndef time_format_string(start_time):\n    response_time = (time.time() - start_time) * 1000  # Convert to milliseconds",
         "detail": "src.Libs.Utils",
         "documentation": {}
     },
