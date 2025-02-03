@@ -82,9 +82,13 @@
 
                                 div.appendChild(copyButton);
                                 documentationOutput.appendChild(div);
+                                if(chunk.includes("Creating summary for : Readme.md")){
+                                    div.scrollIntoView({ behavior: 'smooth' });
+                                }
                             }
 
                             if (done) {
+                                
                                 // Hide loading overlay when fully completed
                                 loadingOverlay.style.display = 'none';
                                 return;

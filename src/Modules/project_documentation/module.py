@@ -46,12 +46,14 @@ def get_final_summary(summary):
     user_prompt = f"""  
     That is summary:
     {summary}
-    Create a one-paragraph summary using this summary code files, create a summary explain this code base works, your business rules. no use code, no comments, no explanation.
+    Create a three-paragraph summary using this summary code files, create a summary explain this code base works, your business rules. no use code, no comments, no explanation.
     Follow this structure to create a summary:
     ## Summary
-        ...(in details) 
-    ## Tech Stack 
+        ...(in details)
+    ## Business Rules
         ...(bullet points)   
+    ## Tech Stack 
+        ...(bullet points)
     """
     _summary = get_text(system_prompt, user_prompt)
     # ----------------------------------------------------------------------   

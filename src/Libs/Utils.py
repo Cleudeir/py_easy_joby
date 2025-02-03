@@ -3,6 +3,12 @@ import re
 
 import re
 
+def parseTextToWeb(text):
+    text_replace = text
+    if("<" in text_replace):
+            return text_replace.replace('<', '&lt;')
+    return text_replace
+
 def extract_code_blocks(text_replace):
     try:
         text_replace = text_replace
@@ -10,8 +16,6 @@ def extract_code_blocks(text_replace):
             pattern = r"```(?:\w+)?\n([\s\S]*?)```"
             matches = re.findall(pattern, text_replace)
             text_replace = [match.strip() for match in matches][0]
-        if("<" in text_replace):
-            return text_replace.replace('<', '&lt;')
         return text_replace
     except Exception as e:
         print(f"Error extracting code blocks: {e}")

@@ -8,7 +8,7 @@ import markdown
 from src.Libs.Files import read_file_content, save_content_to_file, save_image_to_file
 from src.Libs.File_processor import read_docx, read_pdf
 from Libs.Utils import time_format_string
-from src.Libs.Utils import extract_code_blocks
+from src.Libs.Utils import extract_code_blocks, parseTextToWeb
 
 project_documentation_routes = Blueprint("project_documentation_routes", __name__, template_folder=".")
 
@@ -93,12 +93,10 @@ def get_project_documentation():
                     save_content_to_file(file_path, extract_code_blocks(gen_code))
                     
                 elapsed_time = time_format_string(start_time)
-                file_code = f"<pre><code id='agent_coder'>{extract_code_blocks(gen_code)}</code></pre>\n" 
+                file_code = f"<pre><code id='agent_coder'>{parseTextToWeb(extract_code_blocks(gen_code))}</code></pre>\n" 
                 yield markdown.markdown(f"<p>Creating code for : <strong>{file_name}</strong></p> ")
                 yield markdown.markdown(f"{file_code}\n<p>Time render: <strong>{elapsed_time}</strong></p>\n")
 
-            
-            yield markdown.markdown(combined_summary)
             start_time_final = time.time()
             final_summary = get_final_summary(
                 summary=combined_summary,                            

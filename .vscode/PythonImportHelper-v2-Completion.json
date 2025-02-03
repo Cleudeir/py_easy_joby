@@ -571,6 +571,14 @@
         "documentation": {}
     },
     {
+        "label": "parseTextToWeb",
+        "importPath": "src.Libs.Utils",
+        "description": "src.Libs.Utils",
+        "isExtraImport": true,
+        "detail": "src.Libs.Utils",
+        "documentation": {}
+    },
+    {
         "label": "cosine_similarity",
         "importPath": "sklearn.metrics.pairwise",
         "description": "sklearn.metrics.pairwise",
@@ -1121,11 +1129,20 @@
         "documentation": {}
     },
     {
+        "label": "parseTextToWeb",
+        "kind": 2,
+        "importPath": "src.Libs.Utils",
+        "description": "src.Libs.Utils",
+        "peekOfCode": "def parseTextToWeb(text):\n    text_replace = text\n    if(\"<\" in text_replace):\n            return text_replace.replace('<', '&lt;')\n    return text_replace\ndef extract_code_blocks(text_replace):\n    try:\n        text_replace = text_replace\n        if(\"```\" in text_replace):\n            pattern = r\"```(?:\\w+)?\\n([\\s\\S]*?)```\"",
+        "detail": "src.Libs.Utils",
+        "documentation": {}
+    },
+    {
         "label": "extract_code_blocks",
         "kind": 2,
         "importPath": "src.Libs.Utils",
         "description": "src.Libs.Utils",
-        "peekOfCode": "def extract_code_blocks(text_replace):\n    try:\n        text_replace = text_replace\n        if(\"```\" in text_replace):\n            pattern = r\"```(?:\\w+)?\\n([\\s\\S]*?)```\"\n            matches = re.findall(pattern, text_replace)\n            text_replace = [match.strip() for match in matches][0]\n        if(\"<\" in text_replace):\n            return text_replace.replace('<', '&lt;')\n        return text_replace",
+        "peekOfCode": "def extract_code_blocks(text_replace):\n    try:\n        text_replace = text_replace\n        if(\"```\" in text_replace):\n            pattern = r\"```(?:\\w+)?\\n([\\s\\S]*?)```\"\n            matches = re.findall(pattern, text_replace)\n            text_replace = [match.strip() for match in matches][0]\n        return text_replace\n    except Exception as e:\n        print(f\"Error extracting code blocks: {e}\")",
         "detail": "src.Libs.Utils",
         "documentation": {}
     },
@@ -1188,7 +1205,7 @@
         "kind": 2,
         "importPath": "src.Modules.project_documentation.module",
         "description": "src.Modules.project_documentation.module",
-        "peekOfCode": "def get_final_summary(summary):\n    system_prompt = \"\"\"\n    you are a software engineer create documentation explain to the user. use all time to elaborate best summary.\n    \"\"\"\n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"  \n    That is summary:\n    {summary}\n    Create a one-paragraph summary using this summary code files, create a summary explain this code base works, your business rules. no use code, no comments, no explanation.\n    Follow this structure to create a summary:",
+        "peekOfCode": "def get_final_summary(summary):\n    system_prompt = \"\"\"\n    you are a software engineer create documentation explain to the user. use all time to elaborate best summary.\n    \"\"\"\n    # ----------------------------------------------------------------------\n    user_prompt = f\"\"\"  \n    That is summary:\n    {summary}\n    Create a three-paragraph summary using this summary code files, create a summary explain this code base works, your business rules. no use code, no comments, no explanation.\n    Follow this structure to create a summary:",
         "detail": "src.Modules.project_documentation.module",
         "documentation": {}
     },
