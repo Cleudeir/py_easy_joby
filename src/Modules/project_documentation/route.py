@@ -7,7 +7,7 @@ from src.Modules.project_documentation.module import (get_final_summary, get_gen
 import markdown
 from src.Libs.Files import read_file_content, save_content_to_file, save_image_to_file
 from src.Libs.File_processor import read_docx, read_pdf
-from Libs.Utils import time_format_string
+from src.Libs.Utils import time_format_string
 from src.Libs.Utils import extract_code_blocks, parseTextToWeb
 
 project_documentation_routes = Blueprint("project_documentation_routes", __name__, template_folder=".")

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split File by Method</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script>
+        function toggleSplitValueInput() {
+            const splitMethod = document.getElementById('split_method').value;
+            const splitValueInput = document.getElementById('split_value_input'); // Text input
+            const splitType = document.getElementById('split_value');
+            const splitRegexContainer = document.getElementById('split_regex_container'); // Regex select container
+            if (splitMethod === 'text') {
+                splitValueInput.style.display = 'block';
+                splitRegexContainer.style.display = 'none';
+                splitType.type = 'text';
+            }else if ( splitMethod === 'lines') {
+                splitValueInput.style.display = 'block';
+                splitType.type = 'number';
+                splitRegexContainer.style.display = 'none';
+            } else if (splitMethod === 'regex') {
+                splitValueInput.style.display = 'none';
+                splitRegexContainer.style.display = 'block';
+            } else {
+                splitValueInput.style.display = 'none';
+                splitRegexContainer.style.display = 'none';
+            }
+        }
+
+        function saveFormData() {
+            localStorage.setItem('split_method', document.getElementById('split_method').value);
+            localStorage.setItem('split_value', document.getElementById('split_value').value);
+            localStorage.setItem('split_regex', document.getElementById('split_regex_select').value);
+        }
+
+        function loadFormData() {
+            const splitMethod = localStorage.getItem('split_method');
+            const splitValue = localStorage.getItem('split_value');
+            const splitRegex = localStorage.getItem('split_regex');
+
+            if (splitMethod) {
+                document.getElementById('split_method').value = splitMethod;
+            }
+            if (splitValue) {
+                document.getElementById('split_value').value = splitValue;
+            }
+            if (splitRegex) {
+                document.getElementById('split_regex_select').value = splitRegex;
+            }
+            toggleSplitValueInput();
+        }
+
+        window.onload = function () {
+            loadFormData();
+            document.getElementById('split_method').addEventListener('change', saveFormData);
+            document.getElementById('split_value').addEventListener('input', saveFormData);
+            document.getElementById('split_regex_select').addEventListener('change', saveFormData);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Upload File and Choose Split Method</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            <label for="file">Choose a file (PDF, DOCX, TXT):</label>
+            <input type="file" id="file" name="file" accept="*" required>
+
+            <label for="split_method">Choose a splitting method:</label>
+            <select id="split_method" name="split_method" onchange="toggleSplitValueInput(); saveFormData();" required>
+                <option value="text">Split by Text</option>
+                <option value="lines">Split by Line Number</option>
+                <option value="paragraphs">Split by Paragraphs</option>
+                <option value="regex">Split by Regex</option>
+            </select>
+
+            <!-- Regex select dropdown (only visible when regex is selected) -->
+            <div id="split_regex_container" style="display:none;">
+                <label for="split_regex_select">Choose a regex pattern:</label>
+                <select id="split_regex_select" name="split_regex" onchange="saveFormData();">
+                    <option value="function\s+\w+\s*\([^)]*\)\s*\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}">Function JavaScript</option>
+                </select>
+            </div>
+
+            <!-- Text input (only visible when text or lines are selected) -->
+            <div id="split_value_input" style="display:none;">
+                <label for="split_value">Enter text or line number to split by:</label>
+                <input type="text" id="split_value" name="split_value" placeholder="Text or line number" oninput="saveFormData()">
+            </div>
+
+            <button type="submit">Split File</button>
+        </form>
+
+        <br>
+        <a href="{{ url_for('home_routes.home') }}">Back to Dashboard</a>
+    </div>
+</body>
+
+</html>

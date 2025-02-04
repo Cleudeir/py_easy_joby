@@ -145,6 +145,110 @@
         "documentation": {}
     },
     {
+        "label": "save_content_to_file",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "read_file_content",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "save_content_to_file",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "save_image_to_file",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "save_content_to_file",
+        "importPath": "src.Libs.Files",
+        "description": "src.Libs.Files",
+        "isExtraImport": true,
+        "detail": "src.Libs.Files",
+        "documentation": {}
+    },
+    {
+        "label": "get_text",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_text",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_embeddings",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_text",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "extract_code_blocks",
+        "importPath": "src.Libs.Utils",
+        "description": "src.Libs.Utils",
+        "isExtraImport": true,
+        "detail": "src.Libs.Utils",
+        "documentation": {}
+    },
+    {
+        "label": "time_format_string",
+        "importPath": "src.Libs.Utils",
+        "description": "src.Libs.Utils",
+        "isExtraImport": true,
+        "detail": "src.Libs.Utils",
+        "documentation": {}
+    },
+    {
+        "label": "extract_code_blocks",
+        "importPath": "src.Libs.Utils",
+        "description": "src.Libs.Utils",
+        "isExtraImport": true,
+        "detail": "src.Libs.Utils",
+        "documentation": {}
+    },
+    {
+        "label": "parseTextToWeb",
+        "importPath": "src.Libs.Utils",
+        "description": "src.Libs.Utils",
+        "isExtraImport": true,
+        "detail": "src.Libs.Utils",
+        "documentation": {}
+    },
+    {
         "label": "Blueprint",
         "importPath": "flask",
         "description": "flask",
@@ -154,6 +258,38 @@
     },
     {
         "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "current_app",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
         "importPath": "flask",
         "description": "flask",
         "isExtraImport": true,
@@ -226,30 +362,6 @@
     },
     {
         "label": "Response",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "Blueprint",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "render_template",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "request",
         "importPath": "flask",
         "description": "flask",
         "isExtraImport": true,
@@ -441,27 +553,75 @@
         "documentation": {}
     },
     {
-        "label": "get_text",
-        "importPath": "src.Libs.LLM.Provider",
-        "description": "src.Libs.LLM.Provider",
+        "label": "read_pdf",
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
         "isExtraImport": true,
-        "detail": "src.Libs.LLM.Provider",
+        "detail": "src.Libs.File_processor",
         "documentation": {}
     },
     {
-        "label": "get_embeddings",
-        "importPath": "src.Libs.LLM.Provider",
-        "description": "src.Libs.LLM.Provider",
+        "label": "read_docx",
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
         "isExtraImport": true,
-        "detail": "src.Libs.LLM.Provider",
+        "detail": "src.Libs.File_processor",
         "documentation": {}
     },
     {
-        "label": "get_text",
-        "importPath": "src.Libs.LLM.Provider",
-        "description": "src.Libs.LLM.Provider",
+        "label": "read_txt",
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
         "isExtraImport": true,
-        "detail": "src.Libs.LLM.Provider",
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_regex",
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_text",
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_lines",
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_paragraphs",
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_docx",
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "read_pdf",
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "isExtraImport": true,
+        "detail": "src.Libs.File_processor",
         "documentation": {}
     },
     {
@@ -504,78 +664,6 @@
         "importPath": "markdown",
         "description": "markdown",
         "detail": "markdown",
-        "documentation": {}
-    },
-    {
-        "label": "read_file_content",
-        "importPath": "src.Libs.Files",
-        "description": "src.Libs.Files",
-        "isExtraImport": true,
-        "detail": "src.Libs.Files",
-        "documentation": {}
-    },
-    {
-        "label": "save_content_to_file",
-        "importPath": "src.Libs.Files",
-        "description": "src.Libs.Files",
-        "isExtraImport": true,
-        "detail": "src.Libs.Files",
-        "documentation": {}
-    },
-    {
-        "label": "save_image_to_file",
-        "importPath": "src.Libs.Files",
-        "description": "src.Libs.Files",
-        "isExtraImport": true,
-        "detail": "src.Libs.Files",
-        "documentation": {}
-    },
-    {
-        "label": "save_content_to_file",
-        "importPath": "src.Libs.Files",
-        "description": "src.Libs.Files",
-        "isExtraImport": true,
-        "detail": "src.Libs.Files",
-        "documentation": {}
-    },
-    {
-        "label": "read_docx",
-        "importPath": "src.Libs.File_processor",
-        "description": "src.Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "src.Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_pdf",
-        "importPath": "src.Libs.File_processor",
-        "description": "src.Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "src.Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "time_format_string",
-        "importPath": "Libs.Utils",
-        "description": "Libs.Utils",
-        "isExtraImport": true,
-        "detail": "Libs.Utils",
-        "documentation": {}
-    },
-    {
-        "label": "extract_code_blocks",
-        "importPath": "src.Libs.Utils",
-        "description": "src.Libs.Utils",
-        "isExtraImport": true,
-        "detail": "src.Libs.Utils",
-        "documentation": {}
-    },
-    {
-        "label": "parseTextToWeb",
-        "importPath": "src.Libs.Utils",
-        "description": "src.Libs.Utils",
-        "isExtraImport": true,
-        "detail": "src.Libs.Utils",
         "documentation": {}
     },
     {
@@ -721,54 +809,6 @@
         "description": "src.modules.directory_structure",
         "isExtraImport": true,
         "detail": "src.modules.directory_structure",
-        "documentation": {}
-    },
-    {
-        "label": "read_pdf",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_docx",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_txt",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "split_file_by_text",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "split_file_by_lines",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "split_file_by_paragraphs",
-        "importPath": "Libs.File_processor",
-        "description": "Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "Libs.File_processor",
         "documentation": {}
     },
     {
@@ -1007,7 +1047,16 @@
         "kind": 2,
         "importPath": "src.Libs.File_processor",
         "description": "src.Libs.File_processor",
-        "peekOfCode": "def split_file_by_text(file_content, split_text):\n    \"\"\"\n    Split the given file content by the provided text.\n    :param file_content: The content of the file as a string\n    :param split_text: The text to use as the splitting point\n    :return: A list of strings, each representing a section of the split content\n    \"\"\"\n    sections = file_content.split(split_text)\n    return sections\ndef split_file_by_lines(file_content, lines_per_section):",
+        "peekOfCode": "def split_file_by_text(file_content, split_text, uploads_dir):\n    \"\"\"\n    Split the given file content by the provided text.\n    :param file_content: The content of the file as a string\n    :param split_text: The text to use as the splitting point\n    :return: A list of strings, each representing a section of the split content\n    \"\"\"\n    sections = file_content.split(split_text)\n    insertSplit_text = []\n    for index in range(len(sections)):",
+        "detail": "src.Libs.File_processor",
+        "documentation": {}
+    },
+    {
+        "label": "split_file_by_regex",
+        "kind": 2,
+        "importPath": "src.Libs.File_processor",
+        "description": "src.Libs.File_processor",
+        "peekOfCode": "def split_file_by_regex(file_content, regex, uploads_dir):\n    print(\"regex\", regex)\n    \"\"\"\n    Split the given file content by the provided text.\n    :param file_content: The content of the file as a string\n    :param split_text: The text to use as the splitting point\n    :return: A list of strings, each representing a section of the split content\n    \"\"\"\n    sections = re.findall(regex, file_content, re.DOTALL)\n    insertSplit_text = []",
         "detail": "src.Libs.File_processor",
         "documentation": {}
     },
@@ -1183,6 +1232,24 @@
         "documentation": {}
     },
     {
+        "label": "file_splitter",
+        "kind": 2,
+        "importPath": "src.Modules.file_splitter.route",
+        "description": "src.Modules.file_splitter.route",
+        "peekOfCode": "def file_splitter():\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        split_regex = request.form.get('split_regex', '')\n        file_name = file.filename\n        uploads_dir = os.path.join(current_app.root_path, \"src/.outputs/\" + file_name +\"/\"+ split_method + \"/\")\n        # remove contents of uploads dir\n        if os.path.exists(uploads_dir):",
+        "detail": "src.Modules.file_splitter.route",
+        "documentation": {}
+    },
+    {
+        "label": "file_splitter_routes",
+        "kind": 5,
+        "importPath": "src.Modules.file_splitter.route",
+        "description": "src.Modules.file_splitter.route",
+        "peekOfCode": "file_splitter_routes = Blueprint('file_splitter_routes', __name__, template_folder='.')\n@file_splitter_routes.route('/file-splitter', methods=['GET', 'POST'])\ndef file_splitter():\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        split_regex = request.form.get('split_regex', '')\n        file_name = file.filename\n        uploads_dir = os.path.join(current_app.root_path, \"src/.outputs/\" + file_name +\"/\"+ split_method + \"/\")",
+        "detail": "src.Modules.file_splitter.route",
+        "documentation": {}
+    },
+    {
         "label": "get_summary",
         "kind": 2,
         "importPath": "src.Modules.project_documentation.module",
@@ -1311,82 +1378,82 @@
     {
         "label": "get_concatenate_project",
         "kind": 2,
-        "importPath": "src.modules.concatenate_project",
-        "description": "src.modules.concatenate_project",
+        "importPath": "src.functions.concatenate_project",
+        "description": "src.functions.concatenate_project",
         "peekOfCode": "def get_concatenate_project(directory_path):\n    if not os.path.exists(directory_path):\n        return \"Directory does not exist.\"\n    # Generate a unique file name for the concatenated file\n    unique_file_name = f\"concatenated_{uuid.uuid4().hex}.txt\"\n    unique_file_path = os.path.join(directory_path, unique_file_name)\n    structure = []\n    concatenated_content = []\n    for dirpath, dirnames, filenames in os.walk(directory_path):\n        # Ignore any directories that start with '.' or '__'",
-        "detail": "src.modules.concatenate_project",
+        "detail": "src.functions.concatenate_project",
         "documentation": {}
     },
     {
         "label": "get_directory_structure",
         "kind": 2,
-        "importPath": "src.modules.directory_structure",
-        "description": "src.modules.directory_structure",
+        "importPath": "src.functions.directory_structure",
+        "description": "src.functions.directory_structure",
         "peekOfCode": "def get_directory_structure(directory_path):\n    if not os.path.exists(directory_path):\n        return \"Directory does not exist.\"\n    structure = []\n    file_contents = []\n    for dirpath, dirnames, filenames in os.walk(directory_path):\n        # Ignore any directories that start with '.' or '__'\n        dirnames[:] = [\n            d\n            for d in dirnames",
-        "detail": "src.modules.directory_structure",
+        "detail": "src.functions.directory_structure",
         "documentation": {}
     },
     {
         "label": "get_images_from_path",
         "kind": 2,
-        "importPath": "src.modules.image_description",
-        "description": "src.modules.image_description",
+        "importPath": "src.functions.image_description",
+        "description": "src.functions.image_description",
         "peekOfCode": "def get_images_from_path(path: str):\n    \"\"\"\n    Reads a directory and returns a list of image file paths.\n    \"\"\"\n    supported_formats = {\".jpg\", \".jpeg\", \".png\", \".bmp\", \".gif\"}\n    return [\n        os.path.join(path, file)\n        for file in os.listdir(path)\n        if os.path.isfile(os.path.join(path, file)) and os.path.splitext(file)[1].lower() in supported_formats\n    ]",
-        "detail": "src.modules.image_description",
+        "detail": "src.functions.image_description",
         "documentation": {}
     },
     {
         "label": "describe_image_with_ollama",
         "kind": 2,
-        "importPath": "src.modules.image_description",
-        "description": "src.modules.image_description",
+        "importPath": "src.functions.image_description",
+        "description": "src.functions.image_description",
         "peekOfCode": "def describe_image_with_ollama(images_path: list[str]):    \n    return send_image_to_gemini(system_prompt,user_prompt, images_path)\ndef describe_image_with_gemini(images_path: list[str]):\n    return send_image_to_ollama(system_prompt,user_prompt, images_path)",
-        "detail": "src.modules.image_description",
+        "detail": "src.functions.image_description",
         "documentation": {}
     },
     {
         "label": "describe_image_with_gemini",
         "kind": 2,
-        "importPath": "src.modules.image_description",
-        "description": "src.modules.image_description",
+        "importPath": "src.functions.image_description",
+        "description": "src.functions.image_description",
         "peekOfCode": "def describe_image_with_gemini(images_path: list[str]):\n    return send_image_to_ollama(system_prompt,user_prompt, images_path)",
-        "detail": "src.modules.image_description",
+        "detail": "src.functions.image_description",
         "documentation": {}
     },
     {
         "label": "system_prompt",
         "kind": 5,
-        "importPath": "src.modules.image_description",
-        "description": "src.modules.image_description",
+        "importPath": "src.functions.image_description",
+        "description": "src.functions.image_description",
         "peekOfCode": "system_prompt = \"You are a software engineer.  will create documentation\"\nuser_prompt = \"\"\"\n    Analise as Imagens e Ajude a Documentar o Software, flow structure, no comments, no explanation.\n    ## Nome da tela\n    * Nome\n    ## Descrição da tela\n    * breve descrição da tela\n    (Se existir busca e/ou filtro)\n    ## Campos input busca e/ou filtro:\n    Formato de Tabela com campos com a estrutura:",
-        "detail": "src.modules.image_description",
+        "detail": "src.functions.image_description",
         "documentation": {}
     },
     {
         "label": "user_prompt",
         "kind": 5,
-        "importPath": "src.modules.image_description",
-        "description": "src.modules.image_description",
+        "importPath": "src.functions.image_description",
+        "description": "src.functions.image_description",
         "peekOfCode": "user_prompt = \"\"\"\n    Analise as Imagens e Ajude a Documentar o Software, flow structure, no comments, no explanation.\n    ## Nome da tela\n    * Nome\n    ## Descrição da tela\n    * breve descrição da tela\n    (Se existir busca e/ou filtro)\n    ## Campos input busca e/ou filtro:\n    Formato de Tabela com campos com a estrutura:\n    “Nome,Tipo,Validação,Observação”",
-        "detail": "src.modules.image_description",
+        "detail": "src.functions.image_description",
         "documentation": {}
     },
     {
         "label": "get_agent_separate",
         "kind": 2,
-        "importPath": "src.modules.refactor",
-        "description": "src.modules.refactor",
+        "importPath": "src.functions.refactor",
+        "description": "src.functions.refactor",
         "peekOfCode": "def get_agent_separate(gpt_provider,  file_content):\n    system_prompt = \"You are a software engineer\"\n    user_prompt = f\"\"\"\n    {file_content}\n    refactor this code, separate in functions, only create code, no comments in code, no explanation, only code. create with perfect indentation, create complete code.\n    \"\"\"\n    # Use Ollama to generate the summary with the specified model\n    if gpt_provider == \"ollama\":\n        data = get_ollama_text(system_prompt, user_prompt)\n    elif gpt_provider == \"gemini\":",
-        "detail": "src.modules.refactor",
+        "detail": "src.functions.refactor",
         "documentation": {}
     },
     {
         "label": "get_agent_similarity",
         "kind": 2,
-        "importPath": "src.modules.refactor",
-        "description": "src.modules.refactor",
+        "importPath": "src.functions.refactor",
+        "description": "src.functions.refactor",
         "peekOfCode": "def get_agent_similarity(file_content, reconstruct_code):\n    embeddings_code = get_ollama_embeddings(        text_input=file_content\n    )\n    embeddings_reconstruct_code = get_ollama_embeddings(        text_input=reconstruct_code\n    )\n    similarity = cosine_similarity(embeddings_code, embeddings_reconstruct_code)\n    return similarity[0][0]",
-        "detail": "src.modules.refactor",
+        "detail": "src.functions.refactor",
         "documentation": {}
     },
     {
@@ -1414,24 +1481,6 @@
         "description": "src.routes.directory_structure",
         "peekOfCode": "directory_structure_routes = Blueprint(\"directory_structure_routes\", __name__)\n@directory_structure_routes.route(\"/get-directory-structure\", methods=[\"GET\", \"POST\"])\ndef get_directory_structure_route():\n    if request.method == \"POST\":\n        directory_path = request.form[\"directory_path\"]\n        structure, content = get_directory_structure(directory_path)\n        html = f\"{structure}</br>\\n\\n{content}\"\n        return render_template(\"directory_structure.html\", structure=html)\n    return render_template(\"directory_structure.html\")",
         "detail": "src.routes.directory_structure",
-        "documentation": {}
-    },
-    {
-        "label": "file_splitter",
-        "kind": 2,
-        "importPath": "src.routes.file_splitter",
-        "description": "src.routes.file_splitter",
-        "peekOfCode": "def file_splitter():\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        if file.filename.endswith('.pdf'):\n            file_content = read_pdf(file)\n        elif file.filename.endswith('.docx'):\n            file_content = read_docx(file)\n        elif file.filename.endswith('.txt'):",
-        "detail": "src.routes.file_splitter",
-        "documentation": {}
-    },
-    {
-        "label": "file_splitter_routes",
-        "kind": 5,
-        "importPath": "src.routes.file_splitter",
-        "description": "src.routes.file_splitter",
-        "peekOfCode": "file_splitter_routes = Blueprint('file_splitter_routes', __name__)\n@file_splitter_routes.route('/file-splitter', methods=['GET', 'POST'])\ndef file_splitter():\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        if file.filename.endswith('.pdf'):\n            file_content = read_pdf(file)\n        elif file.filename.endswith('.docx'):",
-        "detail": "src.routes.file_splitter",
         "documentation": {}
     },
     {
