@@ -1312,7 +1312,7 @@
         "kind": 2,
         "importPath": "src.Modules.file_splitter.route",
         "description": "src.Modules.file_splitter.route",
-        "peekOfCode": "def download_file(zip_folder,split_method, file_name):\n    \"\"\" Serve individual split files for download \"\"\"\n    safe_folder = os.path.basename(zip_folder)\n    directory = os.path.join(current_app.root_path, \"src/.outputs\", safe_folder, split_method)\n    file = os.path.join(directory, file_name)\n    print(file)\n    if not os.path.exists(file):\n        abort(404)\n    return send_from_directory(directory, file_name, as_attachment=True)",
+        "peekOfCode": "def download_file(zip_folder,split_method, file_name):\n    \"\"\" Serve individual split files for download \"\"\"\n    safe_folder = os.path.basename(zip_folder)\n    directory = os.path.join(current_app.root_path, \"src/.outputs\", safe_folder, split_method)\n    file = os.path.join(directory, file_name)\n    print(file,file_name )\n    if not os.path.exists(file):\n        abort(404)\n    return send_from_directory(directory, file_name, as_attachment=True)",
         "detail": "src.Modules.file_splitter.route",
         "documentation": {}
     },

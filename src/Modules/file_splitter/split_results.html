@@ -11,6 +11,9 @@
 
 <body>
     <div class="header">
+        <a href="{{ url_for('file_splitter_routes.file_splitter') }}" class="btn">
+            Back
+        </a>
         <h1>Split Results</h1>
         <a href="{{ url_for('file_splitter_routes.download_zip', zip_folder=zip_folder) }}" class="btn">
             Download All as ZIP
@@ -37,7 +40,6 @@
         </ul>
 
         <br><br>
-        <a href="{{ url_for('file_splitter_routes.file_splitter') }}">Back to Split Another File</a>
     </div>
 </body>
 

@@ -98,7 +98,7 @@ def download_file(zip_folder,split_method, file_name):
     safe_folder = os.path.basename(zip_folder)
     directory = os.path.join(current_app.root_path, "src/.outputs", safe_folder, split_method)
     file = os.path.join(directory, file_name)
-    print(file)
+    print(file,file_name )
     if not os.path.exists(file):
         abort(404)
 
