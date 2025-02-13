@@ -31,7 +31,8 @@
     "subindent",
     "thresholding",
     "torchvision",
-    "upscaled"
+    "upscaled",
+    "zipf"
   ],
   "cSpell.language": "en,pt,pt-BR"
 }

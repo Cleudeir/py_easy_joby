@@ -297,6 +297,46 @@
         "documentation": {}
     },
     {
+        "label": "send_file",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "send_from_directory",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "abort",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "Blueprint",
         "importPath": "flask",
         "description": "flask",
@@ -550,6 +590,33 @@
         "description": "flask",
         "isExtraImport": true,
         "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "zipfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "zipfile",
+        "description": "zipfile",
+        "detail": "zipfile",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "tempfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
         "documentation": {}
     },
     {
@@ -818,15 +885,6 @@
         "importPath": "io",
         "description": "io",
         "detail": "io",
-        "documentation": {}
-    },
-    {
-        "label": "shutil",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "shutil",
-        "description": "shutil",
-        "detail": "shutil",
         "documentation": {}
     },
     {
@@ -1236,7 +1294,25 @@
         "kind": 2,
         "importPath": "src.Modules.file_splitter.route",
         "description": "src.Modules.file_splitter.route",
-        "peekOfCode": "def file_splitter():\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        split_regex = request.form.get('split_regex', '')\n        file_name = file.filename\n        uploads_dir = os.path.join(current_app.root_path, \"src/.outputs/\" + file_name +\"/\"+ split_method + \"/\")\n        # remove contents of uploads dir\n        if os.path.exists(uploads_dir):",
+        "peekOfCode": "def file_splitter():\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        split_regex = request.form.get('split_regex', '')\n        file_name = file.filename\n        file_extension = os.path.splitext(file_name)[1]\n        # Define the output directory\n        output_folder = file_name.replace(\" \", \"_\").replace(\".\", \"_\")",
+        "detail": "src.Modules.file_splitter.route",
+        "documentation": {}
+    },
+    {
+        "label": "download_zip",
+        "kind": 2,
+        "importPath": "src.Modules.file_splitter.route",
+        "description": "src.Modules.file_splitter.route",
+        "peekOfCode": "def download_zip(zip_folder):\n    \"\"\" Dynamically generate and send a ZIP file for download \"\"\"\n    safe_folder = os.path.basename(zip_folder)\n    directory = os.path.join(current_app.root_path, \"src/.outputs\", safe_folder)\n    if not os.path.exists(directory):\n        return \"ZIP folder not found\", 404\n    # Create a temporary ZIP file\n    temp_zip = tempfile.NamedTemporaryFile(delete=False, suffix=\".zip\")\n    zip_path = temp_zip.name\n    # Zip the entire directory",
+        "detail": "src.Modules.file_splitter.route",
+        "documentation": {}
+    },
+    {
+        "label": "download_file",
+        "kind": 2,
+        "importPath": "src.Modules.file_splitter.route",
+        "description": "src.Modules.file_splitter.route",
+        "peekOfCode": "def download_file(zip_folder,split_method, file_name):\n    \"\"\" Serve individual split files for download \"\"\"\n    safe_folder = os.path.basename(zip_folder)\n    directory = os.path.join(current_app.root_path, \"src/.outputs\", safe_folder, split_method)\n    file = os.path.join(directory, file_name)\n    print(file)\n    if not os.path.exists(file):\n        abort(404)\n    return send_from_directory(directory, file_name, as_attachment=True)",
         "detail": "src.Modules.file_splitter.route",
         "documentation": {}
     },
@@ -1245,7 +1321,7 @@
         "kind": 5,
         "importPath": "src.Modules.file_splitter.route",
         "description": "src.Modules.file_splitter.route",
-        "peekOfCode": "file_splitter_routes = Blueprint('file_splitter_routes', __name__, template_folder='.')\n@file_splitter_routes.route('/file-splitter', methods=['GET', 'POST'])\ndef file_splitter():\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        split_regex = request.form.get('split_regex', '')\n        file_name = file.filename\n        uploads_dir = os.path.join(current_app.root_path, \"src/.outputs/\" + file_name +\"/\"+ split_method + \"/\")",
+        "peekOfCode": "file_splitter_routes = Blueprint('file_splitter_routes', __name__, template_folder='.')\n@file_splitter_routes.route('/file-splitter', methods=['GET', 'POST'])\ndef file_splitter():\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        split_regex = request.form.get('split_regex', '')\n        file_name = file.filename\n        file_extension = os.path.splitext(file_name)[1]",
         "detail": "src.Modules.file_splitter.route",
         "documentation": {}
     },

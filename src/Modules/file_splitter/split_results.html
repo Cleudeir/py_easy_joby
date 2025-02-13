@@ -6,22 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Split Results</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
 </head>
 
 <body>
-    <div class="container">
-        <h1>Results of Splitting by "{{ split_text }}"</h1>
+    <div class="header">
+        <h1>Split Results</h1>
+        <a href="{{ url_for('file_splitter_routes.download_zip', zip_folder=zip_folder) }}" class="btn">
+            Download All as ZIP
+        </a>
+    </div>
 
-        <h2>Sections:</h2>
+    <div class="container">
+        <h2 style="text-align: center;">{{ split_text }}</h2>
         <ul>
             {% for section in sections %}
             <li>
-                <pre>{{ section }}</pre>
+                <div class="markdown-content">
+                    <pre>{{ section }}</pre>
+                    <div>
+                        <a class="btn"
+                            href="{{ url_for('file_splitter_routes.download_file', zip_folder=zip_folder, split_method=split_method, file_name=section.split(':')[0]) }}">
+                            Download
+                        </a>
+                    </div>
+                </div>
+
             </li>
             {% endfor %}
         </ul>
 
-        <br>
+        <br><br>
         <a href="{{ url_for('file_splitter_routes.file_splitter') }}">Back to Split Another File</a>
     </div>
 </body>

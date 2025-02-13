@@ -16,7 +16,7 @@
                 splitValueInput.style.display = 'block';
                 splitRegexContainer.style.display = 'none';
                 splitType.type = 'text';
-            }else if ( splitMethod === 'lines') {
+            } else if (splitMethod === 'lines') {
                 splitValueInput.style.display = 'block';
                 splitType.type = 'number';
                 splitRegexContainer.style.display = 'none';
@@ -64,7 +64,6 @@
 <body>
     <div class="container">
         <h1>Upload File and Choose Split Method</h1>
-
         <form method="POST" enctype="multipart/form-data">
             <label for="file">Choose a file (PDF, DOCX, TXT):</label>
             <input type="file" id="file" name="file" accept="*" required>
@@ -81,14 +80,16 @@
             <div id="split_regex_container" style="display:none;">
                 <label for="split_regex_select">Choose a regex pattern:</label>
                 <select id="split_regex_select" name="split_regex" onchange="saveFormData();">
-                    <option value="function\s+\w+\s*\([^)]*\)\s*\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}">Function JavaScript</option>
+                    <option value="function\s+\w+\s*\([^)]*\)\s*\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}">Function
+                        JavaScript</option>
                 </select>
             </div>
 
             <!-- Text input (only visible when text or lines are selected) -->
             <div id="split_value_input" style="display:none;">
                 <label for="split_value">Enter text or line number to split by:</label>
-                <input type="text" id="split_value" name="split_value" placeholder="Text or line number" oninput="saveFormData()">
+                <input type="text" id="split_value" name="split_value" placeholder="Text or line number"
+                    oninput="saveFormData()">
             </div>
 
             <button type="submit">Split File</button>

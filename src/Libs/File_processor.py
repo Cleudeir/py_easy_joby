@@ -17,9 +17,8 @@ def split_file_by_text(file_content, split_text, uploads_dir):
     for index in range(len(sections)):
         section = sections[index]
         content = f"{split_text} {section}"
-        save_content_to_file(f"{uploads_dir}{index}.txt", content)
-        insertSplit_text.append(content)
-        
+        save_content_to_file(f"{uploads_dir}/{index+1}.txt", content)
+        insertSplit_text.append(content)        
     return insertSplit_text
 
 def split_file_by_regex(file_content, regex, uploads_dir):
