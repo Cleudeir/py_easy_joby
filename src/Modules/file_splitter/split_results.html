@@ -10,20 +10,15 @@
 </head>
 
 <body>
-
-    <div class="header">
-
-        <a href="{{ url_for('file_splitter_routes.file_splitter') }}" class="btn">
-            Back
-        </a>
-        <h1>Split Results</h1>
-        <a href="{{ url_for('file_splitter_routes.download_zip', zip_folder=zip_folder) }}" class="btn">
-            Download
-        </a>
-
-    </div>
-
     <div class="container">
+        <div class="header">
+            <a href="{{ url_for('file_splitter_routes.file_splitter') }}" class="btn">
+                Back
+            </a>
+            <a href="{{ url_for('file_splitter_routes.download_zip', zip_folder=zip_folder) }}" class="btn">
+                Download All
+            </a>
+        </div>
         <h2 style="text-align: center;">{{ split_text }}</h2>
         {% for section in sections %}
         <div class="markdown-content">

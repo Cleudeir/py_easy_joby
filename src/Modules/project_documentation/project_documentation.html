@@ -9,7 +9,13 @@
 </head>
 
 <body>
+
     <div class="container">
+        <div class="header">
+            <a href="{{ url_for('home_routes.home') }}" class="btn">
+                Back
+            </a>
+        </div>
         <h1>Generate Project Documentation</h1>
         <form id="documentationForm" method="POST">
             <label for="project_path">Project Name:</label>
@@ -31,7 +37,6 @@
             <div id="loading">Generation...</div>
         </div>
         <br>
-        <a href="{{ url_for('home_routes.home') }}" style="text-align: center; display: block;">Back to Dashboard</a>
     </div>
 
     <script>
@@ -73,22 +78,39 @@
                                 div.classList.add('markdown-content');
                                 div.innerHTML = chunk;
 
-                                const copyButton = document.createElement('button');
+                                const copyButton = document.createElement('a');
+                                copyButton.classList.add('copy');
                                 copyButton.innerText = '📋';
-                                copyButton.classList.add('copy-button');
+
                                 copyButton.onclick = function () {
                                     navigator.clipboard.writeText(div.innerText.split('📋')[0]);
+                                    // Create a temporary message
+                                    if (!document.getElementById('copyMessage')) {
+                                        const message = document.createElement('span');
+                                        message.id = 'copyMessage';
+                                        message.classList.add('copyButton');
+                                        message.innerText = 'Copied!';
+                                        // Append message next to the copy button
+                                        copyButton.after(message);
+
+                                        // Remove message after 2 seconds
+                                        setTimeout(() => {
+                                            message.remove();
+                                        }, 2000);
+                                    }
                                 };
 
                                 div.appendChild(copyButton);
                                 documentationOutput.appendChild(div);
-                                if(chunk.includes("Creating summary for : Readme.md")){
+
+                                if (chunk.includes("Creating summary for : Readme.md")) {
                                     div.scrollIntoView({ behavior: 'smooth' });
                                 }
                             }
 
+
                             if (done) {
-                                
+
                                 // Hide loading overlay when fully completed
                                 loadingOverlay.style.display = 'none';
                                 return;
