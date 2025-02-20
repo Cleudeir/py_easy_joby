@@ -2,12 +2,11 @@ import os
 from flask import Blueprint,  render_template, request, Response
 from src.Modules.reconstruction.module import (get_agent_coder, get_agent_fix_code,
     get_agent_fix_summary, get_agent_improvement, get_agent_summary)
-
 import markdown
 import time
 from src.Libs.Files import save_content_to_file
 
-reconstruction_routes = Blueprint('reconstruction_routes', __name__, template_folder='.')
+reconstruction_routes = Blueprint('reconstruction_routes', __name__, template_folder='.', static_folder='static')
 
 @reconstruction_routes.route('/reconstruction_code', methods=['GET', 'POST'])
 def reconstruction_code():
@@ -17,10 +16,10 @@ def reconstruction_code():
          return render_template('reconstruction.html', documentation_html=documentation_html)
 
     if request.method == 'POST':
-        file = request.files['file']
-        file_content = None
-
-        try:
+        file = None
+        file_content = None     
+        try:   
+            file   = request.files['file']     
             file_content = file.read().decode('utf-8')
         except Exception as e:
             documentation_html = f"<p>Error: Não foi possível ler o arquivo ({str(e)})</p>"

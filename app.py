@@ -4,7 +4,7 @@ from config import Config
 from src.routes import register_blueprints 
 load_dotenv(dotenv_path='.env',override=True,verbose=True)
 
-app = Flask(__name__, template_folder='src/templates', static_folder='src/static')
+app = Flask(__name__, template_folder='src/templates', static_folder='src')
 app.config.from_object(Config)
 
 # Register all blueprints

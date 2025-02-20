@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Description Documentation</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/css/styles.css') }}">
 </head>
 
 <body>
@@ -42,7 +42,7 @@
             event.preventDefault();
             const formData = {
                 path: document.getElementById('path').value,
-                provider: document.getElementById('provider').value,              
+                provider: document.getElementById('provider').value,
                 useCache: document.getElementById('useCache').checked ? true : false
             };
             const streamOutput = document.getElementById('streamOutput');
@@ -68,7 +68,7 @@
                     }
                 }
                 document.getElementById('loadingOverlay').style.display = 'none';
-            } catch (err) {             
+            } catch (err) {
                 console.error('Error:', err);
                 streamOutput.innerHTML = `<p style="color: red;">An unexpected error occurred: ${err.message}</p>`;
             }

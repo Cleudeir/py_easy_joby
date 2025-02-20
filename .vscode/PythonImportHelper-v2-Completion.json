@@ -1438,7 +1438,7 @@
         "kind": 2,
         "importPath": "src.Modules.reconstruction.route",
         "description": "src.Modules.reconstruction.route",
-        "peekOfCode": "def reconstruction_code():\n    documentation_html = None\n    if request.method == 'GET':\n         return render_template('reconstruction.html', documentation_html=documentation_html)\n    if request.method == 'POST':\n        file = request.files['file']\n        file_content = None\n        try:\n            file_content = file.read().decode('utf-8')\n        except Exception as e:",
+        "peekOfCode": "def reconstruction_code():\n    documentation_html = None\n    if request.method == 'GET':\n         return render_template('reconstruction.html', documentation_html=documentation_html)\n    if request.method == 'POST':\n        file = None\n        file_content = None     \n        try:   \n            file   = request.files['file']     \n            file_content = file.read().decode('utf-8')",
         "detail": "src.Modules.reconstruction.route",
         "documentation": {}
     },
@@ -1447,7 +1447,7 @@
         "kind": 5,
         "importPath": "src.Modules.reconstruction.route",
         "description": "src.Modules.reconstruction.route",
-        "peekOfCode": "reconstruction_routes = Blueprint('reconstruction_routes', __name__, template_folder='.')\n@reconstruction_routes.route('/reconstruction_code', methods=['GET', 'POST'])\ndef reconstruction_code():\n    documentation_html = None\n    if request.method == 'GET':\n         return render_template('reconstruction.html', documentation_html=documentation_html)\n    if request.method == 'POST':\n        file = request.files['file']\n        file_content = None\n        try:",
+        "peekOfCode": "reconstruction_routes = Blueprint('reconstruction_routes', __name__, template_folder='.', static_folder='static')\n@reconstruction_routes.route('/reconstruction_code', methods=['GET', 'POST'])\ndef reconstruction_code():\n    documentation_html = None\n    if request.method == 'GET':\n         return render_template('reconstruction.html', documentation_html=documentation_html)\n    if request.method == 'POST':\n        file = None\n        file_content = None     \n        try:   ",
         "detail": "src.Modules.reconstruction.route",
         "documentation": {}
     },
@@ -1636,7 +1636,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app = Flask(__name__, template_folder='src/templates', static_folder='src/static')\napp.config.from_object(Config)\n# Register all blueprints\nregister_blueprints(app)\nif __name__ == '__main__':\n    app.run(debug=app.config['DEBUG'])",
+        "peekOfCode": "app = Flask(__name__, template_folder='src/templates', static_folder='src')\napp.config.from_object(Config)\n# Register all blueprints\nregister_blueprints(app)\nif __name__ == '__main__':\n    app.run(debug=app.config['DEBUG'])",
         "detail": "app",
         "documentation": {}
     },

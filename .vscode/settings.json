@@ -23,6 +23,7 @@
     "ndarray",
     "nomic",
     "ollama",
+    "onpress",
     "pdfplumber",
     "pypandoc",
     "pytesseract",

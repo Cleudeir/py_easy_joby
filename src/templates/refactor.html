@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Documentation</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/css/styles.css') }}">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
             <input type="file" id="file" name="file" required>
 
             <label for="gpt_provider">GPT Provider:</label>
-            <select id="gpt_provider" name="gpt_provider" required >
+            <select id="gpt_provider" name="gpt_provider" required>
                 <option value="ollama">Ollama</option>
                 <option value="gemini">Gemini</option>
             </select>
@@ -44,7 +44,7 @@
         window.addEventListener('DOMContentLoaded', function () {
             const savedGptProvider = localStorage.getItem('gpt_provider');
             if (savedGptProvider) {
-                document.getElementById('gpt_provider').value = savedGptProvider; 
+                document.getElementById('gpt_provider').value = savedGptProvider;
             }
         });
 
