@@ -4,12 +4,10 @@ class ButtonSubmit extends HTMLElement {
         this.type = this.getAttribute('type') || 'button';
         this.text = this.getAttribute('text') || 'Click me';
         this.method = this.getAttribute('method');
-        this.callback = this.getAttribute('callback');
         this.id = `button-${this.text.replace(/\s+/g, '-').toLowerCase()}`
 
         this.div = `
-        margin-top:20px;
-        `
+        margin-top:20px;`
         this.btn = `
         background-color: #007bff;
         color: white;
@@ -17,9 +15,7 @@ class ButtonSubmit extends HTMLElement {
         text-decoration: none;
         border-radius: 5px;
         text-decoration: none;
-        text-wrap: nowrap;
-        
-    `
+        text-wrap: nowrap;`
 
         this.innerHTML = `  
         <div style="${this.div}">   
@@ -40,8 +36,7 @@ class ButtonSubmit extends HTMLElement {
     }
 
     async post(event) {
-        const callback = window[this.callback];
-        console.log(typeof callback);
+        const callback = window['streamingFeed'];
         event.preventDefault();
         const form = document.getElementById('form');
         const data = JSON.stringify(form);
@@ -74,8 +69,7 @@ class ButtonSubmit extends HTMLElement {
         }
     }
     async formData(event) {
-        const callback = window[this.callback];
-        console.log(typeof callback);
+        const callback = window['streamingFeed'];
         event.preventDefault();
         const form = document.getElementById('form'); // Get the form
         const formData = new FormData(form);
@@ -98,9 +92,7 @@ class ButtonSubmit extends HTMLElement {
             } else {
                 obj.error = response.statusText;
             }
-
-            // Call the callback function if it exists
-            if (typeof callback === 'function') {  //Check if callback is a function
+            if (typeof callback === 'function') {
                 callback(obj);
             } else {
                 alert("Error: Callback function not defined!");

@@ -217,6 +217,46 @@
         "documentation": {}
     },
     {
+        "label": "send_image_to_gemini",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "send_image_to_ollama",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_embeddings",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_text",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_genai_text",
+        "importPath": "src.Libs.LLM.Provider",
+        "description": "src.Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "src.Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
         "label": "extract_code_blocks",
         "importPath": "src.Libs.Utils",
         "description": "src.Libs.Utils",
@@ -273,7 +313,7 @@
         "documentation": {}
     },
     {
-        "label": "current_app",
+        "label": "abort",
         "importPath": "flask",
         "description": "flask",
         "isExtraImport": true,
@@ -297,6 +337,14 @@
         "documentation": {}
     },
     {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "send_file",
         "importPath": "flask",
         "description": "flask",
@@ -305,31 +353,15 @@
         "documentation": {}
     },
     {
+        "label": "current_app",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "send_from_directory",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "abort",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "url_for",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "redirect",
         "importPath": "flask",
         "description": "flask",
         "isExtraImport": true,
@@ -593,15 +625,6 @@
         "documentation": {}
     },
     {
-        "label": "zipfile",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "zipfile",
-        "description": "zipfile",
-        "detail": "zipfile",
-        "documentation": {}
-    },
-    {
         "label": "shutil",
         "kind": 6,
         "isExtraImport": true,
@@ -799,62 +822,6 @@
         "documentation": {}
     },
     {
-        "label": "send_image_to_gemini",
-        "importPath": "Libs.LLM.Provider",
-        "description": "Libs.LLM.Provider",
-        "isExtraImport": true,
-        "detail": "Libs.LLM.Provider",
-        "documentation": {}
-    },
-    {
-        "label": "send_image_to_ollama",
-        "importPath": "Libs.LLM.Provider",
-        "description": "Libs.LLM.Provider",
-        "isExtraImport": true,
-        "detail": "Libs.LLM.Provider",
-        "documentation": {}
-    },
-    {
-        "label": "get_ollama_embeddings",
-        "importPath": "Libs.LLM.Provider",
-        "description": "Libs.LLM.Provider",
-        "isExtraImport": true,
-        "detail": "Libs.LLM.Provider",
-        "documentation": {}
-    },
-    {
-        "label": "get_ollama_text",
-        "importPath": "Libs.LLM.Provider",
-        "description": "Libs.LLM.Provider",
-        "isExtraImport": true,
-        "detail": "Libs.LLM.Provider",
-        "documentation": {}
-    },
-    {
-        "label": "get_genai_text",
-        "importPath": "Libs.LLM.Provider",
-        "description": "Libs.LLM.Provider",
-        "isExtraImport": true,
-        "detail": "Libs.LLM.Provider",
-        "documentation": {}
-    },
-    {
-        "label": "get_ollama_models",
-        "importPath": "Libs.LLM.Provider",
-        "description": "Libs.LLM.Provider",
-        "isExtraImport": true,
-        "detail": "Libs.LLM.Provider",
-        "documentation": {}
-    },
-    {
-        "label": "get_ollama_text",
-        "importPath": "Libs.LLM.Provider",
-        "description": "Libs.LLM.Provider",
-        "isExtraImport": true,
-        "detail": "Libs.LLM.Provider",
-        "documentation": {}
-    },
-    {
         "label": "home_routes",
         "importPath": "src.Modules.Home.route",
         "description": "src.Modules.Home.route",
@@ -917,6 +884,22 @@
         "description": "src.modules.image_description",
         "isExtraImport": true,
         "detail": "src.modules.image_description",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_models",
+        "importPath": "Libs.LLM.Provider",
+        "description": "Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "Libs.LLM.Provider",
+        "documentation": {}
+    },
+    {
+        "label": "get_ollama_text",
+        "importPath": "Libs.LLM.Provider",
+        "description": "Libs.LLM.Provider",
+        "isExtraImport": true,
+        "detail": "Libs.LLM.Provider",
         "documentation": {}
     },
     {
@@ -1294,7 +1277,7 @@
         "kind": 2,
         "importPath": "src.Modules.file_splitter.route",
         "description": "src.Modules.file_splitter.route",
-        "peekOfCode": "def file_splitter():\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        split_regex = request.form.get('split_regex', '')\n        file_name = file.filename\n        file_extension = os.path.splitext(file_name)[1]\n        # Define the output directory\n        output_folder = file_name.replace(\" \", \"_\").replace(\".\", \"_\")",
+        "peekOfCode": "def file_splitter():\n    if(request.method == 'GET'):\n        return render_template('split_file.html')\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        split_regex = request.form.get('split_regex', '')\n        file_name = file.filename\n        file_extension = os.path.splitext(file_name)[1]",
         "detail": "src.Modules.file_splitter.route",
         "documentation": {}
     },
@@ -1321,7 +1304,7 @@
         "kind": 5,
         "importPath": "src.Modules.file_splitter.route",
         "description": "src.Modules.file_splitter.route",
-        "peekOfCode": "file_splitter_routes = Blueprint('file_splitter_routes', __name__, template_folder='.')\n@file_splitter_routes.route('/file-splitter', methods=['GET', 'POST'])\ndef file_splitter():\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        split_regex = request.form.get('split_regex', '')\n        file_name = file.filename\n        file_extension = os.path.splitext(file_name)[1]",
+        "peekOfCode": "file_splitter_routes = Blueprint('file_splitter_routes', __name__, template_folder='.')\n@file_splitter_routes.route('/file-splitter', methods=['GET', 'POST'])\ndef file_splitter():\n    if(request.method == 'GET'):\n        return render_template('split_file.html')\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        split_regex = request.form.get('split_regex', '')",
         "detail": "src.Modules.file_splitter.route",
         "documentation": {}
     },

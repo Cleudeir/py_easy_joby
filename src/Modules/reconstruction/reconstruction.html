@@ -12,55 +12,14 @@
     <div class="container">
         <my-header href="{{ url_for('home_routes.home') }}" text="Back"></my-header>
         <h1>Generate Project Documentation</h1>
-
         <form action="/reconstruction_code" id="form" method="POST">
             <my-input-file></my-input-file>
-            <my-button-submit method="formdata" text="Generate Documentation" callback="callback"></my-button-submit>
+            <my-button-submit method="formdata" text="Generate Documentation"></my-button-submit>
         </form>
-
-        <div id="documentationContent" style="display: none;">
-            <h2>Generated Documentation:</h2>
-            <div id="documentationOutput">
-            </div>
-        </div>
-        <div class="loading-overlay" id="loadingOverlay">
-            <div id="loading">Generation...</div>
-        </div>
-        <br>
+        <my-content></my-content>
     </div>
-
-    <script>
-        function callback(response) {
-            if (response.error !== undefined) {
-                document.getElementById('loadingOverlay').style.display = 'none';
-                return
-            }
-            const reader = response.data
-            const decoder = new TextDecoder("utf-8");
-            async function readStream() {
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) {
-                        document.getElementById('loadingOverlay').style.display = 'none';
-                        break;
-                    }
-                    const chunk = decoder.decode(value, { stream: true });
-
-                    document.getElementById('documentationContent').style.display = 'block';
-                    document.getElementById('loadingOverlay').style.display = 'none';
-                    const div = document.createElement('div');
-                    if (!chunk.includes("id='agent_coder'")) {
-                        div.classList.add('markdown-content');
-                    }
-                    div.innerHTML = chunk;
-                    document.getElementById('documentationOutput').appendChild(div);
-                    document.getElementById('loadingOverlay').style.display = 'flex';
-                }
-            }
-            readStream();
-        }
-    </script>
     <script type="module" src="{{ url_for('static', filename='Components/_index.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='Scripts/_index.js') }}"></script>
 </body>
 
 </html>

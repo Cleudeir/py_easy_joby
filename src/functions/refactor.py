@@ -1,4 +1,4 @@
-from Libs.LLM.Provider import (
+from src.Libs.LLM.Provider import (
     get_ollama_embeddings,
     get_ollama_text,
     get_genai_text,

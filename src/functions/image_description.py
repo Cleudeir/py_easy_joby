@@ -1,5 +1,5 @@
 import os
-from Libs.LLM.Provider import send_image_to_gemini, send_image_to_ollama
+from src.Libs.LLM.Provider import send_image_to_gemini, send_image_to_ollama
 
 def get_images_from_path(path: str):
     """

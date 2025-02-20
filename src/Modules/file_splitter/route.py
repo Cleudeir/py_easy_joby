@@ -1,8 +1,8 @@
 import os
-import zipfile
+import time
 import shutil
 import tempfile
-from flask import Blueprint, current_app, render_template, request, send_file, send_from_directory, abort, url_for, redirect
+from flask import Blueprint, abort,  render_template, request, Response, send_file, current_app, send_from_directory
 from src.Libs.File_processor import (
     read_pdf, read_docx, read_txt, split_file_by_regex,
     split_file_by_text, split_file_by_lines, split_file_by_paragraphs
@@ -12,6 +12,8 @@ file_splitter_routes = Blueprint('file_splitter_routes', __name__, template_fold
 
 @file_splitter_routes.route('/file-splitter', methods=['GET', 'POST'])
 def file_splitter():
+    if(request.method == 'GET'):
+        return render_template('split_file.html')
     if request.method == 'POST':
         file = request.files['file']
         split_method = request.form['split_method']
@@ -58,19 +60,19 @@ def file_splitter():
         else:
             return "Invalid split method", 400
         
-        files = []
-
-        for i, section in enumerate(sections):
-            files.append(f"{i+1}.txt:\n{section}")
-
-        return render_template(
-            'split_results.html',
-            sections=files,
-            split_method=split_method,
-            zip_folder=output_folder
-        )
-
-    return render_template('split_file.html')
+        def generate_summary():
+            yield "<p>Starting documentation generation...</p>\n"
+            delay = 0.010
+            for i, section in enumerate(sections):             
+                time.sleep(delay)            
+                yield f"""{section}
+                <div>
+                <a class="btn"
+                    href="/download_file{uploads_dir}/{split_method}/{i+1}.txt">
+                    Download
+                </a>
+                </div>"""        
+        return Response(generate_summary(), mimetype="text/html")
 
 
 @file_splitter_routes.route('/download_zip/<zip_folder>')
@@ -101,5 +103,4 @@ def download_file(zip_folder,split_method, file_name):
     print(file,file_name )
     if not os.path.exists(file):
         abort(404)
-
     return send_from_directory(directory, file_name, as_attachment=True)

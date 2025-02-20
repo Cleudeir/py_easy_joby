@@ -70,10 +70,8 @@
             </a>
         </div>
         <h1>Upload File and Choose Split Method</h1>
-        <form id="splitForm" method="POST" enctype="multipart/form-data">
-            <label for="file">Choose a file (PDF, DOCX, TXT):</label>
-            <input type="file" id="file" name="file" accept="*" required>
-
+        <form id="form" method="POST" enctype="multipart/form-data" action="/file-splitter">
+            <my-input-file></my-input-file>
             <label for="split_method">Choose a splitting method:</label>
             <select id="split_method" name="split_method" onchange="toggleSplitValueInput(); saveFormData();" required>
                 <option value="text">Split by Text</option>
@@ -97,11 +95,12 @@
                 <input type="text" id="split_value" name="split_value" placeholder="Text or line number"
                     oninput="saveFormData()">
             </div>
-            <button type="submit">Split</button>
+            <my-button-submit method="formdata" text="Split"></my-button-submit>
         </form>
-
-        <br>
+        <my-content></my-content>
     </div>
+    <script type="module" src="{{ url_for('static', filename='Components/_index.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='Scripts/_index.js') }}"></script>
 </body>
 
 </html>

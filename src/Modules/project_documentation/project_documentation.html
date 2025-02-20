@@ -17,26 +17,14 @@
             </a>
         </div>
         <h1>Generate Project Documentation</h1>
-        <form id="documentationForm" method="POST">
+        <form id="form" method="POST" action="/get_project_documentation">
             <label for="project_path">Project Name:</label>
             <input type="text" id="project_name" name="project_name">
-            <label for="project_path">Select Project Directory:</label>
-            <input type="file" id="project_path" name="project_path" multiple webkitdirectory directory required>
-            <div>
-                <input type="checkbox" id="useCache" name="useCache" checked>
-                Use cache
-            </div>
-            <button type="submit" id="generateDocumentationButton">Generate Documentation</button>
+            <my-input-files></my-input-files>
+            <my-check-cache></my-check-cache>
+            <my-button-submit method="formdata" text="Generate Documentation"></my-button-submit>
         </form>
-
-        <div id="documentationContent" style="display: none;">
-            <h2>Generated Documentation:</h2>
-            <div id="documentationOutput"></div>
-        </div>
-        <div class="loading-overlay" id="loadingOverlay">
-            <div id="loading">Generation...</div>
-        </div>
-        <br>
+        <my-content></my-content>
     </div>
 
     <script>
@@ -45,89 +33,10 @@
             if (savedProjectPath) {
                 document.getElementById('project_path').value = savedProjectPath;
             }
-        });
-
-        document.getElementById('documentationForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            const documentationContent = document.getElementById('documentationContent');
-            const documentationOutput = document.getElementById('documentationOutput');
-
-            localStorage.setItem('project_path', document.getElementById('project_path').value);
-
-            // Show loading overlay
-            loadingOverlay.style.display = 'flex';
-            documentationOutput.innerHTML = '';
-
-            fetch(this.action, {
-                method: 'POST',
-                body: new FormData(this),
-            })
-                .then(response => {
-                    const reader = response.body.getReader();
-                    const decoder = new TextDecoder("utf-8");
-
-                    function readStream() {
-                        return reader.read().then(({ done, value }) => {
-                            if (value) {
-                                documentationContent.style.display = 'block';
-                                const chunk = decoder.decode(value, { stream: true });
-
-                                const div = document.createElement('div');
-                                div.classList.add('markdown-content');
-                                div.innerHTML = chunk;
-
-                                const copyButton = document.createElement('a');
-                                copyButton.classList.add('copy');
-                                copyButton.innerText = '📋';
-
-                                copyButton.onclick = function () {
-                                    navigator.clipboard.writeText(div.innerText.split('📋')[0]);
-                                    // Create a temporary message
-                                    if (!document.getElementById('copyMessage')) {
-                                        const message = document.createElement('span');
-                                        message.id = 'copyMessage';
-                                        message.classList.add('copyButton');
-                                        message.innerText = 'Copied!';
-                                        // Append message next to the copy button
-                                        copyButton.after(message);
-
-                                        // Remove message after 2 seconds
-                                        setTimeout(() => {
-                                            message.remove();
-                                        }, 2000);
-                                    }
-                                };
-
-                                div.appendChild(copyButton);
-                                documentationOutput.appendChild(div);
-
-                                if (chunk.includes("Creating summary for : Readme.md")) {
-                                    div.scrollIntoView({ behavior: 'smooth' });
-                                }
-                            }
-
-
-                            if (done) {
-                                // Hide loading overlay when fully completed
-                                loadingOverlay.style.display = 'none';
-                                return;
-                            }
-
-                            return readStream();
-                        });
-                    }
-
-                    return readStream();
-                })
-                .catch(error => {
-                    documentationOutput.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
-                    loadingOverlay.style.display = 'none';
-                });
-        });
-
+        });    
     </script>
+    <script type="module" src="{{ url_for('static', filename='Components/_index.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='Scripts/_index.js') }}"></script>
 </body>
 
 </html>
