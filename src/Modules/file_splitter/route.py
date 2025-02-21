@@ -2,19 +2,35 @@ import os
 import time
 import shutil
 import tempfile
-from flask import Blueprint, abort,  render_template, request, Response, send_file, current_app, send_from_directory
+from flask import Blueprint,  render_template, request, Response, send_file, current_app
+from src.Libs.Utils import normalize_path_name
+from src.Libs.encrypt import encrypt_folder
 from src.Libs.File_processor import (
-    read_pdf, read_docx, read_txt, split_file_by_regex,
+    read_pdf, read_docx, split_file_by_regex,
     split_file_by_text, split_file_by_lines, split_file_by_paragraphs
 )
 
 file_splitter_routes = Blueprint('file_splitter_routes', __name__, template_folder='.')
+output_folder = "src/.outputs"
 
+
+def get_directory_output(request):
+    user_ip = normalize_path_name(request.remote_addr)
+    split_method = request.form['split_method']
+    file_name = normalize_path_name(request.files['file'].filename)
+    relative_output_folder = os.path.join(user_ip, split_method,  file_name)
+    relative_output_folder_encrypt = encrypt_folder(relative_output_folder)
+    absolute_output_folder = os.path.join(current_app.root_path, output_folder, relative_output_folder_encrypt)
+    return absolute_output_folder , relative_output_folder_encrypt
+    
 @file_splitter_routes.route('/file-splitter', methods=['GET', 'POST'])
 def file_splitter():
+     # This will get the user's IP address
+    
     if(request.method == 'GET'):
         return render_template('split_file.html')
     if request.method == 'POST':
+        absolute_output_folder , relative_output_folder_encrypt = get_directory_output(request)
         file = request.files['file']
         split_method = request.form['split_method']
         split_value = request.form.get('split_value', '')
@@ -23,9 +39,6 @@ def file_splitter():
         file_extension = os.path.splitext(file_name)[1]
         
         # Define the output directory
-        output_folder = file_name.replace(" ", "_").replace(".", "_")
-        uploads_dir = os.path.join(current_app.root_path, "src/.outputs", output_folder, split_method)
-        print(uploads_dir)
         binary_content = file.read()
         file_content = None
 
@@ -46,11 +59,11 @@ def file_splitter():
         if split_method == 'text':
             if not split_value:
                 return "Please provide text to split by.", 400
-            sections = split_file_by_text(file_content, split_value, uploads_dir)
+            sections = split_file_by_text(file_content, split_value, absolute_output_folder)
         elif split_method == 'regex':
             if not split_regex:
                 return "Please provide regex pattern to split by.", 400
-            sections = split_file_by_regex(file_content, split_regex, uploads_dir)
+            sections = split_file_by_regex(file_content, split_regex, absolute_output_folder)
         elif split_method == 'lines':
             if not split_value.isdigit():
                 return "Please provide a valid number of lines to split by.", 400
@@ -65,15 +78,8 @@ def file_splitter():
             delay = 0.010
             for i, section in enumerate(sections):             
                 time.sleep(delay)            
-                yield f"""{section}
-                <div>
-                <a class="btn"
-                    href="/download_file{uploads_dir}/{split_method}/{i+1}.txt">
-                    Download
-                </a>
-                </div>"""        
+                yield f"""{section}_save_/download_file/{relative_output_folder_encrypt}/{i+1}.txt"""        
         return Response(generate_summary(), mimetype="text/html")
-
 
 @file_splitter_routes.route('/download_zip/<zip_folder>')
 def download_zip(zip_folder):
@@ -93,14 +99,10 @@ def download_zip(zip_folder):
 
     return send_file(zip_path, as_attachment=True, download_name="split_files.zip")
 
-
-@file_splitter_routes.route('/download_file/<zip_folder>/<split_method>/<file_name>')
-def download_file(zip_folder,split_method, file_name):
-    """ Serve individual split files for download """
-    safe_folder = os.path.basename(zip_folder)
-    directory = os.path.join(current_app.root_path, "src/.outputs", safe_folder, split_method)
-    file = os.path.join(directory, file_name)
-    print(file,file_name )
-    if not os.path.exists(file):
-        abort(404)
-    return send_from_directory(directory, file_name, as_attachment=True)
+@file_splitter_routes.route('/download_file/<path:file_path>')
+def download_file(file_path):
+    complete_path = os.path.join(current_app.root_path, output_folder, file_path)
+    print(complete_path)
+    if not os.path.exists(complete_path):
+        return "File not found", 404
+    return send_file(complete_path, as_attachment=True)

@@ -265,6 +265,22 @@
         "documentation": {}
     },
     {
+        "label": "normalize_path_name",
+        "importPath": "src.Libs.Utils",
+        "description": "src.Libs.Utils",
+        "isExtraImport": true,
+        "detail": "src.Libs.Utils",
+        "documentation": {}
+    },
+    {
+        "label": "normalize_path_name",
+        "importPath": "src.Libs.Utils",
+        "description": "src.Libs.Utils",
+        "isExtraImport": true,
+        "detail": "src.Libs.Utils",
+        "documentation": {}
+    },
+    {
         "label": "time_format_string",
         "importPath": "src.Libs.Utils",
         "description": "src.Libs.Utils",
@@ -289,6 +305,64 @@
         "documentation": {}
     },
     {
+        "label": "AES",
+        "importPath": "Crypto.Cipher",
+        "description": "Crypto.Cipher",
+        "isExtraImport": true,
+        "detail": "Crypto.Cipher",
+        "documentation": {}
+    },
+    {
+        "label": "pad",
+        "importPath": "Crypto.Util.Padding",
+        "description": "Crypto.Util.Padding",
+        "isExtraImport": true,
+        "detail": "Crypto.Util.Padding",
+        "documentation": {}
+    },
+    {
+        "label": "unpad",
+        "importPath": "Crypto.Util.Padding",
+        "description": "Crypto.Util.Padding",
+        "isExtraImport": true,
+        "detail": "Crypto.Util.Padding",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "hashlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "hashlib",
+        "description": "hashlib",
+        "detail": "hashlib",
+        "documentation": {}
+    },
+    {
         "label": "Blueprint",
         "importPath": "flask",
         "description": "flask",
@@ -306,14 +380,6 @@
     },
     {
         "label": "Blueprint",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "abort",
         "importPath": "flask",
         "description": "flask",
         "isExtraImport": true,
@@ -354,14 +420,6 @@
     },
     {
         "label": "current_app",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "send_from_directory",
         "importPath": "flask",
         "description": "flask",
         "isExtraImport": true,
@@ -643,6 +701,22 @@
         "documentation": {}
     },
     {
+        "label": "encrypt_folder",
+        "importPath": "src.Libs.encrypt",
+        "description": "src.Libs.encrypt",
+        "isExtraImport": true,
+        "detail": "src.Libs.encrypt",
+        "documentation": {}
+    },
+    {
+        "label": "encrypt_folder",
+        "importPath": "src.Libs.encrypt",
+        "description": "src.Libs.encrypt",
+        "isExtraImport": true,
+        "detail": "src.Libs.encrypt",
+        "documentation": {}
+    },
+    {
         "label": "read_pdf",
         "importPath": "src.Libs.File_processor",
         "description": "src.Libs.File_processor",
@@ -652,14 +726,6 @@
     },
     {
         "label": "read_docx",
-        "importPath": "src.Libs.File_processor",
-        "description": "src.Libs.File_processor",
-        "isExtraImport": true,
-        "detail": "src.Libs.File_processor",
-        "documentation": {}
-    },
-    {
-        "label": "read_txt",
         "importPath": "src.Libs.File_processor",
         "description": "src.Libs.File_processor",
         "isExtraImport": true,
@@ -924,14 +990,6 @@
         "description": "src.modules.refactor",
         "isExtraImport": true,
         "detail": "src.modules.refactor",
-        "documentation": {}
-    },
-    {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
         "documentation": {}
     },
     {
@@ -1219,6 +1277,15 @@
         "documentation": {}
     },
     {
+        "label": "normalize_path_name",
+        "kind": 2,
+        "importPath": "src.Libs.Utils",
+        "description": "src.Libs.Utils",
+        "peekOfCode": "def normalize_path_name(path):\n    return path.replace(\" \", \"_\").replace(\".\", \"_\")\ndef parseTextToWeb(text):\n    text_replace = text\n    if(\"<\" in text_replace):\n            return text_replace.replace('<', '&lt;')\n    return text_replace\ndef extract_code_blocks(text_replace):\n    try:\n        text_replace = text_replace",
+        "detail": "src.Libs.Utils",
+        "documentation": {}
+    },
+    {
         "label": "parseTextToWeb",
         "kind": 2,
         "importPath": "src.Libs.Utils",
@@ -1255,6 +1322,33 @@
         "documentation": {}
     },
     {
+        "label": "get_encryption_key",
+        "kind": 2,
+        "importPath": "src.Libs.encrypt",
+        "description": "src.Libs.encrypt",
+        "peekOfCode": "def get_encryption_key() -> bytes:\n    \"\"\"\n    Retrieves and derives a 32-byte AES encryption key from the environment variable.\n    Returns:\n    - bytes: The 32-byte encryption key.\n    Raises:\n    - ValueError: If the encryption key is missing or improperly formatted.\n    \"\"\"\n    key = os.getenv(\"ENCRYPTION_KEY\")\n    if not key:",
+        "detail": "src.Libs.encrypt",
+        "documentation": {}
+    },
+    {
+        "label": "encrypt_folder",
+        "kind": 2,
+        "importPath": "src.Libs.encrypt",
+        "description": "src.Libs.encrypt",
+        "peekOfCode": "def encrypt_folder(folder_path: str) -> str:\n    \"\"\"\n    Deterministically encrypts a folder path using AES-256 in ECB mode.\n    Args:\n    - folder_path (str): The path to encrypt.\n    Returns:\n    - str: The encrypted folder path (Base64 encoded).\n    \"\"\"\n    key = get_encryption_key()  # Retrieve encryption key\n    cipher = AES.new(key, AES.MODE_ECB)  # Use AES in ECB mode",
+        "detail": "src.Libs.encrypt",
+        "documentation": {}
+    },
+    {
+        "label": "decrypt_folder",
+        "kind": 2,
+        "importPath": "src.Libs.encrypt",
+        "description": "src.Libs.encrypt",
+        "peekOfCode": "def decrypt_folder(encrypted_folder_path: str) -> str:\n    \"\"\"\n    Decrypts an AES-256 ECB encrypted folder path.\n    Args:\n    - encrypted_folder_path (str): The encrypted path (Base64 encoded).\n    Returns:\n    - str: The decrypted folder path.\n    \"\"\"\n    key = get_encryption_key()  # Retrieve encryption key\n    cipher = AES.new(key, AES.MODE_ECB)  # Use AES in ECB mode",
+        "detail": "src.Libs.encrypt",
+        "documentation": {}
+    },
+    {
         "label": "home",
         "kind": 2,
         "importPath": "src.Modules.Home.route",
@@ -1273,11 +1367,20 @@
         "documentation": {}
     },
     {
+        "label": "get_directory_output",
+        "kind": 2,
+        "importPath": "src.Modules.file_splitter.route",
+        "description": "src.Modules.file_splitter.route",
+        "peekOfCode": "def get_directory_output(request):\n    user_ip = normalize_path_name(request.remote_addr)\n    split_method = request.form['split_method']\n    file_name = normalize_path_name(request.files['file'].filename)\n    relative_output_folder = os.path.join(user_ip, split_method,  file_name)\n    relative_output_folder_encrypt = encrypt_folder(relative_output_folder)\n    absolute_output_folder = os.path.join(current_app.root_path, output_folder, relative_output_folder_encrypt)\n    return absolute_output_folder , relative_output_folder_encrypt\n@file_splitter_routes.route('/file-splitter', methods=['GET', 'POST'])\ndef file_splitter():",
+        "detail": "src.Modules.file_splitter.route",
+        "documentation": {}
+    },
+    {
         "label": "file_splitter",
         "kind": 2,
         "importPath": "src.Modules.file_splitter.route",
         "description": "src.Modules.file_splitter.route",
-        "peekOfCode": "def file_splitter():\n    if(request.method == 'GET'):\n        return render_template('split_file.html')\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        split_regex = request.form.get('split_regex', '')\n        file_name = file.filename\n        file_extension = os.path.splitext(file_name)[1]",
+        "peekOfCode": "def file_splitter():\n     # This will get the user's IP address\n    if(request.method == 'GET'):\n        return render_template('split_file.html')\n    if request.method == 'POST':\n        absolute_output_folder , relative_output_folder_encrypt = get_directory_output(request)\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        split_regex = request.form.get('split_regex', '')",
         "detail": "src.Modules.file_splitter.route",
         "documentation": {}
     },
@@ -1295,7 +1398,7 @@
         "kind": 2,
         "importPath": "src.Modules.file_splitter.route",
         "description": "src.Modules.file_splitter.route",
-        "peekOfCode": "def download_file(zip_folder,split_method, file_name):\n    \"\"\" Serve individual split files for download \"\"\"\n    safe_folder = os.path.basename(zip_folder)\n    directory = os.path.join(current_app.root_path, \"src/.outputs\", safe_folder, split_method)\n    file = os.path.join(directory, file_name)\n    print(file,file_name )\n    if not os.path.exists(file):\n        abort(404)\n    return send_from_directory(directory, file_name, as_attachment=True)",
+        "peekOfCode": "def download_file(file_path):\n    complete_path = os.path.join(current_app.root_path, output_folder, file_path)\n    print(complete_path)\n    if not os.path.exists(complete_path):\n        return \"File not found\", 404\n    return send_file(complete_path, as_attachment=True)",
         "detail": "src.Modules.file_splitter.route",
         "documentation": {}
     },
@@ -1304,7 +1407,16 @@
         "kind": 5,
         "importPath": "src.Modules.file_splitter.route",
         "description": "src.Modules.file_splitter.route",
-        "peekOfCode": "file_splitter_routes = Blueprint('file_splitter_routes', __name__, template_folder='.')\n@file_splitter_routes.route('/file-splitter', methods=['GET', 'POST'])\ndef file_splitter():\n    if(request.method == 'GET'):\n        return render_template('split_file.html')\n    if request.method == 'POST':\n        file = request.files['file']\n        split_method = request.form['split_method']\n        split_value = request.form.get('split_value', '')\n        split_regex = request.form.get('split_regex', '')",
+        "peekOfCode": "file_splitter_routes = Blueprint('file_splitter_routes', __name__, template_folder='.')\noutput_folder = \"src/.outputs\"\ndef get_directory_output(request):\n    user_ip = normalize_path_name(request.remote_addr)\n    split_method = request.form['split_method']\n    file_name = normalize_path_name(request.files['file'].filename)\n    relative_output_folder = os.path.join(user_ip, split_method,  file_name)\n    relative_output_folder_encrypt = encrypt_folder(relative_output_folder)\n    absolute_output_folder = os.path.join(current_app.root_path, output_folder, relative_output_folder_encrypt)\n    return absolute_output_folder , relative_output_folder_encrypt",
+        "detail": "src.Modules.file_splitter.route",
+        "documentation": {}
+    },
+    {
+        "label": "output_folder",
+        "kind": 5,
+        "importPath": "src.Modules.file_splitter.route",
+        "description": "src.Modules.file_splitter.route",
+        "peekOfCode": "output_folder = \"src/.outputs\"\ndef get_directory_output(request):\n    user_ip = normalize_path_name(request.remote_addr)\n    split_method = request.form['split_method']\n    file_name = normalize_path_name(request.files['file'].filename)\n    relative_output_folder = os.path.join(user_ip, split_method,  file_name)\n    relative_output_folder_encrypt = encrypt_folder(relative_output_folder)\n    absolute_output_folder = os.path.join(current_app.root_path, output_folder, relative_output_folder_encrypt)\n    return absolute_output_folder , relative_output_folder_encrypt\n@file_splitter_routes.route('/file-splitter', methods=['GET', 'POST'])",
         "detail": "src.Modules.file_splitter.route",
         "documentation": {}
     },
@@ -1336,11 +1448,20 @@
         "documentation": {}
     },
     {
+        "label": "get_directory_output",
+        "kind": 2,
+        "importPath": "src.Modules.project_documentation.route",
+        "description": "src.Modules.project_documentation.route",
+        "peekOfCode": "def get_directory_output(request):\n    user_ip = normalize_path_name(request.remote_addr)\n    project_name = normalize_path_name(request.form.get(\"project_name\", \"\")) \n    relative_output_folder = os.path.join(user_ip, project_name)\n    relative_output_folder_encrypt = encrypt_folder(relative_output_folder)\n    absolute_output_folder = os.path.join(current_app.root_path, output_folder, relative_output_folder_encrypt)\n    return absolute_output_folder\n@project_documentation_routes.route(\n    \"/get_project_documentation\", methods=[\"GET\", \"POST\"]\n)",
+        "detail": "src.Modules.project_documentation.route",
+        "documentation": {}
+    },
+    {
         "label": "get_project_documentation",
         "kind": 2,
         "importPath": "src.Modules.project_documentation.route",
         "description": "src.Modules.project_documentation.route",
-        "peekOfCode": "def get_project_documentation():\n    documentation_html = None\n    if(request.method == \"GET\"):\n        return render_template(\"project_documentation.html\", documentation_html=documentation_html)\n    if request.method == \"POST\":\n        useCache = request.form.get(\"useCache\", False)\n        project_name = request.form.get(\"project_name\", \"\").replace(\" \", \"_\")        \n        if not project_name:\n            return \"<p>Error: Project directory path is required.</p>\"\n        uploads_dir = os.path.join(current_app.root_path, \"src/.outputs/\" + project_name + \"/\")",
+        "peekOfCode": "def get_project_documentation(): \n    documentation_html = None    \n    if(request.method == \"GET\"):\n        return render_template(\"project_documentation.html\", documentation_html=documentation_html)\n    if request.method == \"POST\":\n        uploads_dir = get_directory_output(request)\n        print('uploads_dir',uploads_dir)\n        files = request.files.getlist('project_path')        \n        useCache = request.form.get(\"useCache\", False)\n        list_content = []         ",
         "detail": "src.Modules.project_documentation.route",
         "documentation": {}
     },
@@ -1349,7 +1470,16 @@
         "kind": 5,
         "importPath": "src.Modules.project_documentation.route",
         "description": "src.Modules.project_documentation.route",
-        "peekOfCode": "project_documentation_routes = Blueprint(\"project_documentation_routes\", __name__, template_folder=\".\")\n@project_documentation_routes.route(\n    \"/get_project_documentation\", methods=[\"GET\", \"POST\"]\n)\ndef get_project_documentation():\n    documentation_html = None\n    if(request.method == \"GET\"):\n        return render_template(\"project_documentation.html\", documentation_html=documentation_html)\n    if request.method == \"POST\":\n        useCache = request.form.get(\"useCache\", False)",
+        "peekOfCode": "project_documentation_routes = Blueprint(\"project_documentation_routes\", __name__, template_folder=\".\")\noutput_folder = \"src/.outputs\"\ndef get_directory_output(request):\n    user_ip = normalize_path_name(request.remote_addr)\n    project_name = normalize_path_name(request.form.get(\"project_name\", \"\")) \n    relative_output_folder = os.path.join(user_ip, project_name)\n    relative_output_folder_encrypt = encrypt_folder(relative_output_folder)\n    absolute_output_folder = os.path.join(current_app.root_path, output_folder, relative_output_folder_encrypt)\n    return absolute_output_folder\n@project_documentation_routes.route(",
+        "detail": "src.Modules.project_documentation.route",
+        "documentation": {}
+    },
+    {
+        "label": "output_folder",
+        "kind": 5,
+        "importPath": "src.Modules.project_documentation.route",
+        "description": "src.Modules.project_documentation.route",
+        "peekOfCode": "output_folder = \"src/.outputs\"\ndef get_directory_output(request):\n    user_ip = normalize_path_name(request.remote_addr)\n    project_name = normalize_path_name(request.form.get(\"project_name\", \"\")) \n    relative_output_folder = os.path.join(user_ip, project_name)\n    relative_output_folder_encrypt = encrypt_folder(relative_output_folder)\n    absolute_output_folder = os.path.join(current_app.root_path, output_folder, relative_output_folder_encrypt)\n    return absolute_output_folder\n@project_documentation_routes.route(\n    \"/get_project_documentation\", methods=[\"GET\", \"POST\"]",
         "detail": "src.Modules.project_documentation.route",
         "documentation": {}
     },

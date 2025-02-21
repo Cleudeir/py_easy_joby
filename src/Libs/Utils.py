@@ -3,6 +3,10 @@ import re
 
 import re
 
+
+def normalize_path_name(path):
+    return path.replace(" ", "_").replace(".", "_")
+
 def parseTextToWeb(text):
     text_replace = text
     if("<" in text_replace):

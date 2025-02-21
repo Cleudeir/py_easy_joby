@@ -23,7 +23,7 @@ def save_content_to_file(file_path: str, content: str) -> None:
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, 'w') as file:
             file.write(content)
-        print(f"Content saved to {file_path}")
+        # print(f"Content saved to {file_path}")
     except Exception as e:
         print(f"Error saving content to file: {e}")
 

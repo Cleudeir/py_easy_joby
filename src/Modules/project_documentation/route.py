@@ -7,35 +7,37 @@ from src.Modules.project_documentation.module import (get_final_summary, get_gen
 import markdown
 from src.Libs.Files import read_file_content, save_content_to_file, save_image_to_file
 from src.Libs.File_processor import read_docx, read_pdf
-from src.Libs.Utils import time_format_string
+from src.Libs.Utils import normalize_path_name, time_format_string
 from src.Libs.Utils import extract_code_blocks, parseTextToWeb
+from src.Libs.encrypt import encrypt_folder
 
 project_documentation_routes = Blueprint("project_documentation_routes", __name__, template_folder=".")
 
+output_folder = "src/.outputs"
+
+def get_directory_output(request):
+    user_ip = normalize_path_name(request.remote_addr)
+    project_name = normalize_path_name(request.form.get("project_name", "")) 
+    relative_output_folder = os.path.join(user_ip, project_name)
+    relative_output_folder_encrypt = encrypt_folder(relative_output_folder)
+    absolute_output_folder = os.path.join(current_app.root_path, output_folder, relative_output_folder_encrypt)
+    return absolute_output_folder
 
 @project_documentation_routes.route(
     "/get_project_documentation", methods=["GET", "POST"]
 )
-def get_project_documentation():
-    documentation_html = None
-    
+def get_project_documentation(): 
+    documentation_html = None    
     if(request.method == "GET"):
         return render_template("project_documentation.html", documentation_html=documentation_html)
 
     if request.method == "POST":
+        uploads_dir = get_directory_output(request)
+        print('uploads_dir',uploads_dir)
+        files = request.files.getlist('project_path')        
         useCache = request.form.get("useCache", False)
-        project_name = request.form.get("project_name", "").replace(" ", "_")        
         
-        if not project_name:
-            return "<p>Error: Project directory path is required.</p>"
-
-        uploads_dir = os.path.join(current_app.root_path, "src/.outputs/" + project_name + "/")
-        print(uploads_dir)
-        os.makedirs(uploads_dir, exist_ok=True)
-       
-        list_content = []
-         
-        files = request.files.getlist('project_path')
+        list_content = []         
         for file in files:
             file_name = file.filename
             try:                
@@ -65,8 +67,11 @@ def get_project_documentation():
             for content in list_content:
                 start_time = time.time()
                 file_name = content["file_name"]
-                file_path = uploads_dir + file_name
-                summary_path = file_path + ".md"          
+                if(file_name == ''):
+                    yield "<p>File name is empty</p>\n"
+                    break
+                file_path = uploads_dir + "/"+ file_name         
+                summary_path = file_path + ".md"
                 summary = None
                 
                 if os.path.exists(summary_path) and useCache:
@@ -108,7 +113,7 @@ def get_project_documentation():
             yield markdown.markdown(f"{final_summary}\n<p>Time render: <strong>{elapsed_time_final}</strong></p>\n")
                       
             save_content_to_file(
-                uploads_dir + "README.md",
+                uploads_dir + "/"+ "README.md",
                 final_summary
             )
             

@@ -16,25 +16,15 @@
                 Back
             </a>
         </div>
-        <h1>Generate Project Documentation</h1>
+        <h1>Project Documentation</h1>
         <form id="form" method="POST" action="/get_project_documentation">
-            <label for="project_path">Project Name:</label>
-            <input type="text" id="project_name" name="project_name">
+            <my-input-text label="Project Name" myid="project_name"></my-input-text>
             <my-input-files></my-input-files>
             <my-check-cache></my-check-cache>
             <my-button-submit method="formdata" text="Generate Documentation"></my-button-submit>
         </form>
         <my-content></my-content>
     </div>
-
-    <script>
-        window.addEventListener('DOMContentLoaded', function () {
-            const savedProjectPath = localStorage.getItem('project_path');
-            if (savedProjectPath) {
-                document.getElementById('project_path').value = savedProjectPath;
-            }
-        });    
-    </script>
     <script type="module" src="{{ url_for('static', filename='Components/_index.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='Scripts/_index.js') }}"></script>
 </body>
