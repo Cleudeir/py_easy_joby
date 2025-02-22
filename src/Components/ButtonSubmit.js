@@ -3,7 +3,6 @@ class ButtonSubmit extends HTMLElement {
         super();
         this.type = this.getAttribute('type') || 'button';
         this.text = this.getAttribute('text') || 'Click me';
-        this.method = this.getAttribute('method');
         this.id = `button-${this.text.replace(/\s+/g, '-').toLowerCase()}`
 
         this.div = `
@@ -27,46 +26,8 @@ class ButtonSubmit extends HTMLElement {
 
         this.buttonElement = document.getElementById(this.id);
         this.buttonElement.addEventListener('click', (event) => {
-            if (this.method === "formdata") {
-                this.formData(event)
-            } else if (this.method === "post") {
-                this.post(event)
-            }
+            this.formData(event)
         });
-    }
-
-    async post(event) {
-        const callback = window['streamingFeed'];
-        event.preventDefault();
-        const form = document.getElementById('form');
-        const data = JSON.stringify(form);
-        try {
-            const response = await fetch(form.action, {
-                method: form.method,
-                body: data
-            });
-            let obj = {
-                status: response.status,
-                data: undefined,
-                error: undefined
-            }
-            if (response.ok) {
-                try {
-                    obj.data = await response.json();
-                } catch (error) {
-                    obj.error = error;
-                }
-            } else {
-                obj.error = response.statusText;
-            }
-            if (typeof callback === 'function') {
-                callback(obj);
-            } else {
-                alert("Error: Callback function not defined!");
-            }
-        } catch (error) {
-            alert("An error occurred during form submission.");
-        }
     }
     async formData(event) {
         const callback = window['streamingFeed'];

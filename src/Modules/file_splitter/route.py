@@ -74,9 +74,13 @@ def file_splitter():
             return "Invalid split method", 400
         
         def generate_summary():
-            yield "<p>Starting documentation generation...</p>\n"
+            if file.filename == '':
+                    yield "<p>No file uploaded</p>\n"
+                    return 
+            yield "<p>Starting documentation generation...</p>\n"                       
             delay = 0.010
-            for i, section in enumerate(sections):             
+            for i, section in enumerate(sections):  
+                         
                 time.sleep(delay)            
                 yield f"""{section}_save_/download_file/{relative_output_folder_encrypt}/{i+1}.txt"""        
         return Response(generate_summary(), mimetype="text/html")

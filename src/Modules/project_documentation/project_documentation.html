@@ -11,11 +11,7 @@
 <body>
 
     <div class="container">
-        <div class="header">
-            <a href="{{ url_for('home_routes.home') }}" class="btn">
-                Back
-            </a>
-        </div>
+        <my-header href="{{ url_for('home_routes.home') }}"></my-header>
         <h1>Project Documentation</h1>
         <form id="form" method="POST" action="/get_project_documentation">
             <my-input-text label="Project Name" myid="project_name"></my-input-text>

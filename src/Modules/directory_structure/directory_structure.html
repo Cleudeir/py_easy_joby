@@ -4,22 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Documentation</title>
+    <title>Directory Structure</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='static/css/styles.css') }}">
 </head>
 
 <body>
     <div class="container">
-        <my-header href="{{ url_for('home_routes.home') }}" text="Back"></my-header>
-        <h1>Reconstruction Code</h1>
-        <form action="/reconstruction_code" id="form" method="POST">
-            <my-input-file></my-input-file>
-            <my-button-submit method="formdata" text="Generate Documentation"></my-button-submit>
+        <my-header href="{{ url_for('home_routes.home') }}"></my-header>
+        <h1>Get Directory Structure</h1>
+        <form id="form" method="POST">
+            <my-input-files></my-input-files>
+            <my-button-submit text="Get Structure"></my-button-submit>
         </form>
+
         <my-content></my-content>
     </div>
     <script type="module" src="{{ url_for('static', filename='Components/_index.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='Scripts/_index.js') }}"></script>
 </body>
+
 
 </html>

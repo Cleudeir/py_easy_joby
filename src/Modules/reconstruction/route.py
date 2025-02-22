@@ -27,6 +27,9 @@ def reconstruction_code():
 
         try:
             def generate_documentation():
+                if file.filename == '':
+                    yield "<p>No file uploaded</p>\n"
+                    return  
                 yield "<p>Starting documentation generation...</p>\n"
                 time.sleep(0.100)
                 yield markdown.markdown(f"<pre><code id='agent_coder'>{file_content.replace('<', '&lt;')}</code></pre>")

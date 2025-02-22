@@ -61,6 +61,9 @@ def get_project_documentation():
      
        
         def generate_summary():
+            if not files or all(file.filename == '' for file in files):
+                yield "<p>No files uploaded.</p>\n"
+                return 
             combined_summary = ""
             yield "<p>Starting documentation generation...</p>\n"
             delay = 0.010

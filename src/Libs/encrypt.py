@@ -25,32 +25,14 @@ def get_encryption_key() -> bytes:
     # Ensure key is 32 bytes (AES-256 requires 32-byte key)
     return hashlib.sha256(key.encode()).digest()
 
-def encrypt_folder(folder_path: str) -> str:
-    """
-    Deterministically encrypts a folder path using AES-256 in ECB mode.
-
-    Args:
-    - folder_path (str): The path to encrypt.
-
-    Returns:
-    - str: The encrypted folder path (Base64 encoded).
-    """
+def encrypt_folder(folder_path: str) -> str:  
     key = get_encryption_key()  # Retrieve encryption key
     cipher = AES.new(key, AES.MODE_ECB)  # Use AES in ECB mode
     padded_data = pad(folder_path.encode(), AES.block_size)  # Pad input to match AES block size
     encrypted_path = cipher.encrypt(padded_data)  # Encrypt data
     return base64.urlsafe_b64encode(encrypted_path).decode()  # Encode to Base64 for storage
 
-def decrypt_folder(encrypted_folder_path: str) -> str:
-    """
-    Decrypts an AES-256 ECB encrypted folder path.
-
-    Args:
-    - encrypted_folder_path (str): The encrypted path (Base64 encoded).
-
-    Returns:
-    - str: The decrypted folder path.
-    """
+def decrypt_folder(encrypted_folder_path: str) -> str:    
     key = get_encryption_key()  # Retrieve encryption key
     cipher = AES.new(key, AES.MODE_ECB)  # Use AES in ECB mode
     encrypted_data = base64.urlsafe_b64decode(encrypted_folder_path)  # Decode Base64

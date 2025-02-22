@@ -4,7 +4,6 @@ class InputFile extends HTMLElement {
         this.innerHTML = `
             <label for="file">Choose a file</label>
             <input type="file" id="file" name="file" required>
-
         `;
 
         this.fileInput = this.querySelector("#file");

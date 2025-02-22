@@ -411,6 +411,38 @@
         "documentation": {}
     },
     {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "send_file",
         "importPath": "flask",
         "description": "flask",
@@ -492,30 +524,6 @@
     },
     {
         "label": "Response",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "Blueprint",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "render_template",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "request",
         "importPath": "flask",
         "description": "flask",
         "isExtraImport": true,
@@ -680,6 +688,22 @@
         "description": "flask",
         "isExtraImport": true,
         "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "defaultdict",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "get_directory_structure",
+        "importPath": "src.Modules.directory_structure.module",
+        "description": "src.Modules.directory_structure.module",
+        "isExtraImport": true,
+        "detail": "src.Modules.directory_structure.module",
         "documentation": {}
     },
     {
@@ -901,14 +925,6 @@
         "description": "src.Modules.reconstruction_code.route",
         "isExtraImport": true,
         "detail": "src.Modules.reconstruction_code.route",
-        "documentation": {}
-    },
-    {
-        "label": "get_directory_structure",
-        "importPath": "src.modules.directory_structure",
-        "description": "src.modules.directory_structure",
-        "isExtraImport": true,
-        "detail": "src.modules.directory_structure",
         "documentation": {}
     },
     {
@@ -1335,7 +1351,7 @@
         "kind": 2,
         "importPath": "src.Libs.encrypt",
         "description": "src.Libs.encrypt",
-        "peekOfCode": "def encrypt_folder(folder_path: str) -> str:\n    \"\"\"\n    Deterministically encrypts a folder path using AES-256 in ECB mode.\n    Args:\n    - folder_path (str): The path to encrypt.\n    Returns:\n    - str: The encrypted folder path (Base64 encoded).\n    \"\"\"\n    key = get_encryption_key()  # Retrieve encryption key\n    cipher = AES.new(key, AES.MODE_ECB)  # Use AES in ECB mode",
+        "peekOfCode": "def encrypt_folder(folder_path: str) -> str:  \n    key = get_encryption_key()  # Retrieve encryption key\n    cipher = AES.new(key, AES.MODE_ECB)  # Use AES in ECB mode\n    padded_data = pad(folder_path.encode(), AES.block_size)  # Pad input to match AES block size\n    encrypted_path = cipher.encrypt(padded_data)  # Encrypt data\n    return base64.urlsafe_b64encode(encrypted_path).decode()  # Encode to Base64 for storage\ndef decrypt_folder(encrypted_folder_path: str) -> str:    \n    key = get_encryption_key()  # Retrieve encryption key\n    cipher = AES.new(key, AES.MODE_ECB)  # Use AES in ECB mode\n    encrypted_data = base64.urlsafe_b64decode(encrypted_folder_path)  # Decode Base64",
         "detail": "src.Libs.encrypt",
         "documentation": {}
     },
@@ -1344,7 +1360,7 @@
         "kind": 2,
         "importPath": "src.Libs.encrypt",
         "description": "src.Libs.encrypt",
-        "peekOfCode": "def decrypt_folder(encrypted_folder_path: str) -> str:\n    \"\"\"\n    Decrypts an AES-256 ECB encrypted folder path.\n    Args:\n    - encrypted_folder_path (str): The encrypted path (Base64 encoded).\n    Returns:\n    - str: The decrypted folder path.\n    \"\"\"\n    key = get_encryption_key()  # Retrieve encryption key\n    cipher = AES.new(key, AES.MODE_ECB)  # Use AES in ECB mode",
+        "peekOfCode": "def decrypt_folder(encrypted_folder_path: str) -> str:    \n    key = get_encryption_key()  # Retrieve encryption key\n    cipher = AES.new(key, AES.MODE_ECB)  # Use AES in ECB mode\n    encrypted_data = base64.urlsafe_b64decode(encrypted_folder_path)  # Decode Base64\n    decrypted_path = unpad(cipher.decrypt(encrypted_data), AES.block_size)  # Decrypt and remove padding\n    return decrypted_path.decode()",
         "detail": "src.Libs.encrypt",
         "documentation": {}
     },
@@ -1364,6 +1380,33 @@
         "description": "src.Modules.Home.route",
         "peekOfCode": "home_routes = Blueprint('home_routes', __name__, template_folder='.')\n@home_routes.route('/')\ndef home():\n    \"\"\"Home Page\"\"\"\n    return render_template('home.html')",
         "detail": "src.Modules.Home.route",
+        "documentation": {}
+    },
+    {
+        "label": "get_directory_structure",
+        "kind": 2,
+        "importPath": "src.Modules.directory_structure.module",
+        "description": "src.Modules.directory_structure.module",
+        "peekOfCode": "def get_directory_structure(files):\n    def build_tree(paths):\n        content_files = \"\"\n        tree = defaultdict(dict)\n        for file in paths:\n            path = file.filename  # Extract filename from file object\n            parts = path.split(\"/\")                        \n            node = tree\n            for part in parts:\n                node = node.setdefault(part, {})",
+        "detail": "src.Modules.directory_structure.module",
+        "documentation": {}
+    },
+    {
+        "label": "get_directory_structure_route",
+        "kind": 2,
+        "importPath": "src.Modules.directory_structure.route",
+        "description": "src.Modules.directory_structure.route",
+        "peekOfCode": "def get_directory_structure_route():\n    if request.method == \"GET\":\n        return render_template(\"directory_structure.html\")\n    if request.method == \"POST\":\n        files = request.files.getlist('project_path')        \n        structure, content = get_directory_structure(files)\n        def result():\n            # check if exists files\n            if not files or all(file.filename == '' for file in files):\n                yield \"<p>No files uploaded.</p>\\n\"",
+        "detail": "src.Modules.directory_structure.route",
+        "documentation": {}
+    },
+    {
+        "label": "directory_structure_routes",
+        "kind": 5,
+        "importPath": "src.Modules.directory_structure.route",
+        "description": "src.Modules.directory_structure.route",
+        "peekOfCode": "directory_structure_routes = Blueprint(\"directory_structure_routes\", __name__, template_folder=\".\")\n@directory_structure_routes.route(\"/get-directory-structure\", methods=[\"GET\", \"POST\"])\ndef get_directory_structure_route():\n    if request.method == \"GET\":\n        return render_template(\"directory_structure.html\")\n    if request.method == \"POST\":\n        files = request.files.getlist('project_path')        \n        structure, content = get_directory_structure(files)\n        def result():\n            # check if exists files",
+        "detail": "src.Modules.directory_structure.route",
         "documentation": {}
     },
     {
@@ -1574,15 +1617,6 @@
         "documentation": {}
     },
     {
-        "label": "get_directory_structure",
-        "kind": 2,
-        "importPath": "src.functions.directory_structure",
-        "description": "src.functions.directory_structure",
-        "peekOfCode": "def get_directory_structure(directory_path):\n    if not os.path.exists(directory_path):\n        return \"Directory does not exist.\"\n    structure = []\n    file_contents = []\n    for dirpath, dirnames, filenames in os.walk(directory_path):\n        # Ignore any directories that start with '.' or '__'\n        dirnames[:] = [\n            d\n            for d in dirnames",
-        "detail": "src.functions.directory_structure",
-        "documentation": {}
-    },
-    {
         "label": "get_images_from_path",
         "kind": 2,
         "importPath": "src.functions.image_description",
@@ -1652,24 +1686,6 @@
         "description": "src.routes.__init__ copy",
         "peekOfCode": "def register_blueprints(app):\n    app.register_blueprint(home_routes)\n    app.register_blueprint(reconstruction_routes)\n    # app.register_blueprint(image_description_routes)\n    # app.register_blueprint(refactor_routes)\n    # app.register_blueprint(project_documentation_routes)\n    # app.register_blueprint(directory_structure_routes)\n    # app.register_blueprint(ollama_response_routes)\n    # app.register_blueprint(file_splitter_routes)\n    # app.register_blueprint(receive_files_routes)",
         "detail": "src.routes.__init__ copy",
-        "documentation": {}
-    },
-    {
-        "label": "get_directory_structure_route",
-        "kind": 2,
-        "importPath": "src.routes.directory_structure",
-        "description": "src.routes.directory_structure",
-        "peekOfCode": "def get_directory_structure_route():\n    if request.method == \"POST\":\n        directory_path = request.form[\"directory_path\"]\n        structure, content = get_directory_structure(directory_path)\n        html = f\"{structure}</br>\\n\\n{content}\"\n        return render_template(\"directory_structure.html\", structure=html)\n    return render_template(\"directory_structure.html\")",
-        "detail": "src.routes.directory_structure",
-        "documentation": {}
-    },
-    {
-        "label": "directory_structure_routes",
-        "kind": 5,
-        "importPath": "src.routes.directory_structure",
-        "description": "src.routes.directory_structure",
-        "peekOfCode": "directory_structure_routes = Blueprint(\"directory_structure_routes\", __name__)\n@directory_structure_routes.route(\"/get-directory-structure\", methods=[\"GET\", \"POST\"])\ndef get_directory_structure_route():\n    if request.method == \"POST\":\n        directory_path = request.form[\"directory_path\"]\n        structure, content = get_directory_structure(directory_path)\n        html = f\"{structure}</br>\\n\\n{content}\"\n        return render_template(\"directory_structure.html\", structure=html)\n    return render_template(\"directory_structure.html\")",
-        "detail": "src.routes.directory_structure",
         "documentation": {}
     },
     {
