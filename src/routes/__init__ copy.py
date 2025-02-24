@@ -1,5 +1,5 @@
-from src.Modules.Home.route import home_routes
-from src.Modules.reconstruction_code.route import reconstruction_routes
+from App.Home.controller import home_routes
+from src.App.reconstruction_code.route import reconstruction_routes
 
 # from .receive_files import receive_files_routes
 # from .image_description import image_description_routes

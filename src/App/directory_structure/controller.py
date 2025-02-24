@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, Response
-from src.Modules.directory_structure.module import get_directory_structure
+from src.App.directory_structure.service import get_directory_structure
 import time
 
 directory_structure_routes = Blueprint("directory_structure_routes", __name__, template_folder=".")
@@ -8,7 +8,7 @@ directory_structure_routes = Blueprint("directory_structure_routes", __name__, t
 @directory_structure_routes.route("/get-directory-structure", methods=["GET", "POST"])
 def get_directory_structure_route():
     if request.method == "GET":
-        return render_template("directory_structure.html")
+        return render_template("view_directory_structure.html")
     if request.method == "POST":
         files = request.files.getlist('project_path')        
         
