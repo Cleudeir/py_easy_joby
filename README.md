@@ -20,5 +20,3 @@ Python-docx (for DOCX/DOC files handling)
 AES-CBC encryption for secure data storage and sharing
 Compression libraries (e.g., zipfile) for ZIP format generation
 CSS (for responsive web design)
-
-Time render: 30.66 s
