@@ -1,17 +1,8 @@
 import re
+import os
 import pdfplumber
 import docx
-from src.Libs.Files import save_content_to_file
-from src.Libs.LLM.Provider import get_text
-from src.Libs.Utils import extract_code_blocks
-
 def split_file_by_text(file_content, split_text, uploads_dir):
-    """
-    Split the given file content by the provided text.
-    :param file_content: The content of the file as a string
-    :param split_text: The text to use as the splitting point
-    :return: A list of strings, each representing a section of the split content
-    """
     sections = file_content.split(split_text)
     insertSplit_text = []
     for index in range(len(sections)):
@@ -21,96 +12,117 @@ def split_file_by_text(file_content, split_text, uploads_dir):
         insertSplit_text.append(content)        
     return insertSplit_text
 
-def split_file_by_regex(file_content, regex, uploads_dir):
-    print("regex", regex)
-    """
-    Split the given file content by the provided text.
-    :param file_content: The content of the file as a string
-    :param split_text: The text to use as the splitting point
-    :return: A list of strings, each representing a section of the split content
-    """
-
-    sections = re.findall(regex, file_content, re.DOTALL)
+def split_file_by_regex(file_content, regex, uploads_dir):   
+    sections = re.findall(regex, file_content, re.DOTALL)  
+    print("sections", sections)
     insertSplit_text = []
     for index in range(len(sections)):
         section = sections[index]
-        user_prompt = f"""{section} make refactoring this code remove 'this', and add comments step by step, rewrite complete code , follow structure:
-```javascript
-code 
-```
-        """
-        refactoring  = extract_code_blocks(get_text("You are a software engineer. will create documentation", user_prompt))
-        user_prompt= f"""
-this is a code, you need summary:
-{section}
-Create a once-paragraph summary using layman's terms and non-technical. no use of code, creation of summary, no comments, no suggestions, no corrections, no explanation.
-Follow this structure markdown:  
-    ...(once-paragraph)
-"""
-        summary = get_text("You are a software engineer. will create documentation", user_prompt )
-        save_content_to_file(f"{uploads_dir}{index}.md", f"""
-## Original function
-
-    {section}
-    
-## refectory code
-
-    {refactoring }
-    
-## Summary
-
-    {summary}
-""")
-        insertSplit_text.append(refactoring )
-        
+        content = f"{section}"
+        save_content_to_file(f"{uploads_dir}/{index+1}.txt", content)
+        insertSplit_text.append(content)        
     return insertSplit_text
 
 def split_file_by_lines(file_content, lines_per_section):
-    """
-    Split the file content into sections based on the number of lines.
-    :param file_content: The content of the file as a string
-    :param lines_per_section: Number of lines per section
-    :return: A list of strings, each representing a section of the split content
-    """
     lines = file_content.splitlines()
     sections = [lines[i:i+lines_per_section] for i in range(0, len(lines), lines_per_section)]
     return ['\n'.join(section) for section in sections]
 
 def split_file_by_paragraphs(file_content):
-    """
-    Split the file content into sections based on paragraphs.
-    :param file_content: The content of the file as a string
-    :return: A list of paragraphs
-    """
     paragraphs = file_content.split('\n')
     return paragraphs
 
 def read_pdf(file):
-    """
-    Extract text from a PDF file while preserving original formatting.
-    :param file: File object (PDF)
-    :return: The text content of the PDF as a string
-    """
     text = ""
     with pdfplumber.open(file) as pdf:
         for page in pdf.pages:
-            # Extract text from the page, preserving layout
             text += page.extract_text() + "\n"
     return text
 
 def read_docx(file):
-    """
-    Extract text from a DOCX file.
-    :param file: File object (DOCX)
-    :return: The text content of the DOCX as a string
-    """
     doc = docx.Document(file)
     return '\n'.join([para.text for para in doc.paragraphs])
 
 def read_txt(file):
-    """
-    Extract text from a TXT file.
-    :param file: File object (TXT)
-    :return: The text content of the TXT as a string
-    """
     return file.read().decode('utf-8')
+
+def create_folder_by_file_path(file_path: str) -> None:
+    try:
+        folder_path = os.path.dirname(file_path)
+        os.makedirs(folder_path, exist_ok=True)
+        print(f"Folder created at {folder_path}")
+    except Exception as e:
+        print(f"Error creating folder: {e}")
+    
+def save_content_to_file(file_path: str, content: str) -> None:
+    try:
+        # Create the directory if it doesn't exist
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, 'w') as file:
+            file.write(content)
+        # print(f"Content saved to {file_path}")
+    except Exception as e:
+        print(f"Error saving content to file: {e}")
+
+def save_image_to_file(file_path: str, image_binary: bytes) -> None:
+    try:
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, 'wb') as img_file:
+            img_file.write(image_binary)
+        print(f"Image saved to {file_path}")
+    except Exception as e:
+        print(f"Error saving image to file: {e}")
+
+def read_file_content(file_path: str) -> str:
+    try:
+        with open(file_path, 'r') as file:
+            return file.read()
+    except Exception as e:
+        print(f"Error reading file: {e}")
+        return ""
+def read_file_binary_content(file_path: str) -> str:
+    try:
+        with open(file_path, 'rb') as file:
+            return file.read()
+    except Exception as e:
+        print(f"Error reading file: {e}")
+        return ""
+
+def list_files_in_folder(folder_path: str, include_subfolders: bool = False) -> list:
+    file_list = []
+    try:
+        for root, _, files in os.walk(folder_path) if include_subfolders else [(folder_path, [], os.listdir(folder_path))]:
+            for file in files:
+                file_path = os.path.join(root, file)
+                if os.path.isfile(file_path):
+                    file_list.append(file_path)
+        return file_list
+    except Exception as e:
+        print(f"Error listing files in folder: {e}")
+        return []
+
+def read_files_by_extension(folder_path: str, extension: str, include_subfolders: bool = False) -> dict:
+    files_content = {}
+    try:
+        for root, _, files in os.walk(folder_path) if include_subfolders else [(folder_path, [], os.listdir(folder_path))]:
+            for file in files:
+                if file.endswith(extension):
+                    file_path = os.path.join(root, file)
+                    files_content[file_path] = read_file_content(file_path)
+        return files_content
+    except Exception as e:
+        print(f"Error reading files by extension: {e}")
+        return {}
+
+def read_all_files_in_folder(folder_path: str, include_subfolders: bool = False) -> dict:
+    files_content = {}
+    try:
+        for root, _, files in os.walk(folder_path) if include_subfolders else [(folder_path, [], os.listdir(folder_path))]:
+            for file in files:
+                file_path = os.path.join(root, file)
+                if os.path.isfile(file_path):
+                    files_content[file_path] = read_file_content(file_path)
+        return files_content
+    except Exception as e:
+        print(f"Error reading all files in folder: {e}")
+        return {}

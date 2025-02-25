@@ -38,7 +38,8 @@
 
 <body>
     <div class="container">
-        <my-header href="{{ url_for('home_routes.home') }}"></my-header>
+        <my-header href="{{ url_for('home_routes.home') }}" url="/file-splitter/download_all"
+            button="Download All"></my-header>
         <h1>Document Split</h1>
         <form id="form" method="POST" enctype="multipart/form-data" action="/file-splitter">
             <my-input-file></my-input-file>
@@ -52,7 +53,7 @@
             <div id="split_regex_container" style="display:none;">
                 <my-select myid="split_regex" title="Choose a regex pattern" onchange="toggleSplitValueInput()" options='[
                     {
-                        "label": "Function JavaScript",
+                        "label": "function(name) { code }",
                         "value": "function\\s+\\w+\\s*\\([^)]*\\)\\s*\\{(?:[^{}]|\\{(?:[^{}]|\\{[^{}]*\\})*\\})*\\}"
                     }
                 ]'>

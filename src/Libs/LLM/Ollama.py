@@ -1,6 +1,6 @@
 import os
+import time
 import ollama
-import re
 from typing import Union
 import requests
 
@@ -37,11 +37,12 @@ def send_image_to_ollama(system_prompt: str, user_prompt: str, images_path:  lis
         response_message = response["message"]["content"]
         return response_message
     except Exception as e:
-        return {"error": str(e)}
+        return f"error: str({e})"
 
 
 # Function to get a response from an Ollama model
 def get_ollama_text(system_prompt: str, user_prompt: str) -> dict:
+    start_time = time.time()
     try:
         url = f"{OLLAMA_BASE_URL}/api/generate"  # Updated API endpoint
         headers = {
@@ -54,9 +55,10 @@ def get_ollama_text(system_prompt: str, user_prompt: str) -> dict:
             "stream": False        
         }
         
+        # Check if the Ollama model exists
+        check_ollama_model_exists(MODEL_OLLAMA) 
         # Send POST request to the provided API endpoint
         response = requests.post(url, json=payload, headers=headers)
-       
         # Check if the request was successful
         if response.status_code == 200:
             response_data = response.json()
@@ -67,11 +69,13 @@ def get_ollama_text(system_prompt: str, user_prompt: str) -> dict:
                 text = text_after_think            
             return text
         else:
-            return {"error": f"Request failed with status code {response.status_code}"}
+            return f"Request failed: {response.status_code} - {response.reason}"
     
-    except Exception as e:
-        print(e)
-        return {"error": str(e)}
+    except Exception as e:      
+        return f"error str({e})"
+    finally:
+        end_time = time.time()
+        print(f"Request ollama model {MODEL_OLLAMA} : {(end_time - start_time).__round__(2)} seconds")
 
 
 
@@ -85,7 +89,7 @@ def get_ollama_embeddings(text_input: str) -> Union[list, dict]:
         embeddings = response["embeddings"]
         return embeddings
     except Exception as e:
-        return {"error": str(e)}
+        return f"error: str({e})"
 
 # Function to check if an Ollama model exists
 def check_ollama_model_exists(model_name: str) -> bool:

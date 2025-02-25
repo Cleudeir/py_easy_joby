@@ -8,7 +8,8 @@ class Content extends HTMLElement {
         </div>
         <div class="loading-overlay" id="loadingOverlay">
             <div id="loading">Generation...</div>
-        </div>
+        </div>     
+        <my-floating-button></my-floating-button>   
         `;
     }
 }

@@ -6,3 +6,4 @@ export { default as CheckCache } from './CheckCache.js';
 export { default as Content } from './Content.js';
 export { default as MyInputText } from './InputText.js';
 export { default as MySelect } from './Select.js';
+export { default as FloatingButton } from './FloatingButton.js';

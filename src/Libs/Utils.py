@@ -1,9 +1,6 @@
 import time
 import re
 
-import re
-
-
 def normalize_path_name(path):
     return path.replace(" ", "_").replace(".", "_")
 
@@ -23,7 +20,7 @@ def extract_code_blocks(text_replace):
         return text_replace
     except Exception as e:
         print(f"Error extracting code blocks: {e}")
-        return ""
+        return text_replace
 
 def extract_code_replace(text):
     try:

@@ -13,6 +13,7 @@ Response = Union[str, dict]
 
 # Function to get a response from Google Generative AI with model, system, and user prompts
 def get_genai_text(system_prompt: str, user_prompt: str) -> Response:
+    start_time = time.time()
     try:
         # Configure the API key
         genai.configure(api_key=GEMINI_API_KEY)
@@ -40,7 +41,10 @@ def get_genai_text(system_prompt: str, user_prompt: str) -> Response:
      
         return response.text
     except Exception as e:
-        return {"error": str(e)}
+        return f"error str({e})"
+    finally:
+        end_time = time.time()
+        print(f"Time gemini model {GEMINI_MODEL}: {(end_time - start_time).__round__(2)} seconds")
 
 # Function to send an image to the Gemini model along with system and user prompts
 def send_image_to_gemini(system_prompt: str, user_prompt: str, images_path: list[str]) -> Union[str, dict]:
@@ -87,5 +91,5 @@ def send_image_to_gemini(system_prompt: str, user_prompt: str, images_path: list
         # Return the response text
         return response.text
     except Exception as e:
-        return {"error": str(e)}
+        return f"error: str({e})"
  

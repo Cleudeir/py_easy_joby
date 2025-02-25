@@ -1,8 +1,8 @@
+import io
 import os
 import time
-import shutil
-import tempfile
-from flask import current_app
+import zipfile
+from flask import current_app, send_file
 from src.Libs.Utils import normalize_path_name
 from src.Libs.encrypt import encrypt_folder
 from src.Libs.File_processor import (
@@ -13,15 +13,36 @@ from src.Libs.File_processor import (
 output_folder = "src/.outputs"
 
 def get_directory_output(request):
-    """Generates encrypted output directory for a given request"""
+    print('get_directory_output')
     user_ip = normalize_path_name(request.remote_addr)
     split_method = request.form['split_method']
     file_name = normalize_path_name(request.files['file'].filename)
+    module_name = "file_splitter"
+    print(file_name, split_method, user_ip, module_name)
     relative_output_folder = os.path.join(user_ip, split_method, file_name)
     relative_output_folder_encrypt = encrypt_folder(relative_output_folder)
     absolute_output_folder = os.path.join(current_app.root_path, output_folder, relative_output_folder_encrypt)
-    return absolute_output_folder, relative_output_folder_encrypt
+    return absolute_output_folder
 
+
+
+def create_zip(directory):
+    print('create_zip', directory)
+    """Creates an in-memory ZIP file from the given directory."""
+    zip_buffer = io.BytesIO()
+    with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, _, files in os.walk(directory):
+            for file in files:
+                file_path = os.path.join(root, file)
+                arcname = os.path.relpath(file_path, directory)
+                zipf.write(file_path, arcname)
+    zip_buffer.seek(0)
+    return zip_buffer
+
+def download_zip_files(uploads_dir):
+    zip_buffer = create_zip(uploads_dir)
+    file_zip_name = uploads_dir.split("/")[-1]
+    return send_file(zip_buffer, mimetype="application/zip", as_attachment=True, download_name=f"{file_zip_name}.zip")
 
 def process_file(file, split_method, split_value, split_regex, absolute_output_folder):
     """Processes the uploaded file and splits it based on the selected method"""
@@ -65,32 +86,20 @@ def process_file(file, split_method, split_value, split_regex, absolute_output_f
     return sections
 
 
-def generate_summary(file, sections, relative_output_folder_encrypt):
+def generate_summary(file, sections):
     """Generates streaming summary response"""
     if file.filename == '':
         yield "<p>No file uploaded</p>\n"
         return 
     yield "<p>Starting documentation generation...</p>\n"                       
     delay = 0.010
+    if(len(sections) == 0):
+        time.sleep(delay) 
+        yield "<p>Not found any section</p>\n"
+        return
     for i, section in enumerate(sections):  
         time.sleep(delay)            
-        yield f"""{section}_save_/download_file/{relative_output_folder_encrypt}/{i+1}.txt"""  
-
-
-def create_zip(zip_folder):
-    """Creates and returns a ZIP file of the processed output"""
-    safe_folder = os.path.basename(zip_folder)
-    directory = os.path.join(current_app.root_path, output_folder, safe_folder)
-
-    if not os.path.exists(directory):
-        return None
-
-    temp_zip = tempfile.NamedTemporaryFile(delete=False, suffix=".zip")
-    zip_path = temp_zip.name
-    shutil.make_archive(zip_path.replace('.zip', ''), 'zip', directory)
-
-    return zip_path
-
+        yield f"""{section}"""  
 
 def get_file_path(file_path):
     """Returns the complete file path"""

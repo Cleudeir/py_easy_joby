@@ -9,12 +9,12 @@
 </head>
 
 <body>
-
     <div class="container">
-        <my-header href="{{ url_for('home_routes.home') }}"></my-header>
+        <my-header href="{{ url_for('home_routes.home') }}" url="/project_documentation/download_all"
+            button="Download All"></my-header>
         <h1>Project Documentation</h1>
+
         <form id="form" method="POST" action="/get_project_documentation">
-            <my-input-text label="Project Name" myid="project_name"></my-input-text>
             <my-input-files></my-input-files>
             <my-check-cache></my-check-cache>
             <my-button-submit method="formdata" text="Generate Documentation"></my-button-submit>

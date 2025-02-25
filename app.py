@@ -1,8 +1,9 @@
 from flask import Flask
 from dotenv import load_dotenv
+from src.App import register_blueprints
 from config import Config
-from src.routes import register_blueprints 
-load_dotenv(dotenv_path='.env',override=True,verbose=True)
+
+load_dotenv(dotenv_path='.env', override=True, verbose=True)
 
 app = Flask(__name__, template_folder='src/templates', static_folder='src')
 app.config.from_object(Config)
@@ -11,4 +12,4 @@ app.config.from_object(Config)
 register_blueprints(app)
 
 if __name__ == '__main__':
-    app.run(debug=app.config['DEBUG'])
+    app.run(debug=app.config['DEBUG'], host='0.0.0.0')

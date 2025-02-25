@@ -1,48 +1,96 @@
-from src.Libs.LLM.Provider import get_text
 import os
 import time
 import markdown
-from flask import current_app
-from src.Libs.Files import read_file_content, save_content_to_file
+import zipfile
+import io
+from flask import current_app, send_file
+from src.Libs.LLM.Provider import get_text
+from src.Libs.File_processor import read_file_content, save_content_to_file
 from src.Libs.File_processor import read_docx, read_pdf
-from src.Libs.Utils import normalize_path_name, time_format_string, extract_code_blocks, parseTextToWeb
+from src.Libs.Utils import normalize_path_name, time_format_string
 from src.Libs.encrypt import encrypt_folder
-
-output_folder = "src/.outputs"
 
 def get_directory_output(request):
     """Generates an encrypted output directory based on request"""
     user_ip = normalize_path_name(request.remote_addr)
-    project_name = normalize_path_name(request.form.get("project_name", ""))
-    relative_output_folder = os.path.join(user_ip, project_name)
+    files = request.files.getlist('project_path')
+    module_name = "project_documentation"
+    project_name = ""
+    for file in files:
+        full_path = file.filename
+        # start with
+        project_name = normalize_path_name(full_path.split("/")[0])
+        break
+    relative_output_folder = os.path.join(user_ip, project_name, module_name)
     relative_output_folder_encrypt = encrypt_folder(relative_output_folder)
+    
+    output_folder = "src/.outputs"  
     absolute_output_folder = os.path.join(current_app.root_path, output_folder, relative_output_folder_encrypt)
     return absolute_output_folder
 
+
+
+def create_zip(directory):
+    """Creates an in-memory ZIP file from the given directory."""
+    zip_buffer = io.BytesIO()
+    with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, _, files in os.walk(directory):
+            for file in files:
+                file_path = os.path.join(root, file)
+                arcname = os.path.relpath(file_path, directory)
+                zipf.write(file_path, arcname)
+    zip_buffer.seek(0)
+    return zip_buffer
+
+def download_zip_files(uploads_dir):    
+    zip_buffer = create_zip(uploads_dir)
+    print("uploads_dir", uploads_dir)
+    file_zip_name = uploads_dir.split("/")[-1]
+    return send_file(zip_buffer, mimetype="application/zip", as_attachment=True, download_name=f"{file_zip_name}.zip")
 
 def process_uploaded_files(files):
     """Processes uploaded files and extracts content"""
     list_content = []
     for file in files:
-        file_name = file.filename
+        full_path = file.filename
+        # start with
+        paths = full_path.split("/")
+        checkFile = False
+        for path in paths:        
+            exclusions = [            # Files that start with a dot
+                "__pycache__",        # Python bytecode cache folder
+                ".git",               # Git directory
+                ".svn",               # Subversion directory
+                ".idea",              # IDE project folder (e.g., PyCharm)
+                "node_modules",       # Node.js modules directory
+                "dist",               # Build directory for many languages
+                "build",              # Build directory
+                ".vscode",            # Visual Studio Code settings
+                ".DS_Store",          # macOS-specific file
+                "README.md",          # README file
+                ]
+            if any(exclusion in path for exclusion in exclusions) or path.startswith("."):
+                checkFile = True
+        if checkFile:
+            continue
         try:
             binary_content = file.read()
             content = None
-            if file_name.endswith(".pdf"):
+            if full_path.endswith(".pdf"):
                 content = read_pdf(binary_content)
-            elif file_name.endswith(".doc"):
+            elif full_path.endswith(".doc"):
                 content = read_docx(binary_content)
-            elif file_name.lower().endswith((".jpg", ".jpeg", ".png", ".gif", ".bmp")):
+            elif full_path.lower().endswith((".jpg", ".jpeg", ".png", ".gif", ".bmp")):
                 continue  # Skip image files
             else:
                 content = binary_content.decode('utf-8')
 
             list_content.append({
-                "file_name": file_name,
+                "file_name": full_path,
                 "content": content
             })
         except Exception as e:
-            print(f"Error reading file {file_name}: {e}")
+            print(f"Error reading file {full_path}: {e}")
     
     return list_content
 
@@ -80,70 +128,48 @@ def generate_summary(files, list_content, uploads_dir, use_cache):
         elapsed_time = time_format_string(start_time)
         yield markdown.markdown(f"{summary}\n<p>Time render: <strong>{elapsed_time}</strong></p>\n")
 
-        # Generate code based on summary
-        start_time = time.time()
-        gen_code = None
-        if os.path.exists(file_path) and use_cache:
-            time.sleep(delay)
-            gen_code = read_file_content(file_path)
-        else:
-            gen_code = get_generate_code(file_name, summary)
-            save_content_to_file(file_path, extract_code_blocks(gen_code))
-
-        elapsed_time = time_format_string(start_time)
-        file_code = f"<pre><code id='agent_coder'>{parseTextToWeb(extract_code_blocks(gen_code))}</code></pre>\n"
-        yield markdown.markdown(f"<p>Creating code for : <strong>{file_name}</strong></p>")
-        yield markdown.markdown(f"{file_code}\n<p>Time render: <strong>{elapsed_time}</strong></p>\n")
-
     # Generate final project summary
+    time.sleep(delay)
+    yield markdown.markdown(f"<p>Creating summary for : <strong>README.md</strong></p>")
+    time.sleep(delay)
     start_time_final = time.time()
-    final_summary = get_final_summary(summary=combined_summary)
+    final_summary = get_final_summary(summary=combined_summary)    
+    check1 = get_final_summary_check(readme=final_summary)
+    check2 = get_final_summary_check(readme=final_summary)
+    # Keep generating the summary until it follows the structure
+    while not ("This README follows the structure" in check1 and "This README follows the structure" in check2):
+        final_summary = get_final_summary(summary=combined_summary)  
+        check1 = get_final_summary_check(readme=final_summary)
+        check2 = get_final_summary_check(readme=final_summary)
+
+    # Once the structure is correct, proceed with the process
     time.sleep(delay)
     elapsed_time_final = time_format_string(start_time_final)
-
-    yield markdown.markdown(f"<p>Creating summary for : <strong>README.md</strong></p>")
     yield markdown.markdown(f"{final_summary}\n<p>Time render: <strong>{elapsed_time_final}</strong></p>\n")
-
-    save_content_to_file(os.path.join(uploads_dir, "README.md"), final_summary)
+    readme_path = os.path.join(uploads_dir, "README.md")
+    save_content_to_file(readme_path, final_summary)
     yield "<p>Summary generation complete</p>\n"
+        
 
 
 
 def get_summary(content):
     system_prompt = """
-    you are a software engineer create documentation explain to the user.  
-    """ 
-    # ----------------------------------------------------------------------
+You are a software engineer. Your task is to create documentation that explains things to the user in simple terms.
+""" 
+# ----------------------------------------------------------------------
     user_prompt = f"""
-    This is a file, you need summary:
-    {content}
-    Create this one-paragraph summary using layman's terms and non-technical. no use of code, creation of summary, no comments, no suggestions, no corrections, no explanation.
-    Follow this structure markdown:  
-    ## Summary
-        ...(once paragraph)
-    """
+This is a file. You need to create a summary:
+{content}
+Write a one-paragraph summary in layman's terms and avoid using any technical language. Do not use code, provide explanations, suggestions, or corrections.
+
+Follow this structure in markdown:
+## Summary
+    ...(one paragraph summary)
+"""
+
     summary = get_text(system_prompt, user_prompt)   
     return summary
-
-def get_generate_code(file_name, summary):
-    system_prompt = """
-    you are a software engineer.  
-    """ 
-    # ----------------------------------------------------------------------
-    user_prompt = f"""
-    That is summary the code:
-    {summary}
-    create code for file:{file_name}
-        -use best practices, 
-        -complete with all function and logics
-        -no use of code
-        -no comments
-        -no explanation.
-        -using perfect indentation     
-    """
-    code = get_text(system_prompt, user_prompt)
-    # ----------------------------------------------------------------------   
-    return code
 
 def get_final_summary(summary):
     system_prompt = """
@@ -151,17 +177,63 @@ def get_final_summary(summary):
     """
     # ----------------------------------------------------------------------
     user_prompt = f"""  
-    That is summary:
+    That is  summary:
     {summary}
-    Create a three-paragraph summary using this summary code files, create a summary explain this code base works, your business rules. no use code, no comments, no explanation.
-    Follow this structure to create a summary:
-    ## Summary
-        ...(in details)
-    ## Business Rules
-        ...(bullet points)   
-    ## Tech Stack 
-        ...(bullet points)
+    This is the union of all summaries of the project files. you need create a general summary, follow this structure:
+----------------------------------------
+## Summary
+    (Summary project do in details)
+## Business Rules
+    (bullet points)   
+## Tech Stack 
+    (bullet points)
+----------------------------------------
+note : response in English, avoid using code, comments, or explanations in the response.
     """
+    _summary = get_text(system_prompt, user_prompt)
+    # ----------------------------------------------------------------------   
+    return _summary
+
+
+def get_final_summary_check(readme):
+    system_prompt = """
+    you are a software engineer create documentation explain to the user. use all time to elaborate best summary.
+    """
+    # ----------------------------------------------------------------------
+    user_prompt = f"""
+You are tasked with verifying whether a README file strictly follows a predefined structure. The structure you need to check is as follows:
+
+## Summary
+    - A detailed explanation of the project.
+
+## Business Rules
+    - A list of rules or guidelines that the project must follow. This section should be concise and easy to understand, usually in bullet points.
+
+## Tech Stack
+    - A list of technologies, frameworks, libraries, and tools used in the project. This should be presented in bullet points.
+
+**Validation Criteria:**
+1. The README **must** contain all three sections: `Summary`, `Business Rules`, and `Tech Stack`, in the exact order.
+2. Each section **must** contain relevant content:
+   - `Summary`: A descriptive explanation of the project.
+   - `Business Rules`: Clearly outlined rules in bullet points.
+   - `Tech Stack`: A bullet-point list of technologies used.
+3. The README **must not** contain any additional sections, headers, or unrelated content beyond what is specified above.
+
+**Your Task:**
+- If the README **strictly** follows the above structure and contains only the specified sections, respond with:
+  - `"This README follows the structure"`
+- If the README is missing any required section, contains incorrect formatting, or includes additional information beyond the specified structure, respond with:
+  - `"This README does not follow the structure"`
+
+Here is the README content you need to evaluate:
+----------------------------------------
+{readme}
+----------------------------------------
+
+Note: No comments, suggestions, corrections, or explanations are required. Just the response confirming whether the README follows the structure or not.
+"""
+
     _summary = get_text(system_prompt, user_prompt)
     # ----------------------------------------------------------------------   
     return _summary

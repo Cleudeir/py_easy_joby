@@ -91,7 +91,7 @@ function insertButtonSave(div, saveLink) {
 
 
 function streamingFeed(response) {
-    console.log('streamingFeed');
+    console.log('streamingFeed', response);
     if (response.error !== undefined) {
         showLoading();
         return
