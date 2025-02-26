@@ -92,6 +92,7 @@ def process_uploaded_files(files):
             })
         except Exception as e:
             print(f"Error reading file {full_path}: {e}")
+            continue
     
     return list_content
 
@@ -105,6 +106,11 @@ def generate_summary(files, list_content, uploads_dir, use_cache):
     combined_summary = ""
     yield "<p>Starting documentation generation...</p>\n"
     delay = 0.010
+
+    if(len(list_content) == 0):
+        time.sleep(delay) 
+        yield "<p>Not found files</p>\n"
+        return
 
     for content in list_content:
         start_time = time.time()

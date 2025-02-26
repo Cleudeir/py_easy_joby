@@ -2,6 +2,8 @@ import re
 import os
 import pdfplumber
 import docx
+import io
+
 def split_file_by_text(file_content, split_text, uploads_dir):
     sections = file_content.split(split_text)
     insertSplit_text = []
@@ -34,13 +36,14 @@ def split_file_by_paragraphs(file_content):
 
 def read_pdf(file):
     text = ""
-    with pdfplumber.open(file) as pdf:
+    with pdfplumber.open(io.BytesIO(file)) as pdf:  # Wrap bytes in BytesIO
         for page in pdf.pages:
             text += page.extract_text() + "\n"
     return text
 
+
 def read_docx(file):
-    doc = docx.Document(file)
+    doc = docx.Document(io.BytesIO(file))  # Wrap bytes in BytesIO
     return '\n'.join([para.text for para in doc.paragraphs])
 
 def read_txt(file):
