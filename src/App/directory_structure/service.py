@@ -9,9 +9,9 @@ def print_tree(tree: dict, prefix: str = "", is_last: bool = True, max_items: in
     for i, (key, sub_tree) in enumerate(items):
         is_last_item = (i == len(items) - 1)
         branch = "└── " if is_last_item else "├── "
-        new_prefix = prefix + ("     " if is_last_item and branch == "└── " else "│    ")  # Maintain vertical lines
+        new_prefix = prefix + ("    " if is_last_item else "│   ")  # Maintain vertical lines
 
-        output.append(f"{prefix}{branch}{key}")
+        output.append(f"\n{prefix}{branch}{key}")
 
         if isinstance(sub_tree, dict) and sub_tree:
             output.append(print_tree(sub_tree, new_prefix, is_last_item, max_items))
@@ -19,30 +19,23 @@ def print_tree(tree: dict, prefix: str = "", is_last: bool = True, max_items: in
     if total_items > max_items:
         output.append(f"{prefix}└── ...")  # Indicating more items exist
 
-    return "\n".join(output)
+    return "".join(output)
 
 
 def build_tree(paths):
-        content_files = ""
         tree = defaultdict(dict)
         for file in paths:
-            path = file.filename  # Extract filename from file object
+            path = file  # Extract filename from file object
             parts = path.split("/")                        
             node = tree
             for part in parts:
-                node = node.setdefault(part, {})
-            try:                
-                binary_content = file.read()
-                content = binary_content.decode('utf-8')  
-                content_files += f"\n{path}\n<pre><code>{content}</code></pre>\n"  # Append the file name and content  # Now it correctly modifies the outer variable
-            except UnicodeDecodeError:
-                continue 
-        return tree, content_files
+                node = node.setdefault(part, {}) 
+        return tree
       
 def get_directory_structure(files):
     filtered_files = []
     for file in files:
-        full_path = file.filename
+        full_path = file
         # start with
         paths = full_path.split("/")
         checkFile = True
@@ -61,8 +54,8 @@ def get_directory_structure(files):
                 ]
             if any(exclusion in path for exclusion in exclusions) or path.startswith("."):
                 checkFile = False
-        if checkFile:            
+        if checkFile:
             filtered_files.append(file)
     
-    directory_tree, contents = build_tree(filtered_files)
-    return print_tree(directory_tree), contents
+    directory_tree = build_tree(filtered_files)
+    return print_tree(directory_tree)

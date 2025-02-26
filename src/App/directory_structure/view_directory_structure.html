@@ -14,9 +14,8 @@
         <h1>Get Directory Structure</h1>
         <form id="form" method="POST">
             <my-input-files></my-input-files>
-            <my-button-submit text="Get Structure"></my-button-submit>
+            <my-button-submit text="Get Structure" onlyName="true"></my-button-submit>
         </form>
-
         <my-content></my-content>
     </div>
     <script type="module" src="{{ url_for('static', filename='Components/_index.js') }}"></script>
