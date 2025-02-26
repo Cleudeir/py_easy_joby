@@ -137,24 +137,45 @@ def generate_summary(files, list_content, uploads_dir, use_cache):
 
     # Generate final project summary
     time.sleep(delay)
-    yield markdown.markdown(f"<p>Creating summary for : <strong>README.md</strong></p>")
+    yield markdown.markdown(f"<p>Creating summary first version: <strong>README.md</strong></p>")
     time.sleep(delay)
-    start_time_final = time.time()
-    final_summary = get_final_summary(summary=combined_summary)    
+    final_summary = get_final_summary(summary=combined_summary)
+    time.sleep(delay)
+    yield markdown.markdown(f"{final_summary}")    
+    time.sleep(delay)
+    yield markdown.markdown(f"Agente1 check structure...")
+    time.sleep(delay)
     check1 = get_final_summary_check(readme=final_summary)
+    time.sleep(delay)
+    yield markdown.markdown(f"Agente1 check structure: {check1}")    
+    time.sleep(delay)
+    yield markdown.markdown(f"Agente2 check structure...")
+    time.sleep(delay)
     check2 = get_final_summary_check(readme=final_summary)
+    yield markdown.markdown(f"Agente2 check structure: {check2}")
+    time.sleep(delay)    
     # Keep generating the summary until it follows the structure
     while not ("This README follows the structure" in check1 and "This README follows the structure" in check2):
-        final_summary = get_final_summary(summary=combined_summary)  
+        time.sleep(delay)
+        yield markdown.markdown(f"<p>Creating summary for new version: <strong>README.md</strong></p>")
+        final_summary = get_final_summary(summary=combined_summary)           
+        yield markdown.markdown(f"{final_summary}")
+        
+        time.sleep(delay)
+        yield markdown.markdown(f"Agente1 check structure...")
         check1 = get_final_summary_check(readme=final_summary)
+        yield markdown.markdown(f"Agente1 check structure:{check1}")
+        
+        time.sleep(delay)
+        yield markdown.markdown(f"Agente2 check structure...")
         check2 = get_final_summary_check(readme=final_summary)
+        yield markdown.markdown(f"Agente2 check structure:{check2}")
 
-    # Once the structure is correct, proceed with the process
-    time.sleep(delay)
-    elapsed_time_final = time_format_string(start_time_final)
-    yield markdown.markdown(f"{final_summary}\n<p>Time render: <strong>{elapsed_time_final}</strong></p>\n")
+  
     readme_path = os.path.join(uploads_dir, "README.md")
     save_content_to_file(readme_path, final_summary)
+    
+    time.sleep(delay)
     yield "<p>Summary generation complete</p>\n"
         
 
@@ -190,7 +211,7 @@ def get_final_summary(summary):
 ----------------------------------------
 ## Summary
     (Summary project do in details)
-## Business Rules
+## Project do
     (bullet points)   
 ## Tech Stack 
     (bullet points)
@@ -213,9 +234,9 @@ You are tasked with verifying whether a README file strictly follows a predefine
 ## Summary
     - A detailed explanation of the project.
 
-## Business Rules
-    - A list of rules or guidelines that the project must follow. This section should be concise and easy to understand, usually in bullet points.
-
+## Project do
+    - A list of tasks, objectives, and requirements for the project. This should be presented in bullet points.
+    
 ## Tech Stack
     - A list of technologies, frameworks, libraries, and tools used in the project. This should be presented in bullet points.
 
@@ -234,11 +255,8 @@ You are tasked with verifying whether a README file strictly follows a predefine
 - If the README is missing any required section, contains incorrect formatting, or includes additional information beyond the specified structure, respond with:
   - `"This README does not follow the structure"`
   
-**Automatic refused**
-- If the README is missing any required section, contains incorrect formatting, or includes additional information beyond the specified structure, respond with:
-- `"This README does not follow the structure"`
-- `"Whiten other language"`
-
+** Automatic reproved:**
+- no response in English
 Here is the README content you need to evaluate:
 ----------------------------------------
 {readme}

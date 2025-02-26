@@ -70,6 +70,14 @@
         a:hover {
             background: #0056b3;
         }
+
+        .github-link {
+            background: #333;
+        }
+
+        .github-link:hover {
+            background: #222;
+        }
     </style>
 </head>
 
@@ -96,6 +104,11 @@
             <li>
                 <a href="{{ url_for('directory_structure_routes.get_directory_structure_route') }}">
                     <i class="fas fa-folder-open"></i> Get Directory Structure
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/Cleudeir/py_easy_joby" target="_blank" class="github-link">
+                    <i class="fab fa-github"></i> View on GitHub
                 </a>
             </li>
         </ul>

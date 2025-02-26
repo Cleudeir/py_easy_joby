@@ -142,7 +142,6 @@ function streamingFeed(response) {
                 navigator.clipboard.writeText(element.innerText);
             };
             container.appendChild(copyButton);
-
             componentMain.appendChild(container);
 
             index++;
