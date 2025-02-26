@@ -93,16 +93,6 @@ function showContent() {
     componentMain.innerHTML = '';
     return componentMain;
 }
-function insertButtonCopy(div, index) {
-    const copyButton = document.createElement('div');
-    copyButton.innerHTML = `<a class="copy" href="#">📋</a>`;
-    copyButton.onclick = function (event) {
-        event.preventDefault();
-        const element = document.querySelector('#content-text-' + index);
-        navigator.clipboard.writeText(element.innerText);
-    };
-    div.appendChild(copyButton);
-}
 
 function streamingFeed(response) {
     console.log('streamingFeed', response);
@@ -117,25 +107,42 @@ function streamingFeed(response) {
     async function readStream() {
         showLoading();
         let index = 0;
+        let processing = false;
         while (true) {
+            if (processing) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            processing = true;
             const { done, value } = await reader.read();
             if (done) {
                 hideLoading();
                 break;
             }
             let chunk = decoder.decode(value, { stream: true });
+
             const container = document.createElement('div');
             container.classList.add('markdown-content');
+            // create content
             const content = document.createElement('div');
             content.id = `content-text-${index}`;
             content.innerHTML = chunk;
+            // add content
             container.appendChild(content);
 
             const buttonsContainer = document.createElement('div');
             buttonsContainer.style.display = 'flex';
             buttonsContainer.style.flexDirection = 'row';
             container.appendChild(buttonsContainer);
-            insertButtonCopy(buttonsContainer, index);
+
+            const copyButton = document.createElement('div');
+            copyButton.innerHTML = `<a class="copy" href="#">📋</a>`;
+            copyButton.onclick = function (event) {
+                event.preventDefault();
+                const element = document.querySelector('#content-text-' + index);
+                navigator.clipboard.writeText(element.innerText);
+            };
+            container.appendChild(copyButton);
+
             componentMain.appendChild(container);
 
             index++;

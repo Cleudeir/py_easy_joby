@@ -105,7 +105,7 @@ def generate_summary(files, list_content, uploads_dir, use_cache):
 
     combined_summary = ""
     yield "<p>Starting documentation generation...</p>\n"
-    delay = 0.010
+    delay = 0.1
 
     if(len(list_content) == 0):
         time.sleep(delay) 
@@ -220,6 +220,7 @@ You are tasked with verifying whether a README file strictly follows a predefine
     - A list of technologies, frameworks, libraries, and tools used in the project. This should be presented in bullet points.
 
 **Validation Criteria:**
+0. Check response in English.
 1. The README **must** contain all three sections: `Summary`, `Business Rules`, and `Tech Stack`, in the exact order.
 2. Each section **must** contain relevant content:
    - `Summary`: A descriptive explanation of the project.
@@ -232,6 +233,11 @@ You are tasked with verifying whether a README file strictly follows a predefine
   - `"This README follows the structure"`
 - If the README is missing any required section, contains incorrect formatting, or includes additional information beyond the specified structure, respond with:
   - `"This README does not follow the structure"`
+  
+**Automatic refused**
+- If the README is missing any required section, contains incorrect formatting, or includes additional information beyond the specified structure, respond with:
+- `"This README does not follow the structure"`
+- `"Whiten other language"`
 
 Here is the README content you need to evaluate:
 ----------------------------------------

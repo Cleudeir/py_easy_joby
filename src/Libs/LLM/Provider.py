@@ -15,9 +15,15 @@ print('PROVIDER: >>>>>>>>>',PROVIDER, '<<<<<<<<<')
 def get_text(system_prompt: str, user_prompt: str) -> Response:
     if PROVIDER == "gemini":
         time.sleep(4)
-        return get_genai_text(system_prompt, user_prompt)
+        text = get_genai_text(system_prompt, user_prompt)
+        if("Request failed" in text):
+             text = get_ollama_text(system_prompt, user_prompt)
+        return text
     elif PROVIDER == "ollama":
-        return get_ollama_text(system_prompt, user_prompt)
+        text = get_ollama_text(system_prompt, user_prompt)
+        if("Request failed" in text):
+             text = get_genai_text(system_prompt, user_prompt)
+        return text            
     else:
         return "Unsupported provider"
 def get_vision(system_prompt: str, user_prompt: str, images_path: list[str]) -> Response:

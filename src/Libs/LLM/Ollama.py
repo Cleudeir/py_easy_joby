@@ -72,7 +72,7 @@ def get_ollama_text(system_prompt: str, user_prompt: str) -> dict:
             return f"Request failed: {response.status_code} - {response.reason}"
     
     except Exception as e:      
-        return f"error str({e})"
+        return f"Request failed: {e}"
     finally:
         end_time = time.time()
         print(f"Request ollama model {MODEL_OLLAMA} : {(end_time - start_time).__round__(2)} seconds")

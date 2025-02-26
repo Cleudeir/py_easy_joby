@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, Response
+from src.Libs.LLM.Provider import get_text
 from src.App.directory_structure.service import get_directory_structure
 import time
 
@@ -30,6 +31,9 @@ def get_directory_structure_route():
             {structure}
             </code>
             </pre>"""
+            time.sleep(sleep_time)
+            explains_structure = get_text("Explain the system design or architecture apply in this code , response in once paragraph, in layman's terms, not use code or comments", structure) 
+            yield f"<h1>Explains Structure</h1>\n{explains_structure}"
             time.sleep(sleep_time)
             yield "<p>Generation complete!</p>\n"            
         

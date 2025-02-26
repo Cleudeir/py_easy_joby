@@ -3,6 +3,7 @@ import google.generativeai as genai  # M
 import time
 from typing import Union
 import PIL.Image
+from src.Libs.LLM.Gemini_limiter import can_make_request, increment_request_count
 
 # Import environment variables at the start
 GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
@@ -13,6 +14,8 @@ Response = Union[str, dict]
 
 # Function to get a response from Google Generative AI with model, system, and user prompts
 def get_genai_text(system_prompt: str, user_prompt: str) -> Response:
+    if not can_make_request():
+        return "Request failed: Gemini daily request limit reached. Try again tomorrow."
     start_time = time.time()
     try:
         # Configure the API key
@@ -38,7 +41,7 @@ def get_genai_text(system_prompt: str, user_prompt: str) -> Response:
 
         # Send the user prompt and return the response
         response = chat_session.send_message(user_prompt)
-     
+        increment_request_count()
         return response.text
     except Exception as e:
         return f"error str({e})"
@@ -91,5 +94,5 @@ def send_image_to_gemini(system_prompt: str, user_prompt: str, images_path: list
         # Return the response text
         return response.text
     except Exception as e:
-        return f"error: str({e})"
+        return f"Request failed: {e}"
  

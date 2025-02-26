@@ -39,6 +39,7 @@
     "ollama",
     "onpress",
     "pdfplumber",
+    "pycache",
     "pycryptodome",
     "pypandoc",
     "pytesseract",
