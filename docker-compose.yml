@@ -5,7 +5,5 @@ services:
     build: .
     ports:
       - "8032:5000"
-    environment:
-      - FLASK_ENV=development
     volumes:
       - ./src/.outputs:/app/src/.outputs # Bind mount for the output directory

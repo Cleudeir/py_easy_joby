@@ -31,6 +31,8 @@ class ButtonSubmit extends HTMLElement {
     }
 
     async getData(event) {
+        console.log("showLoad")
+        showLoading();
         event.preventDefault();
         const form = document.getElementById('form'); // Get the form
         const formData = new FormData(form);
@@ -59,6 +61,7 @@ class ButtonSubmit extends HTMLElement {
         } catch (error) {
             alert("An error occurred during form submission.");
         }
+
     }
 }
 

@@ -10,11 +10,12 @@ from src.Libs.File_processor import save_content_to_file
 
 def generate_documentation(filename, file_content, output_path):
     yield "<p>Starting documentation generation...</p>\n"
-    time.sleep(0.100)
+    delay = 0.5
+    time.sleep(delay)
     yield "<p>Original code</p>\n"
-    time.sleep(0.100)
+    time.sleep(delay)
     yield markdown.markdown(f"<pre><code id='agent_coder'>{replaceCodeArrow(code=file_content)}</code></pre>")
-    time.sleep(0.100)
+    time.sleep(delay)
     summary = get_agent_summary(file_content)
     yield markdown.markdown(summary)
     code = get_agent_coder(summary)
@@ -25,7 +26,7 @@ def generate_documentation(filename, file_content, output_path):
     # Save files
     file_code_reconstruction = os.path.join(output_path, filename)                
     save_content_to_file(file_code_reconstruction, code)
-    time.sleep(0.100)
+    time.sleep(delay)
     yield "<p>Summary generation complete</p>\n"
     return
                 
@@ -37,6 +38,7 @@ def replaceCodeArrow(code):
 def get_directory_output(request):
     """Generates an encrypted output directory based on request"""
     user_ip = normalize_path_name(request.remote_addr)
+    print(user_ip)
     file_name = normalize_path_name(request.files['file'].filename)
     module_name = "reconstruction"
     relative_output_folder = os.path.join(user_ip, file_name, module_name)

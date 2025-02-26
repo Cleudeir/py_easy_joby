@@ -12,4 +12,4 @@ app.config.from_object(Config)
 register_blueprints(app)
 
 if __name__ == '__main__':
-    app.run(debug=app.config['DEBUG'], host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')

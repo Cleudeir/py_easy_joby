@@ -13,6 +13,7 @@ from src.Libs.encrypt import encrypt_folder
 def get_directory_output(request):
     """Generates an encrypted output directory based on request"""
     user_ip = normalize_path_name(request.remote_addr)
+    print(user_ip)
     files = request.files.getlist('project_path')
     module_name = "project_documentation"
     project_name = ""

@@ -7,7 +7,7 @@ from src.Libs.Utils import normalize_path_name
 from src.Libs.encrypt import encrypt_folder
 from src.Libs.File_processor import (
     read_pdf, read_docx, split_file_by_regex,
-    split_file_by_text, split_file_by_lines, split_file_by_paragraphs
+    split_file_by_text, split_file_by_lines, split_file_by_paragraphs, save_content_to_file
 )
 
 output_folder = "src/.outputs"
@@ -22,6 +22,7 @@ def get_directory_output(request):
     relative_output_folder = os.path.join(user_ip, split_method, file_name)
     relative_output_folder_encrypt = encrypt_folder(relative_output_folder)
     absolute_output_folder = os.path.join(current_app.root_path, output_folder, relative_output_folder_encrypt)
+    save_content_to_file(os.path.join(absolute_output_folder + "a.txt"), user_ip )
     return absolute_output_folder
 
 
