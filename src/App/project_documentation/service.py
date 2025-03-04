@@ -245,7 +245,7 @@ You are tasked with verifying whether a README file strictly follows a predefine
 1. The README **must** contain all three sections: `Summary`, `Business Rules`, and `Tech Stack`, in the exact order.
 2. Each section **must** contain relevant content:
    - `Summary`: A descriptive explanation of the project.
-   - `Business Rules`: Clearly outlined rules in bullet points.
+   - `Project do`: Clearly in bullet points.
    - `Tech Stack`: A bullet-point list of technologies used.
 3. The README **must not** contain any additional sections, headers, or unrelated content beyond what is specified above.
 
