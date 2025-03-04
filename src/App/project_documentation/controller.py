@@ -15,9 +15,10 @@ def get_project_documentation():
         uploads_dir = get_directory_output(request)
         files = request.files.getlist('project_path')
         use_cache = request.form.get("useCache", False)
-        list_content = process_uploaded_files(files)
+        read_images = request.form.get("useImage", False)
+        list_content = process_uploaded_files(files, read_images)
         
-        return Response(generate_summary(files, list_content, uploads_dir, use_cache), mimetype="text/html")
+        return Response(generate_summary(files, list_content, uploads_dir, use_cache,read_images), mimetype="text/html")
 
 @project_documentation_routes.route("/project_documentation/download_all", methods=["POST"])
 def download_project():

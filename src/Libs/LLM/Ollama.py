@@ -23,21 +23,45 @@ client = ollama.Client(
 Response = Union[str, dict]
 
 # Function to send an image to Ollama's vision model, along with system and user prompts
-def send_image_to_ollama(system_prompt: str, user_prompt: str, images_path:  list[str]) -> Response:
+import ollama
+from typing import List
+
+def send_image_to_ollama(system_prompt: str, user_prompt: str, images_path: str) -> str:
+    print("send_image_to_ollama", images_path)
+    start_time = time.time()
     try:
-        # Prepare the image and messages to send to Ollama
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt, 'images': images_path},
-        ]
-        check_ollama_model_exists(MODEL_OLLAMA_VISION)        
-        # Call ollama.chat with the vision model and messages (assuming a vision-enabled model)
-        response = ollama.chat(model=MODEL_OLLAMA_VISION, messages=messages)
-        # Return the response content directly
-        response_message = response["message"]["content"]
-        return response_message
-    except Exception as e:
-        return f"error: str({e})"
+        url = f"{OLLAMA_BASE_URL}/api/generate"  # Updated API endpoint
+        headers = {
+            "Content-Type": "application/json"
+        }
+        
+        payload = {
+            "model": MODEL_OLLAMA_VISION,  # Replace with the model you're using
+            "prompt": f"{system_prompt}\n{user_prompt}",
+            "stream": False,
+            "images": [images_path]
+        }        
+        # Check if the Ollama model exists
+        check_ollama_model_exists(MODEL_OLLAMA_VISION) 
+        # Send POST request to the provided API endpoint
+        response = requests.post(url, json=payload, headers=headers)
+        # Check if the request was successful
+        if response.status_code == 200:
+            response_data = response.json()
+            text = response_data.get("response", '')
+            # Extract text after </think>
+            if "</think>" in text:
+                text_after_think = text.split("</think>")[1]
+                text = text_after_think            
+            return text
+        else:
+            return f"Request failed: {response.status_code} - {response.reason}"
+    
+    except Exception as e:      
+        return f"Request failed: {e}"
+    finally:
+        end_time = time.time()
+        print(f"Request ollama model {MODEL_OLLAMA} : {(end_time - start_time).__round__(2)} seconds")
 
 
 # Function to get a response from an Ollama model

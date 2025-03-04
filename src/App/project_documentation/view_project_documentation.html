@@ -16,7 +16,8 @@
 
         <form id="form" method="POST" action="/get_project_documentation">
             <my-input-files></my-input-files>
-            <my-check-cache></my-check-cache>
+            <my-check myid="useCache" label="Use Cache"></my-check>
+            <my-check myid="useImage" label="Read Images"></my-check>
             <my-button-submit method="formdata" text="Generate Documentation"></my-button-submit>
         </form>
         <my-content></my-content>

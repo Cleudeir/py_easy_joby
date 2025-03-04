@@ -22,11 +22,11 @@ def get_text(system_prompt: str, user_prompt: str) -> Response:
     elif PROVIDER == "ollama":
         text = get_ollama_text(system_prompt, user_prompt)
         if("Request failed" in text):
-             text = get_genai_text(system_prompt, user_prompt)
+             text = get_ollama_text(system_prompt, user_prompt)
         return text            
     else:
         return "Unsupported provider"
-def get_vision(system_prompt: str, user_prompt: str, images_path: list[str]) -> Response:
+def get_vision(system_prompt: str, user_prompt: str, images_path: str) -> Response:
     if PROVIDER == "gemini":
         time.sleep(4)
         return send_image_to_gemini(system_prompt, user_prompt, images_path)

@@ -1,10 +1,11 @@
+import base64
 import os
 import time
 import markdown
 import zipfile
 import io
 from flask import current_app, send_file
-from src.Libs.LLM.Provider import get_text
+from src.Libs.LLM.Provider import get_text, get_vision
 from src.Libs.File_processor import read_file_content, save_content_to_file
 from src.Libs.File_processor import read_docx, read_pdf
 from src.Libs.Utils import normalize_path_name, time_format_string
@@ -29,8 +30,6 @@ def get_directory_output(request):
     absolute_output_folder = os.path.join(current_app.root_path, output_folder, relative_output_folder_encrypt)
     return absolute_output_folder
 
-
-
 def create_zip(directory):
     """Creates an in-memory ZIP file from the given directory."""
     zip_buffer = io.BytesIO()
@@ -49,11 +48,12 @@ def download_zip_files(uploads_dir):
     file_zip_name = uploads_dir.split("/")[-1]
     return send_file(zip_buffer, mimetype="application/zip", as_attachment=True, download_name=f"{file_zip_name}.zip")
 
-def process_uploaded_files(files):
+def process_uploaded_files(files, read_images=True):
     """Processes uploaded files and extracts content"""
     list_content = []
     for file in files:
         full_path = file.filename
+        print(full_path)
         # start with
         paths = full_path.split("/")
         checkFile = False
@@ -81,8 +81,9 @@ def process_uploaded_files(files):
                 content = read_pdf(binary_content)
             elif full_path.endswith(".doc"):
                 content = read_docx(binary_content)
-            elif full_path.lower().endswith((".jpg", ".jpeg", ".png", ".gif", ".bmp")):
-                continue  # Skip image files
+            elif read_images and full_path.lower().endswith((".jpg", ".jpeg", ".png", ".bmp")):
+                binary_content
+                content = base64.b64encode(binary_content).decode('utf-8')
             else:
                 content = binary_content.decode('utf-8')
 
@@ -97,7 +98,7 @@ def process_uploaded_files(files):
     return list_content
 
 
-def generate_summary(files, list_content, uploads_dir, use_cache):
+def generate_summary(files, list_content, uploads_dir, use_cache, read_images):
     """Generates documentation summary for uploaded files"""
     if not files or all(file.filename == '' for file in files):
         yield "<p>No files uploaded.</p>\n"
@@ -115,6 +116,7 @@ def generate_summary(files, list_content, uploads_dir, use_cache):
     for content in list_content:
         start_time = time.time()
         file_name = content["file_name"]
+        print(file_name)
         if file_name == '':
             yield "<p>File name is empty</p>\n"
             break
@@ -137,39 +139,17 @@ def generate_summary(files, list_content, uploads_dir, use_cache):
 
     # Generate final project summary
     time.sleep(delay)
-    yield markdown.markdown(f"<p>Creating summary first version: <strong>README.md</strong></p>")
+    yield markdown.markdown(f"<p>Creating summary: <strong>README.md</strong></p>")
     time.sleep(delay)
     final_summary = get_final_summary(summary=combined_summary)
-    time.sleep(delay)
-    yield markdown.markdown(f"{final_summary}")    
-    time.sleep(delay)
-    yield markdown.markdown(f"Agente1 check structure...")
-    time.sleep(delay)
     check1 = get_final_summary_check(readme=final_summary)
-    time.sleep(delay)
-    yield markdown.markdown(f"Agente1 check structure: {check1}")    
-    time.sleep(delay)
-    yield markdown.markdown(f"Agente2 check structure...")
-    time.sleep(delay)
     check2 = get_final_summary_check(readme=final_summary)
-    yield markdown.markdown(f"Agente2 check structure: {check2}")
-    time.sleep(delay)    
-    # Keep generating the summary until it follows the structure
     while not ("This README follows the structure" in check1 and "This README follows the structure" in check2):
-        time.sleep(delay)
-        yield markdown.markdown(f"<p>Creating summary for new version: <strong>README.md</strong></p>")
-        final_summary = get_final_summary(summary=combined_summary)           
-        yield markdown.markdown(f"{final_summary}")
-        
-        time.sleep(delay)
-        yield markdown.markdown(f"Agente1 check structure...")
+        final_summary = get_final_summary(summary=combined_summary)
         check1 = get_final_summary_check(readme=final_summary)
-        yield markdown.markdown(f"Agente1 check structure:{check1}")
-        
-        time.sleep(delay)
-        yield markdown.markdown(f"Agente2 check structure...")
         check2 = get_final_summary_check(readme=final_summary)
-        yield markdown.markdown(f"Agente2 check structure:{check2}")
+    
+    yield markdown.markdown(f"{final_summary}\n<p>Time render: <strong>{time_format_string(start_time)}</strong></p>\n")
 
   
     readme_path = os.path.join(uploads_dir, "README.md")
@@ -182,21 +162,36 @@ def generate_summary(files, list_content, uploads_dir, use_cache):
 
 
 def get_summary(content):
+    print('get_summary',content.get("content"))
     system_prompt = """
 You are a software engineer. Your task is to create documentation that explains things to the user in simple terms.
 """ 
 # ----------------------------------------------------------------------
-    user_prompt = f"""
+
+    summary = ""
+    if(content.get("file_name").lower().endswith((".jpg", ".jpeg", ".png", ".bmp"))):
+        user_prompt = f"""
+Read the image. You need to create a summary:
+Write a one-paragraph summary in layman's terms and avoid using any technical language. Do not use code, provide explanations, suggestions, or corrections.
+Follow this structure in markdown:
+
+## Summary
+
+    ...(one paragraph summary)
+        """
+        summary = get_vision(system_prompt, user_prompt, content.get("content"))
+    else:
+        user_prompt = f"""
 This is a file. You need to create a summary:
-{content}
+{content.get("content")}
 Write a one-paragraph summary in layman's terms and avoid using any technical language. Do not use code, provide explanations, suggestions, or corrections.
 
 Follow this structure in markdown:
 ## Summary
-    ...(one paragraph summary)
-"""
 
-    summary = get_text(system_prompt, user_prompt)   
+...(one paragraph summary)
+        """
+        summary = get_text(system_prompt, user_prompt)   
     return summary
 
 def get_final_summary(summary):
