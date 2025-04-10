@@ -13,8 +13,7 @@ def get_directory_structure_route():
         return render_template("view_directory_structure.html")
     if request.method == "POST":
         files = request.form.getlist('project_path')
-        print("files", files)
-        
+
         structure = get_directory_structure(files)
         
         def result():

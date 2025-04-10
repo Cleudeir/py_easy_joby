@@ -16,7 +16,7 @@ def split_file_by_text(file_content, split_text, uploads_dir):
 
 def split_file_by_regex(file_content, regex, uploads_dir):   
     sections = re.findall(regex, file_content, re.DOTALL)  
-    print("sections", sections)
+
     insertSplit_text = []
     for index in range(len(sections)):
         section = sections[index]

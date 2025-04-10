@@ -14,7 +14,7 @@ from src.Libs.encrypt import encrypt_folder
 def get_directory_output(request):
     """Generates an encrypted output directory based on request"""
     user_ip = normalize_path_name(request.remote_addr)
-    print(user_ip)
+
     files = request.files.getlist('project_path')
     module_name = "project_documentation"
     project_name = ""
@@ -44,7 +44,7 @@ def create_zip(directory):
 
 def download_zip_files(uploads_dir):    
     zip_buffer = create_zip(uploads_dir)
-    print("uploads_dir", uploads_dir)
+
     file_zip_name = uploads_dir.split("/")[-1]
     return send_file(zip_buffer, mimetype="application/zip", as_attachment=True, download_name=f"{file_zip_name}.zip")
 
@@ -53,7 +53,7 @@ def process_uploaded_files(files, read_images=True):
     list_content = []
     for file in files:
         full_path = file.filename
-        print(full_path)
+     
         # start with
         paths = full_path.split("/")
         checkFile = False
@@ -116,7 +116,7 @@ def generate_summary(files, list_content, uploads_dir, use_cache, read_images):
     for content in list_content:
         start_time = time.time()
         file_name = content["file_name"]
-        print(file_name)
+      
         if file_name == '':
             yield "<p>File name is empty</p>\n"
             break
@@ -162,7 +162,6 @@ def generate_summary(files, list_content, uploads_dir, use_cache, read_images):
 
 
 def get_summary(content):
-    print('get_summary',content.get("content"))
     system_prompt = """
 You are a software engineer. Your task is to create documentation that explains things to the user in simple terms.
 """ 

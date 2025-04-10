@@ -6,7 +6,7 @@ from datetime import datetime
 
 output_folder = "src/.outputs"  
 absolute_output_folder = os.path.join(os.getcwd(),output_folder,"_gemini_request_cache.json" )
-print(absolute_output_folder)
+
 CACHE_FILE = absolute_output_folder
 REQUEST_LIMIT = 1000
 

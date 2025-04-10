@@ -10,7 +10,6 @@ PROVIDER: str = os.getenv("PROVIDER")
 
 # Type annotation for the response from Ollama and Google Generative AI
 Response = Union[str, dict]
-print('PROVIDER: >>>>>>>>>',PROVIDER, '<<<<<<<<<')
 
 def get_text(system_prompt: str, user_prompt: str) -> Response:
     if PROVIDER == "gemini":
@@ -22,10 +21,12 @@ def get_text(system_prompt: str, user_prompt: str) -> Response:
     elif PROVIDER == "ollama":
         text = get_ollama_text(system_prompt, user_prompt)
         if("Request failed" in text):
-             text = get_ollama_text(system_prompt, user_prompt)
-        return text            
+             text = get_genai_text(system_prompt, user_prompt)
+        return text
     else:
         return "Unsupported provider"
+    
+    
 def get_vision(system_prompt: str, user_prompt: str, images_path: str) -> Response:
     if PROVIDER == "gemini":
         time.sleep(4)
@@ -34,6 +35,8 @@ def get_vision(system_prompt: str, user_prompt: str, images_path: str) -> Respon
         return send_image_to_ollama(system_prompt, user_prompt, images_path)
     else:
         return "Unsupported provider"
+    
+    
 def get_embeddings(system_prompt: str, user_prompt: str) -> Response:
     if PROVIDER == "gemini":
         time.sleep(4)
@@ -42,3 +45,6 @@ def get_embeddings(system_prompt: str, user_prompt: str) -> Response:
         return get_ollama_embeddings(system_prompt, user_prompt)
     else:
         return "Unsupported provider"
+
+def get_provider():
+    return PROVIDER

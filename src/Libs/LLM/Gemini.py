@@ -15,6 +15,7 @@ Response = Union[str, dict]
 
 # Function to get a response from Google Generative AI with model, system, and user prompts
 def get_genai_text(system_prompt: str, user_prompt: str) -> Response:
+    print("get_genai_text")
     if not can_make_request():
         return "Request failed: Gemini daily request limit reached. Try again tomorrow."
     start_time = time.time()

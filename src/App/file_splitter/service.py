@@ -13,12 +13,12 @@ from src.Libs.File_processor import (
 output_folder = "src/.outputs"
 
 def get_directory_output(request):
-    print('get_directory_output')
+
     user_ip = normalize_path_name(request.remote_addr)
     split_method = request.form['split_method']
     file_name = normalize_path_name(request.files['file'].filename)
     module_name = "file_splitter"
-    print(file_name, split_method, user_ip, module_name)
+
     relative_output_folder = os.path.join(user_ip, split_method, file_name)
     relative_output_folder_encrypt = encrypt_folder(relative_output_folder)
     absolute_output_folder = os.path.join(current_app.root_path, output_folder, relative_output_folder_encrypt)
